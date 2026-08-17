@@ -1,11 +1,12 @@
 import React from 'react';
-import { Play, Square, Headphones, Star, Tag, Trash2 } from 'lucide-react';
+import { Play, Square, Headphones, Star, Edit3, Trash2, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { SoundItem } from '../types';
 
 interface SoundCardProps {
   sound: SoundItem;
   isPlayingMain: boolean;
   isPlayingTest: boolean;
+  isEditMode?: boolean;
   primaryDeviceLabel?: string;
   secondaryDeviceLabel?: string;
   onPlayMain: (sound: SoundItem) => void;
@@ -15,12 +16,15 @@ interface SoundCardProps {
   onToggleFavorite: (sound: SoundItem) => void;
   onDelete: (soundId: string) => void;
   onSelectTag: (tag: string) => void;
+  onMoveLeft?: () => void;
+  onMoveRight?: () => void;
 }
 
 export const SoundCard: React.FC<SoundCardProps> = ({
   sound,
   isPlayingMain,
   isPlayingTest,
+  isEditMode = false,
   primaryDeviceLabel = 'Saída 1 (Stream)',
   secondaryDeviceLabel = 'Saída 2 (Fones)',
   onPlayMain,
@@ -30,26 +34,33 @@ export const SoundCard: React.FC<SoundCardProps> = ({
   onToggleFavorite,
   onDelete,
   onSelectTag,
+  onMoveLeft,
+  onMoveRight,
 }) => {
   return (
     <div
-      className={`streamdeck-key-card ${
+      className={`sound-card-item ${
         isPlayingMain ? 'playing-main' : isPlayingTest ? 'playing-test' : ''
       }`}
       style={{
-        borderLeftColor: sound.color || 'var(--stream-blue)',
-        borderLeftWidth: '4px',
+        borderLeftColor: sound.color || 'var(--neon-cyan)',
+        borderLeftWidth: '5px',
       }}
     >
-      {/* Stream Deck Key Header */}
+      {/* Sound Card Header */}
       <div className="card-header-row">
         <div
           className="sound-color-indicator"
-          style={{ background: sound.color || 'var(--stream-blue)', color: sound.color || 'var(--stream-blue)' }}
-          title={`Cor do Botão: ${sound.color || 'Padrão'}`}
+          style={{ background: sound.color || 'var(--neon-cyan)', color: sound.color || 'var(--neon-cyan)' }}
+          title={`Cor do Som: ${sound.color || 'Padrão'}`}
         />
 
-        <div className="sound-title-text" title={sound.title}>
+        <div
+          className="sound-title-text"
+          title={sound.title}
+          style={{ cursor: 'pointer' }}
+          onClick={() => onEditTags(sound)}
+        >
           {sound.title}
         </div>
 
@@ -57,7 +68,7 @@ export const SoundCard: React.FC<SoundCardProps> = ({
           {sound.hotkey && (
             <span
               className="hotkey-badge"
-              title={`Atalho: Tecla [ ${sound.hotkey} ] toca na Saída 1 | [ Shift + ${sound.hotkey} ] toca na Saída de Teste 2`}
+              title={`Atalho: Tecla [ ${sound.hotkey} ] toca na Saída 1 | [ Shift + ${sound.hotkey} ] toca na Saída 2`}
             >
               {sound.hotkey}
             </span>
@@ -71,36 +82,86 @@ export const SoundCard: React.FC<SoundCardProps> = ({
             }}
             title={sound.isFavorite ? 'Remover dos favoritos' : 'Favoritar'}
           >
-            <Star size={14} fill={sound.isFavorite ? '#fbbf24' : 'none'} />
+            <Star size={14} fill={sound.isFavorite ? 'var(--neon-yellow)' : 'none'} color={sound.isFavorite ? 'var(--neon-yellow)' : 'var(--text-muted)'} />
           </button>
 
           <button
             className="icon-btn-ghost"
+            style={{ color: 'var(--neon-cyan)' }}
             onClick={(e) => {
               e.stopPropagation();
               onEditTags(sound);
             }}
-            title="Editar Tags, Atalho e Volume"
+            title="Editar Som (Nome, Tags, Cor, Atalho, Volume, Áudio)"
           >
-            <Tag size={13} />
+            <Edit3 size={14} />
           </button>
 
-          <button
-            className="icon-btn-ghost"
-            onClick={(e) => {
-              e.stopPropagation();
-              if (confirm(`Deseja excluir "${sound.title}" do seu Stream Deck?`)) {
-                onDelete(sound.id);
-              }
-            }}
-            title="Excluir Som"
-          >
-            <Trash2 size={13} />
-          </button>
+          {isEditMode && (
+            <button
+              className="icon-btn-ghost"
+              style={{ color: '#ff7777' }}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (confirm(`Deseja excluir "${sound.title}" da Soundboard?`)) {
+                  onDelete(sound.id);
+                }
+              }}
+              title="Excluir Som"
+            >
+              <Trash2 size={14} />
+            </button>
+          )}
         </div>
       </div>
 
-      {/* Tags Chips inside Stream Deck Key */}
+      {/* Edit Mode Quick Reordering Bar */}
+      {isEditMode && (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            background: 'rgba(0, 240, 255, 0.08)',
+            border: '1px solid rgba(0, 240, 255, 0.25)',
+            borderRadius: '6px',
+            padding: '2px 6px',
+            margin: '4px 0',
+          }}
+        >
+          <span style={{ fontSize: '0.72rem', color: 'var(--neon-cyan)', fontWeight: 600 }}>Posição:</span>
+          <div style={{ display: 'flex', gap: '4px' }}>
+            {onMoveLeft && (
+              <button
+                type="button"
+                className="icon-btn-ghost"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onMoveLeft();
+                }}
+                title="Mover para esquerda"
+              >
+                <ChevronLeft size={16} color="var(--neon-cyan)" />
+              </button>
+            )}
+            {onMoveRight && (
+              <button
+                type="button"
+                className="icon-btn-ghost"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onMoveRight();
+                }}
+                title="Mover para direita"
+              >
+                <ChevronRight size={16} color="var(--neon-cyan)" />
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Tags Chips inside Sound Card */}
       <div className="card-tags-list">
         {sound.tags && sound.tags.length > 0 ? (
           sound.tags.map((tag) => (
@@ -119,7 +180,7 @@ export const SoundCard: React.FC<SoundCardProps> = ({
         ) : (
           <span
             className="card-tag-pill"
-            style={{ opacity: 0.5, fontStyle: 'italic', cursor: 'pointer' }}
+            style={{ opacity: 0.6, fontStyle: 'italic', cursor: 'pointer' }}
             onClick={(e) => {
               e.stopPropagation();
               onEditTags(sound);
@@ -130,9 +191,9 @@ export const SoundCard: React.FC<SoundCardProps> = ({
         )}
       </div>
 
-      {/* Stream Deck Key Dual Action Buttons */}
+      {/* 90s Dual Action Buttons */}
       <div className="card-actions-row">
-        {/* TRANSMIT / LIVE STREAM BUTTON */}
+        {/* MAIN PLAY BUTTON */}
         <button
           className={`btn-deck-play ${isPlayingMain ? 'is-playing' : ''}`}
           onClick={() => (isPlayingMain ? onStop(sound.id) : onPlayMain(sound))}
@@ -151,11 +212,11 @@ export const SoundCard: React.FC<SoundCardProps> = ({
           )}
         </button>
 
-        {/* DEDICATED TEST / MONITOR PILL BUTTON */}
+        {/* DEDICATED TEST PILL BUTTON */}
         <button
           className={`btn-deck-test-pill ${isPlayingTest ? 'is-testing' : ''}`}
           onClick={() => (isPlayingTest ? onStop(sound.id) : onPlayTest(sound))}
-          title={`Pílula de Teste: Ouvir em particular na Saída 2 (${secondaryDeviceLabel})`}
+          title={`Pílula de Teste: Ouvir nos fones na Saída 2 (${secondaryDeviceLabel})`}
         >
           <Headphones size={13} />
           <span>{isPlayingTest ? 'Parar' : 'Testar'}</span>

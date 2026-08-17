@@ -15,7 +15,7 @@ import { HotkeysTab } from './components/HotkeysTab';
 import { GamepadOverlay } from './components/GamepadOverlay';
 
 import type { SoundItem, TagInfo, AudioRoutingConfig } from './types';
-import { fetchSounds, fetchTags, createSound, updateSound, deleteSound } from './services/api';
+import { fetchSounds, fetchTags, createSound, updateSound, deleteSound, reorderSounds } from './services/api';
 import { AudioEngine } from './services/AudioEngine';
 import { Radio } from 'lucide-react';
 
@@ -24,6 +24,7 @@ export default function App() {
   const [tags, setTags] = useState<TagInfo[]>([]);
   const [activeTab, setActiveTab] = useState<TabType>('library');
   const [loading, setLoading] = useState(true);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   // Filters
   const [searchQuery, setSearchQuery] = useState('');
@@ -131,6 +132,7 @@ export default function App() {
 
   const handleStop = (soundId: string) => {
     AudioEngine.stop(soundId);
+    AudioEngine.stop(`test_${soundId}`);
   };
 
   const handleToggleFavorite = async (sound: SoundItem) => {
@@ -173,6 +175,27 @@ export default function App() {
       setActiveTab('library');
     } catch (err) {
       console.error('Failed to add sound', err);
+    }
+  };
+
+  // Reorder Sound position
+  const handleMoveSound = async (soundId: string, direction: 'left' | 'right') => {
+    const currentIndex = sounds.findIndex((s) => s.id === soundId);
+    if (currentIndex === -1) return;
+
+    const targetIndex = direction === 'left' ? currentIndex - 1 : currentIndex + 1;
+    if (targetIndex < 0 || targetIndex >= sounds.length) return;
+
+    const updatedSounds = [...sounds];
+    const [moved] = updatedSounds.splice(currentIndex, 1);
+    updatedSounds.splice(targetIndex, 0, moved);
+
+    setSounds(updatedSounds);
+
+    try {
+      await reorderSounds(updatedSounds.map((s) => s.id));
+    } catch (err) {
+      console.error('Failed to save soundboard order:', err);
     }
   };
 
@@ -251,6 +274,8 @@ export default function App() {
             onToggleFavorites={() => setOnlyFavorites((prev) => !prev)}
             selectedSource={selectedSource}
             onSelectSource={setSelectedSource}
+            isEditMode={isEditMode}
+            onToggleEditMode={() => setIsEditMode((prev) => !prev)}
             onOpenAddModal={() => setIsAddModalOpen(true)}
             onOpenRecordModal={() => setIsRecordModalOpen(true)}
             onOpenImportUrlModal={() => setIsImportUrlModalOpen(true)}
@@ -263,12 +288,13 @@ export default function App() {
             </div>
           ) : filteredSounds.length > 0 ? (
             <div className="soundboard-grid">
-              {filteredSounds.map((sound) => (
+              {filteredSounds.map((sound, idx) => (
                 <SoundCard
                   key={sound.id}
                   sound={sound}
                   isPlayingMain={playingMainIds.has(sound.id)}
                   isPlayingTest={playingTestIds.has(sound.id)}
+                  isEditMode={isEditMode}
                   primaryDeviceLabel={audioConfig.primaryDeviceLabel}
                   secondaryDeviceLabel={audioConfig.secondaryDeviceLabel}
                   onPlayMain={handlePlayMain}
@@ -278,6 +304,8 @@ export default function App() {
                   onToggleFavorite={handleToggleFavorite}
                   onDelete={handleDeleteSound}
                   onSelectTag={handleToggleTag}
+                  onMoveLeft={idx > 0 ? () => handleMoveSound(sound.id, 'left') : undefined}
+                  onMoveRight={idx < filteredSounds.length - 1 ? () => handleMoveSound(sound.id, 'right') : undefined}
                 />
               ))}
             </div>
@@ -338,6 +366,7 @@ export default function App() {
         availableTags={tags}
         onClose={() => setEditingSound(null)}
         onSave={handleSaveSoundEdit}
+        onDelete={handleDeleteSound}
       />
 
       <AddSoundModal
@@ -365,4 +394,4 @@ export default function App() {
       <GamepadOverlay />
     </div>
   );
-};
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Plus, Mic, Link as LinkIcon, Star, X, Tag as TagIcon } from 'lucide-react';
+import { Search, Plus, Mic, Link as LinkIcon, Star, X, Tag as TagIcon, Edit3, CheckSquare } from 'lucide-react';
 import type { TagInfo } from '../types';
 
 interface TagFilterBarProps {
@@ -13,6 +13,8 @@ interface TagFilterBarProps {
   onToggleFavorites: () => void;
   selectedSource: string;
   onSelectSource: (source: string) => void;
+  isEditMode: boolean;
+  onToggleEditMode: () => void;
   onOpenAddModal: () => void;
   onOpenRecordModal: () => void;
   onOpenImportUrlModal: () => void;
@@ -29,6 +31,8 @@ export const TagFilterBar: React.FC<TagFilterBarProps> = ({
   onToggleFavorites,
   selectedSource,
   onSelectSource,
+  isEditMode,
+  onToggleEditMode,
   onOpenAddModal,
   onOpenRecordModal,
   onOpenImportUrlModal,
@@ -69,8 +73,19 @@ export const TagFilterBar: React.FC<TagFilterBarProps> = ({
             onClick={onToggleFavorites}
             title="Filtrar apenas favoritos"
           >
-            <Star size={14} fill={onlyFavorites ? '#fff' : 'none'} />
+            <Star size={14} fill={onlyFavorites ? 'var(--neon-yellow)' : 'none'} color={onlyFavorites ? 'var(--neon-yellow)' : 'currentColor'} />
             <span>Favoritos</span>
+          </button>
+
+          {/* Edit Mode Toggle */}
+          <button
+            className={`btn-steamdeck ${isEditMode ? 'btn-steamdeck-primary' : 'btn-steamdeck-secondary'}`}
+            style={isEditMode ? { borderColor: 'var(--neon-cyan)', boxShadow: '0 0 15px var(--neon-cyan-glow)' } : {}}
+            onClick={onToggleEditMode}
+            title="Ativar/Desativar modo de organização e edição da soundboard"
+          >
+            {isEditMode ? <CheckSquare size={14} /> : <Edit3 size={14} color="var(--neon-cyan)" />}
+            <span>{isEditMode ? 'Concluir Edição' : '✏️ Modo Edição'}</span>
           </button>
 
           {/* Record Button */}
@@ -79,7 +94,7 @@ export const TagFilterBar: React.FC<TagFilterBarProps> = ({
             onClick={onOpenRecordModal}
             title="Gravar áudio do microfone"
           >
-            <Mic size={14} color="#00d2ff" />
+            <Mic size={14} color="var(--neon-cyan)" />
             <span>Gravar Mic</span>
           </button>
 
@@ -129,7 +144,7 @@ export const TagFilterBar: React.FC<TagFilterBarProps> = ({
           className={`tag-pill ${selectedSource === 'soundbuttonsworld' ? 'active' : ''}`}
           onClick={() => onSelectSource(selectedSource === 'soundbuttonsworld' ? '' : 'soundbuttonsworld')}
         >
-          🌐 SoundButtonsWorld
+          💾 SoundButtonsWorld
         </button>
         <button
           className={`tag-pill ${selectedSource === 'local' ? 'active' : ''}`}

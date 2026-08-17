@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { X, Tag as TagIcon, Keyboard, Palette, Volume2, Gauge, Check } from 'lucide-react';
+import { X, Sliders, Keyboard, Palette, Volume2, Gauge, Check, Play, Square, Headphones, Upload, Trash2 } from 'lucide-react';
 import type { SoundItem } from '../types';
 import { TagInputSelector } from './TagInputSelector';
+import { uploadAudioFile } from '../services/api';
+import { AudioEngine } from '../services/AudioEngine';
 
 interface TagEditorModalProps {
   isOpen: boolean;
@@ -9,17 +11,18 @@ interface TagEditorModalProps {
   availableTags?: Array<string | { name: string; count?: number }>;
   onClose: () => void;
   onSave: (id: string, updates: Partial<SoundItem>) => void;
+  onDelete?: (id: string) => void;
 }
 
 const STEAM_DECK_COLORS = [
-  { label: 'Ciano SteamOS', hex: '#1a9fff' },
-  { label: 'Laranja Deck', hex: '#ff7700' },
-  { label: 'Roxo Elétrico', hex: '#9d4edd' },
-  { label: 'Verde Neon', hex: '#10b981' },
-  { label: 'Vermelho Alerta', hex: '#ef4444' },
-  { label: 'Amarelo Gold', hex: '#f59e0b' },
-  { label: 'Rosa Magenta', hex: '#ec4899' },
-  { label: 'Cinza Metálico', hex: '#64748b' },
+  { label: 'Ciano 90s', hex: '#00f0ff' },
+  { label: 'Magenta Pink', hex: '#ff007f' },
+  { label: 'Amarelo Acid', hex: '#ffe600' },
+  { label: 'Roxo Vapor', hex: '#a855f7' },
+  { label: 'Verde Neon', hex: '#00ff88' },
+  { label: 'Laranja Arcade', hex: '#ff6600' },
+  { label: 'Azul Elétrico', hex: '#1a9fff' },
+  { label: 'Grafite Fosco', hex: '#475569' },
 ];
 
 export const TagEditorModal: React.FC<TagEditorModalProps> = ({
@@ -28,24 +31,32 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
   availableTags = [],
   onClose,
   onSave,
+  onDelete,
 }) => {
   const [title, setTitle] = useState('');
+  const [url, setUrl] = useState('');
   const [tags, setTags] = useState<string[]>([]);
-  const [color, setColor] = useState('#1a9fff');
+  const [color, setColor] = useState('#00f0ff');
   const [hotkey, setHotkey] = useState('');
   const [isRecordingHotkey, setIsRecordingHotkey] = useState(false);
   const [volume, setVolume] = useState(1);
   const [playbackRate, setPlaybackRate] = useState(1);
+  const [isPlayingPreview, setIsPlayingPreview] = useState(false);
+  const [isTestingPreview, setIsTestingPreview] = useState(false);
+  const [uploadingFile, setUploadingFile] = useState(false);
 
   useEffect(() => {
     if (sound) {
       setTitle(sound.title || '');
+      setUrl(sound.url || '');
       setTags(sound.tags || []);
-      setColor(sound.color || '#1a9fff');
+      setColor(sound.color || '#00f0ff');
       setHotkey(sound.hotkey || '');
       setVolume(sound.volume !== undefined ? sound.volume : 1);
       setPlaybackRate(sound.playbackRate !== undefined ? sound.playbackRate : 1);
       setIsRecordingHotkey(false);
+      setIsPlayingPreview(false);
+      setIsTestingPreview(false);
     }
   }, [sound]);
 
@@ -78,10 +89,55 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
 
   if (!isOpen || !sound) return null;
 
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setUploadingFile(true);
+      try {
+        const uploaded = await uploadAudioFile(file);
+        setUrl(uploaded.url);
+      } catch (err: any) {
+        alert('Erro ao enviar novo arquivo de áudio: ' + err.message);
+      } finally {
+        setUploadingFile(false);
+      }
+    }
+  };
+
+  const handleTogglePlayPreview = () => {
+    if (isPlayingPreview) {
+      AudioEngine.stopAll();
+      setIsPlayingPreview(false);
+    } else {
+      setIsPlayingPreview(true);
+      setIsTestingPreview(false);
+      AudioEngine.play(
+        { id: 'edit_preview', url, volume, playbackRate, title },
+        false
+      );
+    }
+  };
+
+  const handleToggleTestPreview = () => {
+    if (isTestingPreview) {
+      AudioEngine.stopAll();
+      setIsTestingPreview(false);
+    } else {
+      setIsTestingPreview(true);
+      setIsPlayingPreview(false);
+      AudioEngine.play(
+        { id: 'edit_preview', url, volume, playbackRate, title },
+        true
+      );
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    AudioEngine.stopAll();
     onSave(sound.id, {
       title: title.trim() || sound.title,
+      url: url.trim() || sound.url,
       tags,
       color,
       hotkey: hotkey.trim() || undefined,
@@ -91,13 +147,21 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
     onClose();
   };
 
+  const handleDeleteSound = () => {
+    if (confirm(`Tem certeza que deseja excluir "${sound.title}" da soundboard?`)) {
+      AudioEngine.stopAll();
+      if (onDelete) onDelete(sound.id);
+      onClose();
+    }
+  };
+
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content-deck" style={{ maxWidth: '620px' }} onClick={(e) => e.stopPropagation()}>
+      <div className="modal-content-deck" style={{ maxWidth: '660px' }} onClick={(e) => e.stopPropagation()}>
         <div className="modal-header-deck">
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-            <TagIcon size={20} color="var(--deck-cyan)" />
-            <h2>Editar Som & Tags</h2>
+            <Sliders size={22} color="var(--neon-cyan)" />
+            <h2>Editar Som da Soundboard</h2>
           </div>
           <button className="icon-btn-ghost" onClick={onClose}>
             <X size={20} />
@@ -105,6 +169,45 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
         </div>
 
         <form onSubmit={handleSubmit}>
+          {/* Quick Sound Testing Bar */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              background: 'rgba(255, 0, 128, 0.08)',
+              border: '1px solid rgba(255, 0, 128, 0.3)',
+              borderRadius: '10px',
+              padding: '0.75rem 1rem',
+              marginBottom: '1rem',
+            }}
+          >
+            <span style={{ fontSize: '0.85rem', color: '#fff', fontWeight: 600 }}>
+              🔊 Testar Configuração Atual:
+            </span>
+            <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <button
+                type="button"
+                className={`btn-steamdeck ${isPlayingPreview ? 'btn-steamdeck-primary' : 'btn-steamdeck-secondary'}`}
+                style={{ padding: '0.35rem 0.75rem', fontSize: '0.78rem' }}
+                onClick={handleTogglePlayPreview}
+              >
+                {isPlayingPreview ? <Square size={13} fill="#fff" /> : <Play size={13} fill="#fff" />}
+                <span>{isPlayingPreview ? 'Parar' : 'Saída 1 (Principal)'}</span>
+              </button>
+
+              <button
+                type="button"
+                className={`btn-steamdeck ${isTestingPreview ? 'btn-steamdeck-amber' : 'btn-steamdeck-secondary'}`}
+                style={{ padding: '0.35rem 0.75rem', fontSize: '0.78rem' }}
+                onClick={handleToggleTestPreview}
+              >
+                <Headphones size={13} />
+                <span>{isTestingPreview ? 'Parar' : 'Saída 2 (Fones)'}</span>
+              </button>
+            </div>
+          </div>
+
           {/* Title */}
           <div className="form-group-deck">
             <label>Nome do Som</label>
@@ -118,6 +221,38 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
             />
           </div>
 
+          {/* Audio URL & Replacement */}
+          <div className="form-group-deck">
+            <label>URL / Arquivo de Áudio</label>
+            <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <input
+                type="text"
+                className="input-deck"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                placeholder="https://... ou caminho do arquivo"
+                required
+              />
+              <button
+                type="button"
+                className="btn-steamdeck btn-steamdeck-secondary"
+                style={{ whiteSpace: 'nowrap' }}
+                onClick={() => document.getElementById('replace-audio-input')?.click()}
+                disabled={uploadingFile}
+              >
+                <Upload size={14} />
+                <span>{uploadingFile ? 'Subindo...' : 'Trocar Áudio'}</span>
+              </button>
+              <input
+                id="replace-audio-input"
+                type="file"
+                accept="audio/*"
+                onChange={handleFileUpload}
+                style={{ display: 'none' }}
+              />
+            </div>
+          </div>
+
           {/* Interactive Tag Selector with Existing and New Tags */}
           <TagInputSelector
             selectedTags={tags}
@@ -129,7 +264,7 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
           <div className="form-group-deck">
             <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
               <Palette size={14} />
-              Cor do Cartão Steam Deck
+              Cor do Cartão Retrô
             </label>
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
               {STEAM_DECK_COLORS.map((c) => (
@@ -151,7 +286,7 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
                   }}
                   title={c.label}
                 >
-                  {color === c.hex && <Check size={16} color="#ffffff" />}
+                  {color === c.hex && <Check size={16} color="#000000" />}
                 </button>
               ))}
             </div>
@@ -167,7 +302,7 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
               <button
                 type="button"
                 className={`btn-steamdeck ${isRecordingHotkey ? 'btn-steamdeck-amber' : 'btn-steamdeck-secondary'}`}
-                style={{ minWidth: '160px', justifyContent: 'center' }}
+                style={{ minWidth: '170px', justifyContent: 'center' }}
                 onClick={() => setIsRecordingHotkey(true)}
               >
                 {isRecordingHotkey ? 'Pressione qualquer tecla...' : hotkey ? `Tecla: [ ${hotkey} ]` : 'Definir Atalho'}
@@ -184,7 +319,7 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
               )}
             </div>
             <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-              Pressione esta tecla no teclado a qualquer momento para tocar o som (ou Shift + Tecla para ouvir no fone).
+              Pressione a tecla para tocar na Saída 1, ou segure <strong>Shift + Tecla</strong> para tocar na Saída 2 de Teste (Fones).
             </p>
           </div>
 
@@ -193,7 +328,7 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
             <div className="form-group-deck">
               <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                 <Volume2 size={14} />
-                Volume ({Math.round(volume * 100)}%)
+                Volume Individual ({Math.round(volume * 100)}%)
               </label>
               <input
                 type="range"
@@ -225,15 +360,29 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
             </div>
           </div>
 
-          {/* Actions */}
-          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem', marginTop: '1.5rem' }}>
-            <button type="button" className="btn-steamdeck btn-steamdeck-secondary" onClick={onClose}>
-              Cancelar
-            </button>
-            <button type="submit" className="btn-steamdeck btn-steamdeck-primary">
-              <Check size={16} />
-              <span>Salvar Alterações</span>
-            </button>
+          {/* Actions & Delete */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1.75rem', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+            {onDelete ? (
+              <button
+                type="button"
+                className="btn-steamdeck"
+                style={{ background: 'rgba(239, 68, 68, 0.15)', borderColor: 'rgba(239, 68, 68, 0.4)', color: '#ff7777' }}
+                onClick={handleDeleteSound}
+              >
+                <Trash2 size={15} />
+                <span>Excluir Som</span>
+              </button>
+            ) : <div />}
+
+            <div style={{ display: 'flex', gap: '0.75rem' }}>
+              <button type="button" className="btn-steamdeck btn-steamdeck-secondary" onClick={onClose}>
+                Cancelar
+              </button>
+              <button type="submit" className="btn-steamdeck btn-steamdeck-primary">
+                <Check size={16} />
+                <span>Salvar Alterações</span>
+              </button>
+            </div>
           </div>
         </form>
       </div>

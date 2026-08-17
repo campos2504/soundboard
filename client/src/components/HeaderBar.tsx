@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Headphones, Square, SlidersHorizontal, Layers } from 'lucide-react';
+import { Volume2, VolumeX, Headphones, Square, SlidersHorizontal } from 'lucide-react';
 import { AudioEngine } from '../services/AudioEngine';
 import type { AudioRoutingConfig } from '../types';
 
@@ -45,22 +45,24 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
   };
 
   return (
-    <header className="streamdeck-header">
+    <header className="steamdeck-header">
       <div className="brand-section">
-        <div className="streamdeck-key-logo">
-          <Layers size={24} />
-        </div>
+        <img
+          src="/assets/logo-90s.jpg"
+          alt="90s Soundwave Arcade"
+          className="deck-logo-90s-img"
+        />
         <div className="deck-title-group">
           <h1>
-            STREAM DECK SOUNDBOARD
-            <span className="streamdeck-badge">STUDIO</span>
+            ARCADE SOUNDWAVE 90s
+            <span className="deck-badge-edition">PRO EDITION</span>
           </h1>
-          <p>Multi-Output Soundboard Hub • MyInstants & SoundButtonsWorld</p>
+          <p>★ Stereo Soundboard Anos 90 • MyInstants & SoundButtonsWorld ★</p>
         </div>
       </div>
 
       <div className="header-controls">
-        {/* THE QUICK TEST PILL IN HEADER */}
+        {/* THE 90s QUICK TEST PILL IN HEADER */}
         <button
           className={`quick-test-pill ${isTestingPill ? 'active' : ''}`}
           onClick={handleQuickTest}
@@ -77,15 +79,15 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
           title="Configurar Roteamento de Saída de Áudio"
         >
           <div className="device-dot" />
-          <SlidersHorizontal size={14} />
+          <SlidersHorizontal size={14} color="var(--neon-cyan)" />
           <span style={{ maxWidth: '160px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {config.primaryDeviceId === 'default' ? 'Saída: Padrão' : config.primaryDeviceLabel}
           </span>
         </button>
 
-        {/* Master Stream Volume */}
+        {/* Master Volume */}
         <div className="volume-control-group">
-          {config.masterVolume === 0 ? <VolumeX size={15} color="#ff334b" /> : <Volume2 size={15} color="#00e5ff" />}
+          {config.masterVolume === 0 ? <VolumeX size={15} color="var(--neon-pink)" /> : <Volume2 size={15} color="var(--neon-cyan)" />}
           <input
             type="range"
             min="0"
@@ -102,14 +104,14 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
         <button
           className="panic-stop-btn"
           onClick={handleStopAll}
-          title="Parar todos os sons tocando imediatamente (Esc / Tecla B)"
+          title="Parar todos os sons tocando imediatamente (Esc)"
         >
-          <Square size={14} fill="#ff334b" />
-          <span>PARAR TUDO (Esc)</span>
+          <Square size={13} fill="#ffffff" />
+          <span>PARAR (Esc)</span>
         </button>
 
-        {/* Studio Time */}
-        <div style={{ fontSize: '0.88rem', fontWeight: 800, color: 'var(--text-secondary)', paddingLeft: '0.5rem', fontFamily: 'var(--font-mono)' }}>
+        {/* 90s Digital Clock */}
+        <div style={{ fontSize: '1.25rem', color: 'var(--neon-yellow)', paddingLeft: '0.4rem', fontFamily: 'var(--font-pixel)', letterSpacing: '1px' }}>
           {time}
         </div>
       </div>

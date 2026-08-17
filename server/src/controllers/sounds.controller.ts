@@ -177,4 +177,37 @@ export class SoundsController {
       res.status(500).json({ error: 'Failed to delete sound' });
     }
   }
+
+  static async reorder(req: Request, res: Response): Promise<void> {
+    try {
+      const { soundIds } = req.body;
+      if (!Array.isArray(soundIds)) {
+        res.status(400).json({ error: 'soundIds array is required' });
+        return;
+      }
+
+      const sounds = await loadSounds();
+      const soundMap = new Map(sounds.map(s => [s.id, s]));
+      const reordered: SoundItem[] = [];
+
+      for (const id of soundIds) {
+        const item = soundMap.get(id);
+        if (item) {
+          reordered.push(item);
+          soundMap.delete(id);
+        }
+      }
+
+      // Append any remaining sounds
+      for (const item of soundMap.values()) {
+        reordered.push(item);
+      }
+
+      await saveSounds(reordered);
+      res.json(reordered);
+    } catch (error) {
+      console.error('Error reordering sounds:', error);
+      res.status(500).json({ error: 'Failed to reorder sounds' });
+    }
+  }
 }

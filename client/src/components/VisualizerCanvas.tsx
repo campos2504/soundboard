@@ -31,9 +31,10 @@ export const VisualizerCanvas: React.FC = () => {
         const y = canvas.height - barHeight;
 
         const gradient = ctx.createLinearGradient(0, canvas.height, 0, 0);
-        gradient.addColorStop(0, '#1a9fff');
-        gradient.addColorStop(0.7, '#00d2ff');
-        gradient.addColorStop(1, '#ff7700');
+        gradient.addColorStop(0, '#00ff88');
+        gradient.addColorStop(0.5, '#ffe600');
+        gradient.addColorStop(0.85, '#ff007f');
+        gradient.addColorStop(1, '#00f0ff');
 
         ctx.fillStyle = gradient;
         ctx.fillRect(startX + i * (barWidth + barSpacing), y, barWidth, barHeight);

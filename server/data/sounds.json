@@ -14,7 +14,8 @@
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1787008605791
+    "createdAt": 1787008605791,
+    "hotkey": "1"
   },
   {
     "id": "vine-boom-default",
@@ -28,7 +29,7 @@
       "impact"
     ],
     "color": "#1a9fff",
-    "hotkey": "1",
+    "hotkey": "SPACE",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": true,

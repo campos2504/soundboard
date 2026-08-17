@@ -53,6 +53,16 @@ export async function deleteSound(id: string): Promise<{ success: boolean; id: s
   return res.json();
 }
 
+export async function reorderSounds(soundIds: string[]): Promise<SoundItem[]> {
+  const res = await fetch(`${API_BASE}/sounds/reorder`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ soundIds }),
+  });
+  if (!res.ok) throw new Error('Falha ao reordenar sons');
+  return res.json();
+}
+
 export async function uploadAudioFile(file: File): Promise<{ url: string; filename: string; originalName: string }> {
   const formData = new FormData();
   formData.append('audio', file);

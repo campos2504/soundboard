@@ -43,6 +43,7 @@ app.use('/uploads', express.static(UPLOADS_DIR));
 app.get('/api/sounds', SoundsController.getAll);
 app.get('/api/tags', SoundsController.getTags);
 app.post('/api/sounds', SoundsController.create);
+app.put('/api/sounds/reorder', SoundsController.reorder);
 app.put('/api/sounds/:id', SoundsController.update);
 app.delete('/api/sounds/:id', SoundsController.delete);
 
