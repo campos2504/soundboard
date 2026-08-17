@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { X, Mic, Square, Check } from 'lucide-react';
 import { uploadAudioFile } from '../services/api';
+import { TagInputSelector } from './TagInputSelector';
 
 interface RecordSoundModalProps {
   isOpen: boolean;
   onClose: () => void;
+  availableTags?: Array<string | { name: string; count?: number }>;
   onSoundRecorded: (sound: {
     title: string;
     url: string;
@@ -18,6 +20,7 @@ interface RecordSoundModalProps {
 export const RecordSoundModal: React.FC<RecordSoundModalProps> = ({
   isOpen,
   onClose,
+  availableTags = [],
   onSoundRecorded,
 }) => {
   const [isRecording, setIsRecording] = useState(false);
@@ -25,7 +28,7 @@ export const RecordSoundModal: React.FC<RecordSoundModalProps> = ({
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [recordingDuration, setRecordingDuration] = useState(0);
   const [title, setTitle] = useState('');
-  const [tagsInput, setTagsInput] = useState('gravação, voz, mic');
+  const [selectedTags, setSelectedTags] = useState<string[]>(['gravação', 'mic']);
   const [uploading, setUploading] = useState(false);
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -80,16 +83,12 @@ export const RecordSoundModal: React.FC<RecordSoundModalProps> = ({
     try {
       const file = new File([audioBlob], `gravacao_${Date.now()}.webm`, { type: 'audio/webm' });
       const uploaded = await uploadAudioFile(file);
-      const tags = tagsInput
-        .split(',')
-        .map((t) => t.trim().toLowerCase().replace(/^#/, ''))
-        .filter((t) => t.length > 0);
 
       onSoundRecorded({
         title: title.trim() || `Gravação Mic ${new Date().toLocaleTimeString()}`,
         url: uploaded.url,
         source: 'local',
-        tags: tags.length > 0 ? tags : ['gravação', 'mic'],
+        tags: selectedTags.length > 0 ? selectedTags : ['gravação', 'mic'],
         color: '#00d2ff',
       });
 
@@ -103,7 +102,7 @@ export const RecordSoundModal: React.FC<RecordSoundModalProps> = ({
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content-deck" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-content-deck" style={{ maxWidth: '620px' }} onClick={(e) => e.stopPropagation()}>
         <div className="modal-header-deck">
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
             <Mic size={20} color="var(--deck-cyan)" />
@@ -179,16 +178,11 @@ export const RecordSoundModal: React.FC<RecordSoundModalProps> = ({
               />
             </div>
 
-            <div className="form-group-deck">
-              <label>Tags</label>
-              <input
-                type="text"
-                className="input-deck"
-                placeholder="Ex: voz, gravação, meme"
-                value={tagsInput}
-                onChange={(e) => setTagsInput(e.target.value)}
-              />
-            </div>
+            <TagInputSelector
+              selectedTags={selectedTags}
+              onChange={setSelectedTags}
+              availableTags={availableTags}
+            />
 
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem', marginTop: '1.5rem' }}>
               <button className="btn-steamdeck btn-steamdeck-secondary" onClick={onClose}>

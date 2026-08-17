@@ -1,7 +1,7 @@
 import React from 'react';
-import { LayoutGrid, Flame, Globe2, Sliders, Keyboard } from 'lucide-react';
+import { LayoutGrid, Flame, Globe2, Keyboard } from 'lucide-react';
 
-export type TabType = 'library' | 'myinstants' | 'soundbuttonsworld' | 'routing' | 'hotkeys';
+export type TabType = 'library' | 'myinstants' | 'soundbuttonsworld' | 'hotkeys';
 
 interface NavigationTabsProps {
   activeTab: TabType;
@@ -15,14 +15,14 @@ export const NavigationTabs: React.FC<NavigationTabsProps> = ({
   soundCount,
 }) => {
   return (
-    <nav className="streamdeck-nav-tabs">
+    <nav className="deck-nav-tabs">
       <button
         className={`nav-tab-item ${activeTab === 'library' ? 'active' : ''}`}
         onClick={() => onSelectTab('library')}
       >
         <LayoutGrid size={18} />
-        <span>Stream Deck Principal</span>
-        <span className="nav-tab-badge">{soundCount} Botões</span>
+        <span>Soundboard Principal</span>
+        <span className="nav-tab-badge">{soundCount} Sons</span>
       </button>
 
       <button
@@ -44,19 +44,11 @@ export const NavigationTabs: React.FC<NavigationTabsProps> = ({
       </button>
 
       <button
-        className={`nav-tab-item ${activeTab === 'routing' ? 'active' : ''}`}
-        onClick={() => onSelectTab('routing')}
-      >
-        <Sliders size={18} />
-        <span>Roteamento de Saídas & Pílula de Teste</span>
-      </button>
-
-      <button
         className={`nav-tab-item ${activeTab === 'hotkeys' ? 'active' : ''}`}
         onClick={() => onSelectTab('hotkeys')}
       >
         <Keyboard size={18} />
-        <span>Atalhos de Teclado & Macros</span>
+        <span>Atalhos de Teclado</span>
       </button>
     </nav>
   );

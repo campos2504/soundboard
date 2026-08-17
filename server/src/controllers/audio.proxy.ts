@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { Readable } from 'stream';
 
 const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
 
@@ -11,7 +12,6 @@ export async function audioProxyHandler(req: Request, res: Response): Promise<vo
 
   try {
     const parsedUrl = new URL(targetUrl);
-    // Security check: Only allow http and https
     if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') {
       res.status(400).json({ error: 'Invalid URL protocol' });
       return;
@@ -37,10 +37,12 @@ export async function audioProxyHandler(req: Request, res: Response): Promise<vo
     const contentType = response.headers.get('content-type') || 'audio/mpeg';
     const contentLength = response.headers.get('content-length');
     const contentRange = response.headers.get('content-range');
-    const acceptRanges = response.headers.get('accept-ranges');
+    const acceptRanges = response.headers.get('accept-ranges') || 'bytes';
 
     res.setHeader('Content-Type', contentType);
     res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Range, Content-Type');
+    res.setHeader('Access-Control-Expose-Headers', 'Content-Range, Content-Length, Accept-Ranges');
     res.setHeader('Cache-Control', 'public, max-age=86400');
 
     if (contentLength) res.setHeader('Content-Length', contentLength);
@@ -48,23 +50,13 @@ export async function audioProxyHandler(req: Request, res: Response): Promise<vo
     if (acceptRanges) res.setHeader('Accept-Ranges', acceptRanges);
 
     if (response.body) {
-      const reader = response.body.getReader();
-      const pump = async () => {
-        try {
-          while (true) {
-            const { done, value } = await reader.read();
-            if (done) {
-              res.end();
-              break;
-            }
-            res.write(Buffer.from(value));
-          }
-        } catch (err) {
-          console.error('Audio stream pump error:', err);
-          res.end();
-        }
-      };
-      await pump();
+      // High-performance streaming with Node stream pipe
+      const nodeStream = Readable.fromWeb(response.body as any);
+      nodeStream.on('error', (err) => {
+        console.error('Audio stream pipe error:', err);
+        if (!res.headersSent) res.status(500).end();
+      });
+      nodeStream.pipe(res);
     } else {
       res.end();
     }

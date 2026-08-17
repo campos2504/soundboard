@@ -192,19 +192,13 @@ class AudioEngineService {
     sound: { id: string; url: string; volume?: number; playbackRate?: number; title?: string },
     isTestPreview: boolean = false
   ): Promise<void> {
+    // STRICT MUTUAL EXCLUSIVITY: Stop any and all existing audio across the entire app
+    this.stopAll();
+
     const soundKey = isTestPreview ? `test_${sound.id}` : sound.id;
 
-    // Cut previous sounds on the active channel so only one plays at a time
-    if (isTestPreview) {
-      this.stopAllTest();
-    } else {
-      this.stopAllNonTest();
-    }
-
     const streamUrl = getAudioProxyUrl(sound.url);
-    const audio = new Audio();
-    audio.crossOrigin = 'anonymous';
-    audio.src = streamUrl;
+    const audio = new Audio(streamUrl);
 
     const baseVol = sound.volume !== undefined ? sound.volume : 1.0;
     const masterVol = isTestPreview ? this.config.previewVolume : this.config.masterVolume;
@@ -315,10 +309,13 @@ class AudioEngineService {
   private stopInstance(key: string) {
     const item = this.activeAudios.get(key);
     if (item) {
+      item.element.onended = null;
+      item.element.onerror = null;
       try {
         item.element.pause();
         item.element.currentTime = 0;
-        item.element.src = '';
+        item.element.removeAttribute('src');
+        item.element.load();
       } catch (e) {}
       this.activeAudios.delete(key);
     }
@@ -333,7 +330,7 @@ class AudioEngineService {
     this.notifyListeners();
   }
 
-  private stopAllNonTest() {
+  public stopAllNonTest() {
     for (const [key, item] of this.activeAudios.entries()) {
       if (!item.isTest) {
         this.stopInstance(key);
@@ -343,7 +340,7 @@ class AudioEngineService {
     this.notifyListeners();
   }
 
-  private stopAllTest() {
+  public stopAllTest() {
     for (const [key, item] of this.activeAudios.entries()) {
       if (item.isTest) {
         this.stopInstance(key);
@@ -355,10 +352,13 @@ class AudioEngineService {
 
   public stopAll() {
     for (const item of this.activeAudios.values()) {
+      item.element.onended = null;
+      item.element.onerror = null;
       try {
         item.element.pause();
         item.element.currentTime = 0;
-        item.element.src = '';
+        item.element.removeAttribute('src');
+        item.element.load();
       } catch (e) {}
     }
     this.activeAudios.clear();

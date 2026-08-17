@@ -315,28 +315,7 @@ export default function App() {
         <ExploreSoundButtonsWorldTab onAddSound={handleAddSound} />
       )}
 
-      {/* TAB: AUDIO ROUTING */}
-      {activeTab === 'routing' && (
-        <div style={{ maxWidth: '750px', margin: '0 auto', width: '100%' }}>
-          <div className="tag-filter-container">
-            <h2 style={{ fontSize: '1.25rem', color: '#fff', marginBottom: '0.5rem' }}>
-              Configurações de Roteamento de Áudio SteamOS
-            </h2>
-            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1.25rem' }}>
-              Configure a saída primária (transmissão/alto-falantes) e a saída secundária da <strong>Pílula de Teste</strong> para prévia privada em fones.
-            </p>
-            <button
-              className="btn-steamdeck btn-steamdeck-primary"
-              style={{ width: 'fit-content' }}
-              onClick={() => setIsAudioRoutingOpen(true)}
-            >
-              Abrir Painel Completo de Roteamento de Áudio & Teste
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* TAB: HOTKEYS & GAMEPAD */}
+      {/* TAB: HOTKEYS */}
       {activeTab === 'hotkeys' && (
         <HotkeysTab
           sounds={sounds}
@@ -356,24 +335,28 @@ export default function App() {
       <TagEditorModal
         isOpen={Boolean(editingSound)}
         sound={editingSound}
+        availableTags={tags}
         onClose={() => setEditingSound(null)}
         onSave={handleSaveSoundEdit}
       />
 
       <AddSoundModal
         isOpen={isAddModalOpen}
+        availableTags={tags}
         onClose={() => setIsAddModalOpen(false)}
         onSoundAdded={handleAddSound}
       />
 
       <RecordSoundModal
         isOpen={isRecordModalOpen}
+        availableTags={tags}
         onClose={() => setIsRecordModalOpen(false)}
         onSoundRecorded={handleAddSound}
       />
 
       <ImportUrlModal
         isOpen={isImportUrlModalOpen}
+        availableTags={tags}
         onClose={() => setIsImportUrlModalOpen(false)}
         onImportSound={handleAddSound}
       />

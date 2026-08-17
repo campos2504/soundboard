@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { X, Upload, Plus } from 'lucide-react';
 import { uploadAudioFile } from '../services/api';
+import { TagInputSelector } from './TagInputSelector';
 
 interface AddSoundModalProps {
   isOpen: boolean;
   onClose: () => void;
+  availableTags?: Array<string | { name: string; count?: number }>;
   onSoundAdded: (sound: {
     title: string;
     url: string;
@@ -18,10 +20,11 @@ interface AddSoundModalProps {
 export const AddSoundModal: React.FC<AddSoundModalProps> = ({
   isOpen,
   onClose,
+  availableTags = [],
   onSoundAdded,
 }) => {
   const [title, setTitle] = useState('');
-  const [tagsInput, setTagsInput] = useState('local, custom');
+  const [selectedTags, setSelectedTags] = useState<string[]>(['local']);
   const [color] = useState('#1a9fff');
   const [hotkey, setHotkey] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -34,7 +37,6 @@ export const AddSoundModal: React.FC<AddSoundModalProps> = ({
       const file = e.target.files[0];
       setSelectedFile(file);
       if (!title) {
-        // Strip extension for title
         setTitle(file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' '));
       }
     }
@@ -50,16 +52,12 @@ export const AddSoundModal: React.FC<AddSoundModalProps> = ({
     setUploading(true);
     try {
       const uploaded = await uploadAudioFile(selectedFile);
-      const tags = tagsInput
-        .split(',')
-        .map((t) => t.trim().toLowerCase().replace(/^#/, ''))
-        .filter((t) => t.length > 0);
 
       onSoundAdded({
         title: title.trim() || selectedFile.name,
         url: uploaded.url,
         source: 'local',
-        tags: tags.length > 0 ? tags : ['local'],
+        tags: selectedTags.length > 0 ? selectedTags : ['local'],
         color,
         hotkey: hotkey.trim() || undefined,
       });
@@ -74,7 +72,7 @@ export const AddSoundModal: React.FC<AddSoundModalProps> = ({
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content-deck" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-content-deck" style={{ maxWidth: '620px' }} onClick={(e) => e.stopPropagation()}>
         <div className="modal-header-deck">
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
             <Upload size={20} color="var(--deck-cyan)" />
@@ -123,24 +121,19 @@ export const AddSoundModal: React.FC<AddSoundModalProps> = ({
             <input
               type="text"
               className="input-deck"
-              placeholder="Ex: Risa da Vitória, Grito Épico..."
+              placeholder="Ex: Risada da Vitória, Grito Épico..."
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
             />
           </div>
 
-          {/* Tags */}
-          <div className="form-group-deck">
-            <label>Tags (separadas por vírgula)</label>
-            <input
-              type="text"
-              className="input-deck"
-              placeholder="Ex: meme, gaming, vitória, risada"
-              value={tagsInput}
-              onChange={(e) => setTagsInput(e.target.value)}
-            />
-          </div>
+          {/* Interactive Tag Input & Existing Tag Selector */}
+          <TagInputSelector
+            selectedTags={selectedTags}
+            onChange={setSelectedTags}
+            availableTags={availableTags}
+          />
 
           {/* Hotkey */}
           <div className="form-group-deck">
@@ -148,7 +141,7 @@ export const AddSoundModal: React.FC<AddSoundModalProps> = ({
             <input
               type="text"
               className="input-deck"
-              placeholder="Ex: 1, Q, F5..."
+              placeholder="Ex: 1, 2, Q, F5..."
               value={hotkey}
               onChange={(e) => setHotkey(e.target.value.toUpperCase())}
               maxLength={6}

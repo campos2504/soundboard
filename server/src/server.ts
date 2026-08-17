@@ -97,104 +97,180 @@ app.get('/api/soundbuttonsworld/categories', async (_req, res) => {
 // === AUDIO PROXY ===
 app.get('/api/audio-proxy', audioProxyHandler);
 
-// === SMART URL RESOLVER ===
+// === UNIVERSAL BUTTON / URL RESOLVER ===
 app.post('/api/resolve-url', async (req, res) => {
-  const inputUrl = (req.body.url as string) || '';
-  if (!inputUrl.trim()) {
-    res.status(400).json({ error: 'URL é obrigatória' });
+  const input = ((req.body.url || req.body.text || '') as string).trim();
+  if (!input) {
+    res.status(400).json({ error: 'Nenhum link ou botão fornecido' });
     return;
   }
 
-  const url = inputUrl.trim();
   try {
-    // 1. MyInstants URL resolver
-    if (url.includes('myinstants.com')) {
-      if (url.endsWith('.mp3')) {
-        const name = url.split('/').pop()?.replace('.mp3', '').replace(/[-_]/g, ' ') || 'MyInstants Sound';
+    // 1. If user copied an onclick/embed snippet: play('/media/sounds/....mp3')
+    const playMatch = input.match(/play\(['"]([^'"]+)['"]/i);
+    if (playMatch) {
+      let audioPath = playMatch[1];
+      if (!audioPath.startsWith('http')) {
+        audioPath = 'https://www.myinstants.com' + (audioPath.startsWith('/') ? '' : '/') + audioPath;
+      }
+      const title = audioPath.split('/').pop()?.replace('.mp3', '').replace(/[-_]/g, ' ') || 'MyInstants Sound';
+      res.json({
+        title,
+        url: audioPath,
+        source: 'myinstants',
+        sourceUrl: audioPath,
+        tags: ['myinstants', 'meme'],
+        color: '#1a9fff'
+      });
+      return;
+    }
+
+    // 2. Relative paths: /media/sounds/... or /uploads/...
+    if (input.startsWith('/media/sounds/')) {
+      const fullUrl = 'https://www.myinstants.com' + input;
+      const title = input.split('/').pop()?.replace('.mp3', '').replace(/[-_]/g, ' ') || 'MyInstants Sound';
+      res.json({
+        title,
+        url: fullUrl,
+        source: 'myinstants',
+        sourceUrl: fullUrl,
+        tags: ['myinstants', 'meme'],
+        color: '#1a9fff'
+      });
+      return;
+    }
+
+    if (input.startsWith('/uploads/')) {
+      const fullUrl = 'https://soundbuttonsworld.com' + input;
+      const title = input.split('/').pop()?.replace('.mp3', '').replace(/[-_]/g, ' ') || 'SoundButtonsWorld Sound';
+      res.json({
+        title,
+        url: fullUrl,
+        source: 'soundbuttonsworld',
+        sourceUrl: fullUrl,
+        tags: ['soundbuttonsworld', 'meme'],
+        color: '#ff7700'
+      });
+      return;
+    }
+
+    // 3. Extract http URL if embedded in text/html
+    const urlMatch = input.match(/https?:\/\/[^\s"'<>]+/i);
+    if (urlMatch) {
+      const url = urlMatch[0];
+
+      // Direct audio file link
+      if (url.match(/\.(mp3|wav|ogg|m4a|aac)(\?.*)?$/i)) {
+        const title = url.split('/').pop()?.split('?')[0].replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ') || 'Som';
+        const source = url.includes('myinstants') ? 'myinstants' : url.includes('soundbuttonsworld') ? 'soundbuttonsworld' : 'custom';
         res.json({
-          title: name,
+          title,
           url,
-          source: 'myinstants',
+          source,
           sourceUrl: url,
-          tags: ['myinstants', 'meme'],
-          color: '#0099ff'
+          tags: [source, 'meme'],
+          color: source === 'soundbuttonsworld' ? '#ff7700' : '#1a9fff'
         });
         return;
       }
 
-      const pageRes = await fetch(url, {
-        headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36' }
-      });
-      const html = await pageRes.text();
-      const playMatch = html.match(/play\('([^']+)'/i) || html.match(/class="small-button" onclick="play\('([^']+)'/i);
-      const titleMatch = html.match(/<h1[^>]*id="instant-page-title"[^>]*>([^<]+)<\/h1>/i) || html.match(/<title>([^<]+)<\/title>/i);
-      const colorMatch = html.match(/background-color:\s*([^;"]+)/i);
-
-      if (playMatch) {
-        let mp3Url = playMatch[1];
-        if (!mp3Url.startsWith('http')) {
-          mp3Url = 'https://www.myinstants.com' + mp3Url;
-        }
-        let title = 'MyInstants Sound';
-        if (titleMatch) {
-          title = titleMatch[1].replace(/- Instant Sound Buttons/gi, '').replace(/Myinstants/gi, '').trim();
-        }
-
-        res.json({
-          title,
-          url: mp3Url,
-          source: 'myinstants',
-          sourceUrl: url,
-          tags: ['myinstants', 'meme'],
-          color: colorMatch ? colorMatch[1].trim() : '#0099ff'
+      // MyInstants Page URL
+      if (url.includes('myinstants.com')) {
+        const pageRes = await fetch(url, {
+          headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36' }
         });
-        return;
+        const html = await pageRes.text();
+        const pagePlayMatch = html.match(/play\(['"]([^'"]+)['"]/i);
+        const titleMatch = html.match(/<h1[^>]*id="instant-page-title"[^>]*>([^<]+)<\/h1>/i) || html.match(/<title>([^<]+)<\/title>/i);
+        const colorMatch = html.match(/background-color:\s*([^;"]+)/i);
+
+        if (pagePlayMatch) {
+          let mp3Url = pagePlayMatch[1];
+          if (!mp3Url.startsWith('http')) {
+            mp3Url = 'https://www.myinstants.com' + (mp3Url.startsWith('/') ? '' : '/') + mp3Url;
+          }
+          let title = 'MyInstants Sound';
+          if (titleMatch) {
+            title = titleMatch[1].replace(/- Instant Sound Buttons/gi, '').replace(/Myinstants/gi, '').trim();
+          }
+
+          res.json({
+            title,
+            url: mp3Url,
+            source: 'myinstants',
+            sourceUrl: url,
+            tags: ['myinstants', 'meme'],
+            color: colorMatch ? colorMatch[1].trim() : '#1a9fff'
+          });
+          return;
+        }
+      }
+
+      // SoundButtonsWorld Page URL
+      if (url.includes('soundbuttonsworld.com')) {
+        const cleanSlug = url.split('/').pop()?.split('?')[0].replace(/-\d+$/, '').replace(/[-_]/g, ' ') || 'meme';
+        const searchRes = await SoundButtonsWorldService.search(cleanSlug);
+        if (searchRes && searchRes.length > 0) {
+          const match = searchRes[0];
+          res.json({
+            title: match.name,
+            url: match.url,
+            source: 'soundbuttonsworld',
+            sourceUrl: url,
+            tags: match.suggestedTags || ['soundbuttonsworld', 'meme'],
+            color: match.color || '#ff7700'
+          });
+          return;
+        }
       }
     }
 
-    // 2. SoundButtonsWorld URL resolver
-    if (url.includes('soundbuttonsworld.com')) {
-      if (url.includes('/uploads/')) {
-        const name = url.split('/').pop()?.replace('.mp3', '') || 'SoundButtonsWorld Sound';
+    // 4. Slug or Search Term Fallback: Search on both services
+    const cleanTerm = input.replace(/https?:\/\//g, '').replace(/[<>"'()]/g, ' ').replace(/[-_]/g, ' ').trim();
+    if (cleanTerm.length > 1) {
+      // Try MyInstants search first
+      const myInstantsResults = await MyInstantsService.search(cleanTerm);
+      if (myInstantsResults && myInstantsResults.length > 0) {
+        const match = myInstantsResults[0];
         res.json({
-          title: name,
-          url,
-          source: 'soundbuttonsworld',
-          sourceUrl: url,
-          tags: ['soundbuttonsworld', 'meme'],
-          color: '#00e5ff'
+          title: match.name,
+          url: match.url,
+          source: 'myinstants',
+          sourceUrl: match.pageUrl,
+          tags: match.suggestedTags || ['myinstants', 'meme'],
+          color: match.color || '#1a9fff'
         });
         return;
       }
 
-      const cleanSlug = url.split('/').pop()?.split('?')[0].replace(/-\d+$/, '').replace(/[-_]/g, ' ') || 'meme';
-      const searchRes = await SoundButtonsWorldService.search(cleanSlug);
-      if (searchRes && searchRes.length > 0) {
-        const match = searchRes[0];
+      // Try SoundButtonsWorld search
+      const sbwResults = await SoundButtonsWorldService.search(cleanTerm);
+      if (sbwResults && sbwResults.length > 0) {
+        const match = sbwResults[0];
         res.json({
           title: match.name,
           url: match.url,
           source: 'soundbuttonsworld',
-          sourceUrl: url,
+          sourceUrl: match.pageUrl,
           tags: match.suggestedTags || ['soundbuttonsworld', 'meme'],
-          color: match.color || '#00e5ff'
+          color: match.color || '#ff7700'
         });
         return;
       }
     }
 
-    // 3. Direct Audio URL fallback
-    const fallbackTitle = url.split('/').pop()?.split('?')[0].replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ') || 'Som Importado';
+    // Fallback direct URL
+    const fallbackTitle = input.split('/').pop()?.split('?')[0].replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ') || 'Som Importado';
     res.json({
       title: fallbackTitle,
-      url,
+      url: input,
       source: 'custom',
-      sourceUrl: url,
+      sourceUrl: input,
       tags: ['web', 'importado'],
-      color: '#00e5ff'
+      color: '#1a9fff'
     });
   } catch (error: any) {
-    console.error('Error resolving URL:', error.message);
+    console.error('Error resolving URL/Button:', error.message);
     res.status(500).json({ error: 'Não foi possível extrair o áudio do link fornecido.' });
   }
 });
