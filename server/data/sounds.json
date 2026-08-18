@@ -32,7 +32,8 @@
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1787063584194
+    "createdAt": 1787063584194,
+    "hotkey": "2"
   },
   {
     "id": "sound_1787059829816_p04qv",
@@ -276,7 +277,7 @@
       "sonoplastia"
     ],
     "color": "#FF0000",
-    "hotkey": "2",
+    "hotkey": "3",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -435,7 +436,8 @@
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": true,
-    "createdAt": 1787024844557
+    "createdAt": 1787024844557,
+    "hotkey": "9"
   },
   {
     "id": "sound_faro_1787024844557_xgr7",
@@ -599,7 +601,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024840875,
-    "tab": "Rodrigo Faro"
+    "tab": "Rodrigo Faro",
+    "hotkey": "T"
   },
   {
     "id": "sound_1787024840807_mddkm",
@@ -711,7 +714,8 @@
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1787061999159
+    "createdAt": 1787061999159,
+    "hotkey": "2"
   },
   {
     "id": "sound_1787060819692_8er1r",
@@ -762,7 +766,7 @@
     "isFavorite": false,
     "createdAt": 1787024840745,
     "tab": "La Ele",
-    "hotkey": "6"
+    "hotkey": "5"
   },
   {
     "id": "sound_1787026599961_ijj6l",
@@ -859,7 +863,7 @@
       "brasil"
     ],
     "color": "#FF0000",
-    "hotkey": "7",
+    "hotkey": "6",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": true,
@@ -882,7 +886,8 @@
     "playbackRate": 1,
     "isFavorite": true,
     "createdAt": 1787024840745,
-    "tab": "Geral"
+    "tab": "Geral",
+    "hotkey": "7"
   },
   {
     "id": "sound_1787024840745_r4uz4",
@@ -939,7 +944,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024840745,
-    "tab": "Geral"
+    "tab": "Geral",
+    "hotkey": "9"
   },
   {
     "id": "sound_1787024840745_j9t4l",
@@ -953,7 +959,6 @@
       "brasil"
     ],
     "color": "#F3FF4F",
-    "hotkey": "Q",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -978,7 +983,7 @@
     "isFavorite": false,
     "createdAt": 1787024840745,
     "tab": "Geral",
-    "hotkey": "W"
+    "hotkey": "Q"
   },
   {
     "id": "sound_1787024840831_kif4m",
@@ -1030,7 +1035,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024840940,
-    "tab": "Geral"
+    "tab": "Geral",
+    "hotkey": "R"
   },
   {
     "id": "sound_1787024840987_bc4or",
@@ -1122,7 +1128,7 @@
     "isFavorite": false,
     "createdAt": 1787024841877,
     "tab": "Geral",
-    "hotkey": "A"
+    "hotkey": "O"
   },
   {
     "id": "sound_1787061914724_5ldl0",
@@ -1162,7 +1168,7 @@
     "isFavorite": false,
     "createdAt": 1787024840745,
     "tab": "Memes & TV",
-    "hotkey": "W"
+    "hotkey": "2"
   },
   {
     "id": "sound_1787024840745_8mbv1",
@@ -1229,7 +1235,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024841876,
-    "tab": "Músicas"
+    "tab": "Músicas",
+    "hotkey": "4"
   },
   {
     "id": "sound_1787024841876_xv6nc",
@@ -1246,8 +1253,7 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024841876,
-    "tab": "Músicas",
-    "hotkey": "4"
+    "tab": "Músicas"
   },
   {
     "id": "sound_1787024841029_xq7bh",
@@ -1315,7 +1321,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024842893,
-    "tab": "Gaming"
+    "tab": "Gaming",
+    "hotkey": "3"
   },
   {
     "id": "sound_1787024841877_r3rz7",
@@ -1399,7 +1406,6 @@
       "humor"
     ],
     "color": "#FF0000",
-    "hotkey": "2",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -1709,7 +1715,7 @@
     "isFavorite": false,
     "createdAt": 1787024840745,
     "tab": "Efeitos",
-    "hotkey": "R"
+    "hotkey": "3"
   },
   {
     "id": "sound_1787024841876_wvg2u",
@@ -1747,7 +1753,7 @@
     "isFavorite": false,
     "createdAt": 1787024841876,
     "tab": "Efeitos",
-    "hotkey": "G"
+    "hotkey": "5"
   },
   {
     "id": "sound_1787024841876_98nwf",
@@ -1834,7 +1840,7 @@
     "isFavorite": false,
     "createdAt": 1787024841146,
     "tab": "Efeitos",
-    "hotkey": "3"
+    "hotkey": "9"
   },
   {
     "id": "sound_1787024841166_fp9ww",
@@ -1881,7 +1887,7 @@
     "isFavorite": false,
     "createdAt": 1787024841166,
     "tab": "Efeitos",
-    "hotkey": "8"
+    "hotkey": "Q"
   },
   {
     "id": "sound_1787024841876_5cml8",
@@ -1932,8 +1938,7 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024843460,
-    "tab": "Efeitos",
-    "hotkey": "Q"
+    "tab": "Efeitos"
   },
   {
     "id": "sound_1787024844149_9t1pb",
@@ -1956,8 +1961,7 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024844149,
-    "tab": "Efeitos",
-    "hotkey": "U"
+    "tab": "Efeitos"
   },
   {
     "id": "sound_1787024844327_mqlgo",
@@ -1980,7 +1984,7 @@
     "isFavorite": false,
     "createdAt": 1787024844327,
     "tab": "Efeitos",
-    "hotkey": "P"
+    "hotkey": "T"
   },
   {
     "id": "sound_1787024844327_2y2zd",
@@ -2003,8 +2007,7 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024844327,
-    "tab": "Efeitos",
-    "hotkey": "A"
+    "tab": "Efeitos"
   },
   {
     "id": "sound_1787024844327_q2wwz",
@@ -2032,7 +2035,7 @@
     "isFavorite": false,
     "createdAt": 1787024844327,
     "tab": "Efeitos",
-    "hotkey": "S"
+    "hotkey": "U"
   },
   {
     "id": "sound_1787024844327_4epzh",
@@ -2128,7 +2131,7 @@
     "isFavorite": false,
     "createdAt": 1787024844504,
     "tab": "Efeitos",
-    "hotkey": "H"
+    "hotkey": "A"
   },
   {
     "id": "sound_1787024844504_8gn1u",

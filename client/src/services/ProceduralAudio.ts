@@ -33,6 +33,8 @@ class ProceduralAudioService {
     return this.ctx;
   }
 
+  private lastTargetDeviceId: string = '';
+
   /**
    * Route audio exclusively to the SECONDARY / TEST device (Headphones)
    */
@@ -41,11 +43,7 @@ class ProceduralAudioService {
     if (!ctx) return null;
 
     const config = AudioEngine.getConfig();
-
-    // Check if AudioContext itself supports setSinkId
-    if (typeof (ctx as any).setSinkId === 'function' && config.secondaryDeviceId && config.secondaryDeviceId !== 'default') {
-      (ctx as any).setSinkId(config.secondaryDeviceId).catch(() => {});
-    }
+    const targetDevice = config.secondaryDeviceId || 'default';
 
     // Set up dedicated MediaStream sink HTMLAudioElement for hardware secondary device isolation
     if (!this.streamDest) {
@@ -55,16 +53,17 @@ class ProceduralAudioService {
         this.sinkAudioEl.srcObject = this.streamDest.stream;
         this.sinkAudioEl.play().catch(() => {});
       } catch {
-        // Fallback to destination if media stream destination fails
         return ctx.destination;
       }
     }
 
     if (this.sinkAudioEl) {
       this.sinkAudioEl.volume = Math.max(0, Math.min(1, config.previewVolume));
-      const targetDevice = config.secondaryDeviceId;
-      if (targetDevice && targetDevice !== 'default' && typeof (this.sinkAudioEl as any).setSinkId === 'function') {
-        (this.sinkAudioEl as any).setSinkId(targetDevice).catch(() => {});
+      if (this.lastTargetDeviceId !== targetDevice) {
+        this.lastTargetDeviceId = targetDevice;
+        if (targetDevice !== 'default' && typeof (this.sinkAudioEl as any).setSinkId === 'function') {
+          (this.sinkAudioEl as any).setSinkId(targetDevice).catch(() => {});
+        }
       }
     }
 

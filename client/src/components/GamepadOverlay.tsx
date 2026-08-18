@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { VisualizerCanvas } from './VisualizerCanvas';
-import { Radio, Headphones, Zap } from 'lucide-react';
+import { AnalogVuMeter } from './AnalogVuMeter';
+import { Radio, Headphones, Zap, Gauge, BarChart2 } from 'lucide-react';
 
 export const GamepadOverlay: React.FC = () => {
+  const [vuMode, setVuMode] = useState<'analog' | 'digital'>(() => {
+    return (localStorage.getItem('soundboard_vu_mode') as 'analog' | 'digital') || 'analog';
+  });
+
+  const toggleVuMode = () => {
+    const next = vuMode === 'analog' ? 'digital' : 'analog';
+    setVuMode(next);
+    localStorage.setItem('soundboard_vu_mode', next);
+  };
+
   return (
     <footer className="deck-bottom-dock">
       <div className="dock-status-group">
@@ -18,15 +29,33 @@ export const GamepadOverlay: React.FC = () => {
 
         <div className="dock-status-badge" style={{ color: 'var(--neon-yellow)' }}>
           <Zap size={14} />
-          <span>SHIFT + NÚMERO = PREVIEW</span>
+          <span>SHIFT + TECLA = TESTE FONES</span>
         </div>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-        <span style={{ fontFamily: 'var(--font-pixel)', fontSize: '0.95rem', color: 'var(--neon-green)' }}>
-          STEREO VU
-        </span>
-        <VisualizerCanvas />
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+        {/* Toggle Mode Button */}
+        <button
+          type="button"
+          onClick={toggleVuMode}
+          className="btn-steamdeck btn-steamdeck-secondary"
+          style={{ padding: '0.25rem 0.55rem', fontSize: '0.72rem', height: '28px' }}
+          title="Alternar entre VU Analógico de Agulhas e Barras de Espectro Digital"
+        >
+          {vuMode === 'analog' ? <Gauge size={13} color="var(--neon-yellow)" /> : <BarChart2 size={13} color="var(--neon-cyan)" />}
+          <span>{vuMode === 'analog' ? 'VU Agulhas' : 'Espectro'}</span>
+        </button>
+
+        {vuMode === 'analog' ? (
+          <AnalogVuMeter compact={true} />
+        ) : (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span style={{ fontFamily: 'var(--font-pixel)', fontSize: '0.85rem', color: 'var(--neon-green)' }}>
+              SPECTRUM
+            </span>
+            <VisualizerCanvas />
+          </div>
+        )}
       </div>
     </footer>
   );

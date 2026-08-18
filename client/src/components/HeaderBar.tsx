@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Headphones, Square, SlidersHorizontal, Tv } from 'lucide-react';
+import { Volume2, VolumeX, Headphones, Square, SlidersHorizontal, Tv, Palette } from 'lucide-react';
 import { AudioEngine } from '../services/AudioEngine';
 import type { AudioRoutingConfig } from '../types';
 
 interface HeaderBarProps {
   onOpenAudioRouting: () => void;
   onOpenObsOverlay?: () => void;
+  onOpenThemeSelector?: () => void;
   config: AudioRoutingConfig;
   onConfigChange: (newConfig: Partial<AudioRoutingConfig>) => void;
 }
@@ -13,6 +14,7 @@ interface HeaderBarProps {
 export const HeaderBar: React.FC<HeaderBarProps> = ({
   onOpenAudioRouting,
   onOpenObsOverlay,
+  onOpenThemeSelector,
   config,
   onConfigChange,
 }) => {
@@ -94,6 +96,19 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
           >
             <Tv size={14} color="var(--neon-pink)" />
             <span>OBS / Mini HUD</span>
+          </button>
+        )}
+
+        {/* Global Lighting Theme Selector */}
+        {onOpenThemeSelector && (
+          <button
+            className="audio-status-btn"
+            onClick={onOpenThemeSelector}
+            title="Mudar Tema de Iluminação Global da Soundboard"
+            style={{ borderColor: 'rgba(255, 230, 0, 0.4)' }}
+          >
+            <Palette size={14} color="var(--neon-yellow)" />
+            <span>Temas</span>
           </button>
         )}
 

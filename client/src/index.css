@@ -1785,3 +1785,342 @@ body::before {
   font-weight: 700;
 }
 
+/* =========================================================================
+   DUAL ANALOG STEREO VU METER (PHYSICAL NEEDLES & VINTAGE BACKLIT DIALS)
+   ========================================================================= */
+.analog-stereo-vu-panel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #110e20;
+  padding: 3px 6px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 0, 0, 0.4);
+}
+
+.analog-vu-meter-box {
+  width: 90px;
+  height: 48px;
+  background: #090614;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
+  position: relative;
+}
+
+.vu-dial-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1px 4px;
+  background: #04020a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: monospace;
+}
+
+.vu-ch-label {
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: var(--neon-cyan);
+  letter-spacing: 0.5px;
+}
+
+.vu-peak-indicator {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.vu-peak-led {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #4a0d13;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  transition: all 0.05s ease;
+}
+
+.vu-peak-led.vu-peak-on {
+  background: #ff0033;
+  box-shadow: 0 0 8px #ff0033, 0 0 14px #ff0055;
+}
+
+.vu-peak-text {
+  font-size: 0.5rem;
+  font-weight: 800;
+  color: #ef4444;
+}
+
+.vu-dial-face {
+  position: relative;
+  flex: 1;
+  background: radial-gradient(circle at 50% 120%, #fffae8 0%, #f7ecc8 65%, #eddca4 100%);
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.vu-scale-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.vu-scale-text {
+  font-family: 'Arial', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  fill: #222222;
+}
+
+.vu-zero-text {
+  font-weight: 900;
+  fill: #000000;
+}
+
+.vu-red-text {
+  font-weight: 900;
+  fill: #d92438;
+}
+
+.vu-logo-text {
+  font-family: var(--font-retro), sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  fill: rgba(0, 0, 0, 0.25);
+  letter-spacing: 1px;
+}
+
+.vu-needle-container {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  pointer-events: none;
+}
+
+.vu-needle {
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  width: 1.5px;
+  height: 38px;
+  background: linear-gradient(to top, #111 75%, #ff0033 75%);
+  transform-origin: bottom center;
+  transform: rotate(-42deg);
+  border-radius: 1px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  transition: transform 0.04s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.vu-pivot-cap {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 6px;
+  background: #111118;
+  border-radius: 5px 5px 0 0;
+  border: 1px solid #333;
+}
+
+/* =========================================================================
+   GLOBAL LIGHTING THEMES (CSS VARIABLE OVERRIDES)
+   ========================================================================= */
+
+/* THEME 2: VAPORWAVE SUNSET */
+body.theme-vaporwave, html.theme-vaporwave {
+  --bg-primary: #120924;
+  --bg-secondary: #1a0e36;
+  --bg-card: #221447;
+  --bg-card-hover: #2e1c5c;
+  --bg-card-active: #3a2473;
+  --border-color: rgba(244, 114, 182, 0.3);
+  --border-focus: #38bdf8;
+  --neon-pink: #f472b6;
+  --neon-pink-glow: rgba(244, 114, 182, 0.45);
+  --neon-cyan: #38bdf8;
+  --neon-cyan-glow: rgba(56, 189, 248, 0.45);
+  --neon-yellow: #fcd34d;
+  --neon-yellow-glow: rgba(252, 211, 77, 0.4);
+  --neon-purple: #c084fc;
+  --neon-green: #4ade80;
+  --deck-cyan: #38bdf8;
+  --deck-amber: #fb923c;
+}
+
+/* THEME 3: CYBER MATRIX GREEN */
+body.theme-matrix, html.theme-matrix {
+  --bg-primary: #020c06;
+  --bg-secondary: #051a0c;
+  --bg-card: #082613;
+  --bg-card-hover: #0c361b;
+  --bg-card-active: #104724;
+  --border-color: rgba(0, 255, 102, 0.25);
+  --border-focus: #00ff66;
+  --neon-pink: #a3e635;
+  --neon-pink-glow: rgba(163, 230, 53, 0.45);
+  --neon-cyan: #00ff66;
+  --neon-cyan-glow: rgba(0, 255, 102, 0.45);
+  --neon-yellow: #facc15;
+  --neon-yellow-glow: rgba(250, 204, 21, 0.4);
+  --neon-purple: #4ade80;
+  --neon-green: #00ff66;
+  --deck-cyan: #00ff66;
+  --deck-amber: #a3e635;
+}
+
+/* THEME 4: STEALTH TITANIUM & GOLD (MAXELL XL-II) */
+body.theme-titanium, html.theme-titanium {
+  --bg-primary: #09090b;
+  --bg-secondary: #121215;
+  --bg-card: #18181b;
+  --bg-card-hover: #27272a;
+  --bg-card-active: #3f3f46;
+  --border-color: rgba(251, 191, 36, 0.25);
+  --border-focus: #fbbf24;
+  --neon-pink: #f97316;
+  --neon-pink-glow: rgba(249, 115, 22, 0.45);
+  --neon-cyan: #fbbf24;
+  --neon-cyan-glow: rgba(251, 191, 36, 0.45);
+  --neon-yellow: #fef08a;
+  --neon-yellow-glow: rgba(254, 240, 138, 0.4);
+  --neon-purple: #d97706;
+  --neon-green: #eab308;
+  --deck-cyan: #fbbf24;
+  --deck-amber: #f97316;
+}
+
+/* THEME 5: ARCADE CRIMSON (BLOOD & HAZARD) */
+body.theme-blood, html.theme-blood {
+  --bg-primary: #120307;
+  --bg-secondary: #1f060c;
+  --bg-card: #2b0812;
+  --bg-card-hover: #3d0c1b;
+  --bg-card-active: #521124;
+  --border-color: rgba(255, 0, 85, 0.3);
+  --border-focus: #ff0055;
+  --neon-pink: #ff0055;
+  --neon-pink-glow: rgba(255, 0, 85, 0.45);
+  --neon-cyan: #ff4400;
+  --neon-cyan-glow: rgba(255, 68, 0, 0.45);
+  --neon-yellow: #ffe600;
+  --neon-yellow-glow: rgba(255, 230, 0, 0.4);
+  --neon-purple: #e11d48;
+  --neon-green: #ff2a5f;
+  --deck-cyan: #ff0055;
+  --deck-amber: #ff4400;
+}
+
+/* =========================================================================
+   COMPREHENSIVE BUTTON & UI CONTROLS POLISH
+   ========================================================================= */
+.btn-steamdeck {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.95rem;
+  font-family: var(--font-retro), sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  user-select: none;
+}
+
+.btn-steamdeck:hover:not(:disabled) {
+  transform: translateY(-1.5px);
+}
+
+.btn-steamdeck:active:not(:disabled) {
+  transform: translateY(1px) scale(0.98);
+}
+
+.btn-steamdeck-primary {
+  background: linear-gradient(135deg, var(--neon-cyan) 0%, #0099ff 100%);
+  color: #000000;
+  border-color: #ffffff;
+  box-shadow: 0 0 16px var(--neon-cyan-glow);
+}
+
+.btn-steamdeck-primary:hover:not(:disabled) {
+  box-shadow: 0 0 24px var(--neon-cyan-glow), 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.btn-steamdeck-secondary {
+  background: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.btn-steamdeck-secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--neon-cyan);
+  color: var(--neon-cyan);
+  box-shadow: 0 0 12px var(--neon-cyan-glow);
+}
+
+.btn-steamdeck-amber {
+  background: linear-gradient(135deg, #ff7700 0%, #ffaa00 100%);
+  color: #000000;
+  border-color: #ffe600;
+  box-shadow: 0 0 16px rgba(255, 119, 0, 0.45);
+}
+
+.btn-steamdeck-amber:hover:not(:disabled) {
+  box-shadow: 0 0 24px rgba(255, 119, 0, 0.6);
+}
+
+.icon-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s ease;
+}
+
+.icon-btn-ghost:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  transform: scale(1.08);
+}
+
+.input-deck {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  background: rgba(8, 6, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  color: #ffffff;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.input-deck:focus {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 14px var(--neon-cyan-glow);
+  background: rgba(12, 9, 26, 0.95);
+}
+
+

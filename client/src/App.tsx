@@ -16,6 +16,8 @@ import { HotkeysTab } from './components/HotkeysTab';
 import { GamepadOverlay } from './components/GamepadOverlay';
 import { ObsOverlayView } from './components/ObsOverlayView';
 import { ObsModal } from './components/ObsModal';
+import { ThemeSelectorModal } from './components/ThemeSelectorModal';
+import { ThemeService, type GlobalTheme } from './services/ThemeService';
 
 import type { SoundItem, TagInfo, AudioRoutingConfig } from './types';
 import { fetchSounds, fetchTags, createSound, updateSound, deleteSound, reorderSounds } from './services/api';
@@ -32,6 +34,12 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [isEditMode, setIsEditMode] = useState(false);
   const [isObsModalOpen, setIsObsModalOpen] = useState(false);
+  const [isThemeModalOpen, setIsThemeModalOpen] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState<GlobalTheme>(() => ThemeService.getTheme());
+
+  useEffect(() => {
+    return ThemeService.subscribe(setCurrentTheme);
+  }, []);
 
   // Soundboard Profiles / Pages / Tabs
   const [soundboardTabs, setSoundboardTabs] = useState<string[]>(() => {
@@ -537,6 +545,7 @@ export default function App() {
       <HeaderBar
         onOpenAudioRouting={() => setIsAudioRoutingOpen(true)}
         onOpenObsOverlay={() => setIsObsModalOpen(true)}
+        onOpenThemeSelector={() => setIsThemeModalOpen(true)}
         config={audioConfig}
         onConfigChange={(newCfg) => setAudioConfig((prev) => ({ ...prev, ...newCfg }))}
       />
@@ -709,6 +718,13 @@ export default function App() {
       <ObsModal
         isOpen={isObsModalOpen}
         onClose={() => setIsObsModalOpen(false)}
+      />
+
+      <ThemeSelectorModal
+        isOpen={isThemeModalOpen}
+        onClose={() => setIsThemeModalOpen(false)}
+        currentTheme={currentTheme}
+        onSelectTheme={setCurrentTheme}
       />
 
       {/* Bottom SteamOS Dock with button hints & visualizer */}
