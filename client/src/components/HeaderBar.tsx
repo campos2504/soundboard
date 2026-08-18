@@ -55,10 +55,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
           className="deck-logo-90s-img"
         />
         <div className="deck-title-group">
-          <h1>
-            ARCADE SOUNDWAVE 90s
-            <span className="deck-badge-edition">PRO EDITION</span>
-          </h1>
+          <h1>ARCADE SOUNDWAVE 90s</h1>
           <p>★ Stereo Soundboard Anos 90 • MyInstants & SoundButtonsWorld ★</p>
         </div>
       </div>
