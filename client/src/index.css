@@ -539,217 +539,672 @@ body::before {
 }
 
 /* =========================================================================
-   90s SOUNDBOARD CASSETTE / ARCADE CARDS GRID
+   90s SOUNDBOARD CASSETTE (K7) MIX-MATCH CARDS GRID
    ========================================================================= */
 .soundboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1.35rem;
   margin-bottom: 2.5rem;
 }
 
-/* 90s RETRO CASSETTE SOUND CARD */
-.sound-card-item, .streamdeck-key-card {
+/* =========================================================================
+   AUTHENTIC K7 AUDIO CASSETTE TAPE SHELL
+   ========================================================================= */
+.k7-cassette-card {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 185px;
-  background: linear-gradient(155deg, #1f1940 0%, #120e29 100%);
-  border: 2px solid rgba(255, 0, 128, 0.25);
-  border-radius: var(--radius-lg);
-  padding: 1rem;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 200px;
+  border-radius: 12px;
+  padding: 8px;
+  cursor: grab;
+  user-select: none;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 
-    0 6px 20px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  cursor: default;
+    0 10px 25px rgba(0, 0, 0, 0.65),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   overflow: hidden;
 }
 
-.sound-card-item:hover, .streamdeck-key-card:hover {
-  transform: translateY(-4px) scale(1.01);
-  border-color: var(--neon-cyan);
+.k7-cassette-card:hover {
+  transform: translateY(-5px) scale(1.015);
   box-shadow: 
-    0 12px 30px rgba(0, 0, 0, 0.7),
-    0 0 20px var(--neon-cyan-glow);
+    0 16px 35px rgba(0, 0, 0, 0.8),
+    0 0 25px var(--k7-glow, rgba(0, 240, 255, 0.3));
 }
 
-/* PLAYING SOUND ACTIVE NEON STATES */
-.sound-card-item.playing-main, .streamdeck-key-card.playing-main {
-  border-color: var(--neon-cyan);
-  box-shadow: 
-    0 0 35px var(--neon-cyan-glow),
-    inset 0 0 20px rgba(0, 240, 255, 0.3);
-  animation: neonPulseLive 1s infinite alternate ease-in-out;
+.k7-cassette-card:active {
+  cursor: grabbing;
 }
 
-.sound-card-item.playing-test, .streamdeck-key-card.playing-test {
-  border-color: var(--neon-pink);
-  box-shadow: 
-    0 0 35px var(--neon-pink-glow),
-    inset 0 0 20px rgba(255, 0, 128, 0.3);
-  animation: neonPulseTest 1s infinite alternate ease-in-out;
-}
-
-@keyframes neonPulseLive {
-  0% { transform: translateY(-2px); box-shadow: 0 0 15px var(--neon-cyan); }
-  100% { transform: translateY(-5px); box-shadow: 0 0 40px var(--neon-cyan), 0 0 15px #fff; }
-}
-@keyframes neonPulseTest {
-  0% { transform: translateY(-2px); box-shadow: 0 0 15px var(--neon-pink); }
-  100% { transform: translateY(-5px); box-shadow: 0 0 40px var(--neon-pink), 0 0 15px var(--neon-yellow); }
-}
-
-/* Card Header Row */
-.card-header-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.5rem;
-  margin-bottom: 0.4rem;
-}
-
-.sound-color-indicator {
-  width: 12px;
-  height: 12px;
+/* METALLIC CORNER SCREWS (+) */
+.k7-screw {
+  position: absolute;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  flex-shrink: 0;
-  margin-top: 5px;
-  box-shadow: 0 0 10px currentColor;
+  background: radial-gradient(circle, #e2e8f0 20%, #64748b 70%, #1e293b 100%);
+  border: 1px solid #334155;
+  box-shadow: inset 0 1px 1px #ffffff, 0 1px 2px rgba(0, 0, 0, 0.8);
+  z-index: 5;
+  pointer-events: none;
 }
 
-.sound-title-text {
-  flex: 1;
-  font-family: var(--font-retro);
+.k7-screw::before {
+  content: '+';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  font-family: sans-serif;
+  font-size: 8px;
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1;
+}
+
+.k7-screw-tl { top: 6px; left: 6px; }
+.k7-screw-tr { top: 6px; right: 6px; }
+.k7-screw-bl { bottom: 6px; left: 6px; }
+.k7-screw-br { bottom: 6px; right: 6px; }
+.k7-screw-center {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  margin: 0 auto;
+}
+
+/* =========================================================================
+   CASSETTE PAPER LABEL (Sticker with Ruled Lines & Brand)
+   ========================================================================= */
+.k7-label {
+  position: relative;
+  background: var(--k7-label-bg, #eae6d9);
+  color: var(--k7-label-text, #1a1a1a);
+  border-radius: 6px;
+  padding: 6px 8px 4px 8px;
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Brand Row & Side Badge */
+.k7-label-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 2px;
+}
+
+.k7-drag-grip {
+  display: flex;
+  align-items: center;
+  cursor: grab;
+  opacity: 0.7;
+}
+
+.k7-side-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 22px;
+  padding: 0 5px;
+  background: var(--k7-side-bg, #111827);
+  color: var(--k7-side-color, #ffffff);
+  border-radius: 4px;
+  font-family: var(--font-pixel);
   font-size: 1.05rem;
   font-weight: 700;
-  color: #ffffff;
-  line-height: 1.3;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.k7-brand-badge {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  font-family: var(--font-retro);
+  font-size: 0.88rem;
+  letter-spacing: 0.5px;
+}
+
+.k7-brand-sub {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--k7-brand-sub-color, #2563eb);
+}
+
+/* Label Action Buttons (Star, Edit, Delete) */
+.k7-label-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.k7-icon-btn {
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: var(--k7-label-icon, #334155);
+  padding: 4px 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.12s ease;
+}
+
+.k7-icon-btn:hover {
+  background: rgba(0, 0, 0, 0.18);
+  color: #000000;
+  transform: scale(1.12);
+}
+
+.k7-icon-btn.k7-favorite-active {
+  color: #eab308;
+  background: rgba(234, 179, 8, 0.18);
+  border-color: rgba(234, 179, 8, 0.4);
+  filter: drop-shadow(0 0 4px #facc15);
+}
+
+.k7-icon-btn.k7-btn-delete:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+/* Ruled Title Area (Handwritten Cassette Mixtape Style) */
+.k7-title-block {
+  position: relative;
+  min-height: 38px;
+  padding: 2px 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.k7-ruled-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--k7-ruled-color, rgba(0, 0, 0, 0.15));
+  pointer-events: none;
+}
+
+.k7-ruled-line-1 { top: 12px; }
+.k7-ruled-line-2 { bottom: 6px; }
+
+.k7-title-text {
+  font-family: var(--font-retro);
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--k7-title-color, #0f172a);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
+  z-index: 2;
 }
 
-.card-top-actions {
+/* Racing Stripes across label */
+.k7-racing-stripes {
   display: flex;
-  align-items: center;
-  gap: 0.35rem;
+  flex-direction: column;
+  gap: 1px;
+  margin-top: 2px;
 }
 
-.icon-btn-ghost {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
+.k7-stripe {
+  height: 2px;
+  width: 100%;
+}
+
+.k7-stripe-red { background: var(--k7-stripe-1, #dc2626); }
+.k7-stripe-black { background: var(--k7-stripe-2, #000000); }
+
+/* =========================================================================
+   CENTER CASSETTE VIEWING WINDOW WITH SPINNING SPOOLS
+   ========================================================================= */
+.k7-window-housing {
+  margin: 6px 0;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
   padding: 4px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: all 0.15s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.k7-window {
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.icon-btn-ghost:hover {
-  color: var(--neon-yellow);
-  background: rgba(255, 230, 0, 0.15);
-}
-
-.icon-btn-ghost.favorite-active {
-  color: var(--neon-yellow);
-  filter: drop-shadow(0 0 6px var(--neon-yellow));
-}
-
-/* 90s Pixel Arcade Hotkey Badge */
-.hotkey-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 28px;
-  height: 24px;
-  padding: 0 6px;
-  background: #090618;
-  border: 1px solid var(--neon-cyan);
-  border-bottom: 2px solid var(--neon-pink);
+  justify-content: space-between;
+  background: linear-gradient(180deg, rgba(20, 20, 30, 0.9) 0%, rgba(5, 5, 12, 0.95) 100%);
+  border: 2px solid rgba(255, 255, 255, 0.15);
   border-radius: 6px;
-  font-family: var(--font-pixel);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--neon-yellow);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-  cursor: help;
+  padding: 4px 8px;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Card Tags */
-.card-tags-list {
+/* Glass glare reflection */
+.k7-window::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Gear Spool (White/Plastic 6-toothed cogwheel) */
+.k7-spool {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f8fafc;
+  border: 2px solid #94a3b8;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.6), inset 0 1px 2px #ffffff;
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.1s linear;
+}
+
+.k7-spool.k7-spinning {
+  animation: k7Spin 1.4s linear infinite;
+}
+
+@keyframes k7Spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Cogwheel 6 teeth */
+.k7-cog-tooth {
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  background: #64748b;
+}
+
+.k7-cog-1 { transform: rotate(0deg); }
+.k7-cog-2 { transform: rotate(60deg); }
+.k7-cog-3 { transform: rotate(120deg); }
+
+.k7-cog-center {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #0f172a;
+  border: 2px solid #cbd5e1;
+  z-index: 2;
+}
+
+/* Central Magnetic Tape Ribbon & Tape Ruler Ticks */
+.k7-tape-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+}
+
+.k7-tape-roll {
+  width: 100%;
+  height: 12px;
+  background: linear-gradient(90deg, #3d2314 0%, #63331a 50%, #3d2314 100%);
+  border-radius: 2px;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 1px 3px rgba(0, 0, 0, 0.6);
+  margin-bottom: 2px;
+}
+
+.k7-ruler-ticks {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-family: monospace;
+  font-size: 0.55rem;
+  color: var(--k7-ruler-color, #94a3b8);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* =========================================================================
+   TAGS & EDIT BAR
+   ========================================================================= */
+.k7-tags-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   flex-wrap: wrap;
-  margin: 0.35rem 0 0.85rem 0;
-  min-height: 24px;
+  margin: 3px 0 6px 0;
+  min-height: 20px;
 }
 
-.card-tag-pill {
-  font-size: 0.68rem;
-  padding: 2px 7px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 0, 128, 0.2);
-  border-radius: 4px;
-  color: var(--text-secondary);
-  transition: all 0.15s ease;
+.k7-tag-chip {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  background: var(--k7-tag-bg, rgba(0, 0, 0, 0.35));
+  border: 1px solid var(--k7-tag-border, rgba(255, 255, 255, 0.15));
+  border-radius: 3px;
+  color: var(--k7-tag-color, #ffffff);
   cursor: pointer;
+  transition: all 0.15s ease;
 }
 
-.card-tag-pill:hover {
-  border-color: var(--neon-pink);
+.k7-tag-chip:hover {
+  transform: scale(1.06);
+  border-color: var(--neon-cyan);
+  color: var(--neon-cyan);
+}
+
+.k7-tag-more {
+  font-size: 0.62rem;
+  font-family: var(--font-pixel);
+  color: var(--text-muted);
+}
+
+.k7-edit-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid var(--neon-cyan);
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin-bottom: 4px;
+  color: var(--neon-cyan);
+}
+
+.k7-pos-btn {
+  background: rgba(0, 240, 255, 0.2);
+  border: 1px solid var(--neon-cyan);
   color: #ffffff;
+  border-radius: 3px;
+  padding: 2px 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* 90s Dual Action Tactile Play Buttons */
-.card-actions-row {
+.k7-pos-btn:hover {
+  background: var(--neon-cyan);
+  color: #000000;
+}
+
+/* =========================================================================
+   BOTTOM TRAPEZOID SECTION WITH CAPSTAN HOLES & DUAL PLAY BUTTONS
+   ========================================================================= */
+.k7-bottom-head {
+  background: var(--k7-head-bg, rgba(0, 0, 0, 0.3));
+  border-radius: 6px;
+  padding: 4px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.k7-head-holes-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1px 10px;
+}
+
+.k7-head-hole {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #000000;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.9), 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Mechanical Tactile Tape Transport Buttons */
+.k7-controls-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-  margin-top: auto;
+  gap: 6px;
 }
 
-/* MAIN PLAY BUTTON (Saída 1) */
-.btn-deck-play {
+.k7-deck-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  padding: 0.55rem 0.5rem;
-  background: linear-gradient(180deg, #2a1f52 0%, #150f30 100%);
-  border: 1px solid var(--neon-cyan);
-  border-bottom: 3px solid #0099ff;
-  border-radius: var(--radius-md);
-  color: #ffffff;
+  gap: 5px;
+  padding: 6px 8px;
+  border-radius: 5px;
   font-family: var(--font-retro);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
   cursor: pointer;
-  transition: all 0.1s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.4);
 }
 
-.btn-deck-play:hover {
-  background: linear-gradient(180deg, #3d2f70 0%, #201844 100%);
+.k7-deck-btn:active {
+  transform: translateY(2px);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* PLAY BUTTON (Main / Saída 1) */
+.k7-btn-play {
+  background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+  color: #ffffff;
+  border-color: #475569;
+}
+
+.k7-btn-play:hover {
+  background: linear-gradient(180deg, var(--neon-cyan) 0%, #0284c7 100%);
+  color: #000000;
+  border-color: var(--neon-cyan);
   box-shadow: 0 0 15px var(--neon-cyan-glow);
 }
 
-.btn-deck-play:active {
-  transform: translateY(2px);
-  border-bottom-width: 1px;
+.k7-btn-play.k7-is-active {
+  background: linear-gradient(180deg, var(--neon-cyan) 0%, #0369a1 100%);
+  color: #000000;
+  border-color: #ffffff;
+  box-shadow: 0 0 20px var(--neon-cyan-glow), inset 0 2px 5px rgba(0, 0, 0, 0.4);
+  animation: k7PulsePlay 0.9s infinite alternate ease-in-out;
 }
 
-.btn-deck-play.is-playing {
-  background: linear-gradient(180deg, var(--neon-cyan) 0%, #0088cc 100%);
-  color: #000000;
-  font-weight: 800;
-  box-shadow: 0 0 25px var(--neon-cyan-glow);
+/* TEST BUTTON (Fones / Saída 2) */
+.k7-btn-test {
+  background: linear-gradient(180deg, #3730a3 0%, #1e1b4b 100%);
+  color: #e0e7ff;
+  border-color: #4f46e5;
+}
+
+.k7-btn-test:hover {
+  background: linear-gradient(180deg, var(--neon-pink) 0%, #be185d 100%);
+  color: #ffffff;
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 15px var(--neon-pink-glow);
+}
+
+.k7-btn-test.k7-is-active {
+  background: linear-gradient(180deg, var(--neon-pink) 0%, #9d174d 100%);
+  color: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 0 0 20px var(--neon-pink-glow), inset 0 2px 5px rgba(0, 0, 0, 0.4);
+  animation: k7PulseTest 0.9s infinite alternate ease-in-out;
+}
+
+@keyframes k7PulsePlay {
+  0% { box-shadow: 0 0 10px var(--neon-cyan); }
+  100% { box-shadow: 0 0 25px var(--neon-cyan), 0 0 5px #ffffff; }
+}
+
+@keyframes k7PulseTest {
+  0% { box-shadow: 0 0 10px var(--neon-pink); }
+  100% { box-shadow: 0 0 25px var(--neon-pink), 0 0 5px var(--neon-yellow); }
+}
+
+/* =========================================================================
+   MIX-MATCH CASSETTE THEMES
+   ========================================================================= */
+
+/* 1. TDK CLASSIC (Vintage Cream & Grey Shell) */
+.k7-theme-tdk {
+  background: linear-gradient(155deg, #4f5358 0%, #323538 100%);
+  --k7-glow: rgba(0, 240, 255, 0.35);
+  --k7-label-bg: #f4efe4;
+  --k7-label-text: #1a1a1a;
+  --k7-title-color: #111827;
+  --k7-side-bg: #1e293b;
+  --k7-side-color: #ffffff;
+  --k7-brand-sub-color: #1d4ed8;
+  --k7-nr-color: #dc2626;
+  --k7-stripe-1: #dc2626;
+  --k7-stripe-2: #111827;
+  --k7-ruled-color: rgba(0, 0, 0, 0.12);
+  --k7-tag-bg: #1e293b;
+  --k7-tag-color: #e2e8f0;
+  --k7-tag-border: #475569;
+}
+
+/* 2. CYBER NEON (Translucent Violet / Synthwave Hot Pink) */
+.k7-theme-cyber {
+  background: linear-gradient(155deg, #2b0b3f 0%, #150624 100%);
+  border-color: rgba(255, 0, 128, 0.45);
+  --k7-glow: var(--neon-pink-glow);
+  --k7-label-bg: linear-gradient(135deg, #1b072e 0%, #380d4f 100%);
+  --k7-label-text: #ffffff;
+  --k7-title-color: #00f0ff;
+  --k7-side-bg: var(--neon-pink);
+  --k7-side-color: #ffffff;
+  --k7-brand-sub-color: var(--neon-yellow);
+  --k7-nr-color: var(--neon-cyan);
+  --k7-stripe-1: var(--neon-pink);
+  --k7-stripe-2: var(--neon-cyan);
+  --k7-ruled-color: rgba(0, 240, 255, 0.2);
+  --k7-tag-bg: rgba(255, 0, 128, 0.25);
+  --k7-tag-color: #ffb3d9;
+  --k7-tag-border: var(--neon-pink);
+}
+
+/* 3. ARCADE ACID YELLOW (High Voltage Hazard Warning) */
+.k7-theme-arcade {
+  background: linear-gradient(155deg, #854d0e 0%, #3f2204 100%);
+  border-color: rgba(250, 204, 21, 0.5);
+  --k7-glow: rgba(250, 204, 21, 0.5);
+  --k7-label-bg: #18181b;
+  --k7-label-text: #facc15;
+  --k7-title-color: #fde047;
+  --k7-side-bg: #eab308;
+  --k7-side-color: #000000;
+  --k7-brand-sub-color: #f97316;
+  --k7-nr-color: #22c55e;
+  --k7-stripe-1: #eab308;
+  --k7-stripe-2: #f97316;
+  --k7-ruled-color: rgba(250, 204, 21, 0.2);
+  --k7-tag-bg: rgba(234, 179, 8, 0.2);
+  --k7-tag-color: #fef08a;
+  --k7-tag-border: #eab308;
+}
+
+/* 4. VAPORWAVE SUNSET (Pastel Purple & Sunset Orange) */
+.k7-theme-vapor {
+  background: linear-gradient(155deg, #38184c 0%, #1b092a 100%);
+  border-color: rgba(168, 85, 247, 0.45);
+  --k7-glow: rgba(168, 85, 247, 0.5);
+  --k7-label-bg: linear-gradient(135deg, #fce7f3 0%, #fae8ff 100%);
+  --k7-label-text: #581c87;
+  --k7-title-color: #6b21a8;
+  --k7-side-bg: #9333ea;
+  --k7-side-color: #ffffff;
+  --k7-brand-sub-color: #db2777;
+  --k7-nr-color: #7c3aed;
+  --k7-stripe-1: #c084fc;
+  --k7-stripe-2: #f472b6;
+  --k7-ruled-color: rgba(147, 51, 234, 0.15);
+  --k7-tag-bg: #6b21a8;
+  --k7-tag-color: #f5d0fe;
+  --k7-tag-border: #a855f7;
+}
+
+/* 5. METAL CHROME (Stealth Titanium & Gold Foil) */
+.k7-theme-metal {
+  background: linear-gradient(155deg, #18181b 0%, #09090b 100%);
+  border-color: rgba(212, 175, 55, 0.4);
+  --k7-glow: rgba(212, 175, 55, 0.4);
+  --k7-label-bg: linear-gradient(135deg, #27272a 0%, #18181b 100%);
+  --k7-label-text: #f4f4f5;
+  --k7-title-color: #e4e4e7;
+  --k7-side-bg: #d4af37;
+  --k7-side-color: #000000;
+  --k7-brand-sub-color: #fbbf24;
+  --k7-nr-color: #d4af37;
+  --k7-stripe-1: #d4af37;
+  --k7-stripe-2: #71717a;
+  --k7-ruled-color: rgba(212, 175, 55, 0.2);
+  --k7-tag-bg: rgba(212, 175, 55, 0.15);
+  --k7-tag-color: #fef08a;
+  --k7-tag-border: #ca8a04;
+}
+
+/* 6. WALKMAN SKY BLUE (Clear Acrylic & Hot Coral) */
+.k7-theme-walkman {
+  background: linear-gradient(155deg, #0f3750 0%, #081c2b 100%);
+  border-color: rgba(0, 240, 255, 0.45);
+  --k7-glow: var(--neon-cyan-glow);
+  --k7-label-bg: #ffffff;
+  --k7-label-text: #0369a1;
+  --k7-title-color: #075985;
+  --k7-side-bg: #0284c7;
+  --k7-side-color: #ffffff;
+  --k7-brand-sub-color: #e11d48;
+  --k7-nr-color: #e11d48;
+  --k7-stripe-1: #0284c7;
+  --k7-stripe-2: #e11d48;
+  --k7-ruled-color: rgba(2, 132, 199, 0.15);
+  --k7-tag-bg: #0369a1;
+  --k7-tag-color: #e0f2fe;
+  --k7-tag-border: #38bdf8;
+}
+
+/* Playing Glow states on Cassette Shell */
+.k7-cassette-card.k7-playing-main {
+  border-color: var(--neon-cyan);
+  box-shadow: 
+    0 0 35px var(--neon-cyan-glow),
+    inset 0 0 15px rgba(0, 240, 255, 0.3);
+  animation: neonPulseLive 1s infinite alternate ease-in-out;
+}
+
+.k7-cassette-card.k7-playing-test {
+  border-color: var(--neon-pink);
+  box-shadow: 
+    0 0 35px var(--neon-pink-glow),
+    inset 0 0 15px rgba(255, 0, 128, 0.3);
+  animation: neonPulseTest 1s infinite alternate ease-in-out;
 }
 
 /* DEDICATED TEST PILL BUTTON (Saída 2) */
