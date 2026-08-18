@@ -189,7 +189,7 @@ class AudioEngineService {
    * @param isTestPreview If TRUE, routes to the SECONDARY / TEST output device (Test Pill)
    */
   public async play(
-    sound: { id: string; url: string; volume?: number; playbackRate?: number; title?: string },
+    sound: { id: string; url: string; volume?: number; playbackRate?: number; title?: string; startTime?: number; endTime?: number },
     isTestPreview: boolean = false
   ): Promise<void> {
     // CHANNEL-ISOLATED CUT: Stop audio only on the active output channel
@@ -237,18 +237,40 @@ class AudioEngineService {
     }
     this.notifyListeners();
 
+    // Apply start time trimming if defined
+    if (typeof sound.startTime === 'number' && sound.startTime > 0) {
+      audio.currentTime = sound.startTime;
+    }
+
+    // Apply end time trimming listener if defined
+    let trimTimer: any = null;
+    if (typeof sound.endTime === 'number' && sound.endTime > 0) {
+      trimTimer = setInterval(() => {
+        if (audio.currentTime >= (sound.endTime as number)) {
+          if (trimTimer) clearInterval(trimTimer);
+          audio.pause();
+          this.cleanupSound(sound.id, soundKey, isTestPreview);
+        }
+      }, 40);
+    }
+
     audio.onended = () => {
+      if (trimTimer) clearInterval(trimTimer);
       this.cleanupSound(sound.id, soundKey, isTestPreview);
     };
 
     let hasTriedFallback = false;
     audio.onerror = async (e) => {
+      if (trimTimer) clearInterval(trimTimer);
       console.warn(`[AudioEngine] Stream proxy error for ${sound.title || sound.id}, attempting direct playback...`, e);
       if (!hasTriedFallback && sound.url && sound.url !== streamUrl) {
         hasTriedFallback = true;
         try {
           audio.removeAttribute('crossorigin');
           audio.src = sound.url;
+          if (typeof sound.startTime === 'number' && sound.startTime > 0) {
+            audio.currentTime = sound.startTime;
+          }
           await audio.play();
           return;
         } catch (retryErr) {
@@ -261,6 +283,7 @@ class AudioEngineService {
     try {
       await audio.play();
     } catch (err: any) {
+      if (trimTimer) clearInterval(trimTimer);
       console.error('[AudioEngine] Audio play failed:', err.message);
       this.cleanupSound(sound.id, soundKey, isTestPreview);
     }

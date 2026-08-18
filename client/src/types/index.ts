@@ -12,6 +12,8 @@ export interface SoundItem {
   playbackRate?: number;
   isFavorite?: boolean;
   duration?: number;
+  startTime?: number;      // Trim start in seconds
+  endTime?: number;        // Trim end in seconds
   createdAt: number;
 }
 

@@ -14,18 +14,24 @@ import { RecordSoundModal } from './components/RecordSoundModal';
 import { ImportUrlModal } from './components/ImportUrlModal';
 import { HotkeysTab } from './components/HotkeysTab';
 import { GamepadOverlay } from './components/GamepadOverlay';
+import { ObsOverlayView } from './components/ObsOverlayView';
+import { ObsModal } from './components/ObsModal';
 
 import type { SoundItem, TagInfo, AudioRoutingConfig } from './types';
 import { fetchSounds, fetchTags, createSound, updateSound, deleteSound, reorderSounds } from './services/api';
 import { AudioEngine } from './services/AudioEngine';
+import { ProceduralAudio } from './services/ProceduralAudio';
 import { Radio } from 'lucide-react';
 
 export default function App() {
+  const isOverlayMode = typeof window !== 'undefined' && window.location.search.includes('overlay=true');
+
   const [sounds, setSounds] = useState<SoundItem[]>([]);
   const [tags, setTags] = useState<TagInfo[]>([]);
   const [activeTab, setActiveTab] = useState<TabType>('library');
   const [loading, setLoading] = useState(true);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [isObsModalOpen, setIsObsModalOpen] = useState(false);
 
   // Soundboard Profiles / Pages / Tabs
   const [soundboardTabs, setSoundboardTabs] = useState<string[]>(() => {
@@ -110,6 +116,7 @@ export default function App() {
       // Switch Soundboard Tabs with < and > (or , and .)
       if (e.key === '<' || e.key === ',') {
         e.preventDefault();
+        ProceduralAudio.playTapeInsert();
         setSoundboardTabs((tabs) => {
           const idx = tabs.indexOf(activeSoundboardTab);
           const prevIdx = idx <= 0 ? tabs.length - 1 : idx - 1;
@@ -122,6 +129,7 @@ export default function App() {
 
       if (e.key === '>' || e.key === '.') {
         e.preventDefault();
+        ProceduralAudio.playTapeInsert();
         setSoundboardTabs((tabs) => {
           const idx = tabs.indexOf(activeSoundboardTab);
           const nextIdx = idx >= tabs.length - 1 ? 0 : idx + 1;
@@ -294,6 +302,8 @@ export default function App() {
     const [moved] = tabSounds.splice(draggedIndex, 1);
     tabSounds.splice(targetIndex, 0, moved);
 
+    ProceduralAudio.playTapeInsert();
+
     // Re-assign hotkeys based on new card order in this tab
     tabSounds.forEach((s, idx) => {
       s.hotkey = idx < HOTKEY_GRID_SEQUENCE.length ? HOTKEY_GRID_SEQUENCE[idx] : undefined;
@@ -338,6 +348,8 @@ export default function App() {
     // Swap positions within the active tab
     const [moved] = tabSounds.splice(currentIndexInTab, 1);
     tabSounds.splice(targetIndexInTab, 0, moved);
+
+    ProceduralAudio.playTapeInsert();
 
     // Re-assign hotkeys based on the new card order in this tab
     tabSounds.forEach((s, idx) => {
@@ -459,11 +471,16 @@ export default function App() {
     });
   }, [sounds, activeSoundboardTab, searchQuery, selectedTags, selectedSource, onlyFavorites]);
 
+  if (isOverlayMode) {
+    return <ObsOverlayView sounds={sounds} />;
+  }
+
   return (
     <div className="app-container">
       {/* Top SteamOS Header Bar */}
       <HeaderBar
         onOpenAudioRouting={() => setIsAudioRoutingOpen(true)}
+        onOpenObsOverlay={() => setIsObsModalOpen(true)}
         config={audioConfig}
         onConfigChange={(newCfg) => setAudioConfig((prev) => ({ ...prev, ...newCfg }))}
       />
@@ -482,7 +499,10 @@ export default function App() {
           <SoundboardTabsBar
             tabs={soundboardTabs}
             activeTab={activeSoundboardTab}
-            onSelectTab={setActiveSoundboardTab}
+            onSelectTab={(t) => {
+              ProceduralAudio.playTapeInsert();
+              setActiveSoundboardTab(t);
+            }}
             onAddTab={handleAddTab}
             onRenameTab={handleRenameTab}
             onDeleteTab={handleDeleteTab}
@@ -623,6 +643,11 @@ export default function App() {
         availableTags={tags}
         onClose={() => setIsImportUrlModalOpen(false)}
         onImportSound={handleAddSound}
+      />
+
+      <ObsModal
+        isOpen={isObsModalOpen}
+        onClose={() => setIsObsModalOpen(false)}
       />
 
       {/* Bottom SteamOS Dock with button hints & visualizer */}

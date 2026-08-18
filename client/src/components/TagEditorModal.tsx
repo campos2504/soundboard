@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, Sliders, Keyboard, Palette, Volume2, Gauge, Check, Play, Square, Headphones, Upload, Trash2, Folder } from 'lucide-react';
 import type { SoundItem } from '../types';
 import { TagInputSelector } from './TagInputSelector';
+import { WaveformTrimmer } from './WaveformTrimmer';
 import { uploadAudioFile } from '../services/api';
 import { AudioEngine } from '../services/AudioEngine';
 
@@ -44,6 +45,8 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
   const [isRecordingHotkey, setIsRecordingHotkey] = useState(false);
   const [volume, setVolume] = useState(1);
   const [playbackRate, setPlaybackRate] = useState(1);
+  const [startTime, setStartTime] = useState<number>(0);
+  const [endTime, setEndTime] = useState<number | undefined>(undefined);
   const [isPlayingPreview, setIsPlayingPreview] = useState(false);
   const [isTestingPreview, setIsTestingPreview] = useState(false);
   const [uploadingFile, setUploadingFile] = useState(false);
@@ -58,6 +61,8 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
       setHotkey(sound.hotkey || '');
       setVolume(sound.volume !== undefined ? sound.volume : 1);
       setPlaybackRate(sound.playbackRate !== undefined ? sound.playbackRate : 1);
+      setStartTime(sound.startTime !== undefined ? sound.startTime : 0);
+      setEndTime(sound.endTime);
       setIsRecordingHotkey(false);
       setIsPlayingPreview(false);
       setIsTestingPreview(false);
@@ -149,6 +154,8 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
       hotkey: hotkey.trim() || undefined,
       volume,
       playbackRate,
+      startTime,
+      endTime,
     });
     onClose();
   };
@@ -349,6 +356,21 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
               Sons em abas diferentes podem ter a mesma tecla de atalho. O atalho é disparado apenas quando a aba <strong>"{tab}"</strong> estiver ativa.
             </p>
           </div>
+
+          {/* Waveform Visual Trimmer */}
+          {url && (
+            <div style={{ marginTop: '1rem' }}>
+              <WaveformTrimmer
+                audioUrl={url}
+                initialStartTime={startTime}
+                initialEndTime={endTime}
+                onChange={(st, et) => {
+                  setStartTime(st);
+                  setEndTime(et);
+                }}
+              />
+            </div>
+          )}
 
           {/* Volume & Pitch Shifter */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1rem' }}>

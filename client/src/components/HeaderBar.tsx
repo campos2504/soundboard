@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Headphones, Square, SlidersHorizontal } from 'lucide-react';
+import { Volume2, VolumeX, Headphones, Square, SlidersHorizontal, Tv } from 'lucide-react';
 import { AudioEngine } from '../services/AudioEngine';
 import type { AudioRoutingConfig } from '../types';
 
 interface HeaderBarProps {
   onOpenAudioRouting: () => void;
+  onOpenObsOverlay?: () => void;
   config: AudioRoutingConfig;
   onConfigChange: (newConfig: Partial<AudioRoutingConfig>) => void;
 }
 
 export const HeaderBar: React.FC<HeaderBarProps> = ({
   onOpenAudioRouting,
+  onOpenObsOverlay,
   config,
   onConfigChange,
 }) => {
@@ -84,6 +86,19 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
             {config.primaryDeviceId === 'default' ? 'Saída: Padrão' : config.primaryDeviceLabel}
           </span>
         </button>
+
+        {/* OBS Overlay / Mini HUD Button */}
+        {onOpenObsOverlay && (
+          <button
+            className="audio-status-btn"
+            onClick={onOpenObsOverlay}
+            title="Abrir Mini HUD Flutuante ou Copiar Link para OBS Studio"
+            style={{ borderColor: 'rgba(255, 0, 128, 0.4)' }}
+          >
+            <Tv size={14} color="var(--neon-pink)" />
+            <span>OBS / Mini HUD</span>
+          </button>
+        )}
 
         {/* Master Volume */}
         <div className="volume-control-group">

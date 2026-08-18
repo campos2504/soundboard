@@ -159,6 +159,8 @@ export class SoundsController {
         volume: typeof volume === 'number' ? Math.max(0, Math.min(2, volume)) : 1,
         playbackRate: typeof playbackRate === 'number' ? Math.max(0.2, Math.min(3, playbackRate)) : 1,
         isFavorite: Boolean(isFavorite),
+        startTime: typeof req.body.startTime === 'number' ? Math.max(0, req.body.startTime) : undefined,
+        endTime: typeof req.body.endTime === 'number' ? Math.max(0, req.body.endTime) : undefined,
         createdAt: Date.now()
       };
 
@@ -216,6 +218,8 @@ export class SoundsController {
         volume: updates.volume !== undefined ? Math.max(0, Math.min(2, Number(updates.volume))) : current.volume,
         playbackRate: updates.playbackRate !== undefined ? Math.max(0.2, Math.min(3, Number(updates.playbackRate))) : current.playbackRate,
         isFavorite: updates.isFavorite !== undefined ? Boolean(updates.isFavorite) : current.isFavorite,
+        startTime: updates.startTime !== undefined ? (typeof updates.startTime === 'number' ? Math.max(0, updates.startTime) : undefined) : current.startTime,
+        endTime: updates.endTime !== undefined ? (typeof updates.endTime === 'number' ? Math.max(0, updates.endTime) : undefined) : current.endTime,
       };
 
       sounds[index] = updated;
