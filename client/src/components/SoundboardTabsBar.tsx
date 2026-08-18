@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Plus, Folder, Trash2, Edit2, Check } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Plus, Trash2, Edit2, Check } from 'lucide-react';
 
 interface SoundboardTabsBarProps {
   tabs: string[];
@@ -59,63 +59,73 @@ export const SoundboardTabsBar: React.FC<SoundboardTabsBarProps> = ({
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        background: 'rgba(15, 12, 32, 0.95)',
-        border: '1px solid rgba(0, 240, 255, 0.3)',
-        borderRadius: 'var(--radius-lg)',
-        padding: '0.5rem 0.85rem',
-        marginBottom: '1rem',
-        boxShadow: '0 8px 25px rgba(0, 0, 0, 0.5)',
-        gap: '0.6rem',
-        flexWrap: 'wrap',
-      }}
-    >
-      {/* Left controls: Prev Tab with < shortcut */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+    <div className="studio-rack-frame">
+      {/* 19" Studio Rack Flange Ears with Metallic Hex Bolts & Spec Nameplate */}
+      <div className="rack-ear-strip">
+        <div className="rack-screw-group">
+          <div className="rack-screw-wash">
+            <div className="rack-hex-screw" />
+          </div>
+          <div className="rack-spec-plate">
+            <span className="rack-spec-text">PRESET BANK // STEREO SOUNDBOARD</span>
+          </div>
+        </div>
+
+        <div className="rack-vent-grille" style={{ width: '100px' }} />
+
+        <div className="rack-screw-group">
+          <span style={{ fontFamily: 'var(--font-pixel)', fontSize: '0.85rem', color: 'var(--neon-yellow)' }}>
+            ⌨️ &lt; &gt; NAVEGAR PRESETS
+          </span>
+          <div className="rack-screw-wash">
+            <div className="rack-hex-screw" />
+          </div>
+        </div>
+      </div>
+
+      {/* Main Analog Tuner / Preset Bank Chassis */}
+      <div className="analog-preset-bank-chassis">
+        {/* Left Skip Key (<) */}
         <button
           type="button"
-          className="btn-steamdeck btn-steamdeck-secondary"
-          style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem' }}
+          className="analog-skip-key"
           onClick={handlePrevTab}
           title="Aba Anterior (Atalho: Tecla < ou vírgula)"
         >
-          <ChevronLeft size={16} color="var(--neon-cyan)" />
-          <span style={{ fontFamily: 'var(--font-pixel)', fontSize: '1rem', color: 'var(--neon-yellow)' }}>&lt;</span>
+          <ChevronLeft size={16} />
         </button>
 
-        {/* Scrollable Soundboard Tabs */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', overflowX: 'auto', padding: '2px 0' }}>
-          {tabs.map((tab) => {
+        {/* VFD Digital Screen Preset Displays */}
+        <div className="radio-preset-keys-wrapper">
+          {tabs.map((tab, idx) => {
             const isActive = tab === activeTab;
             const count = tabCounts[tab] || 0;
 
             if (editingTab === tab) {
               return (
-                <div key={tab} style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <input
-                    type="text"
-                    className="input-deck"
-                    style={{ padding: '0.2rem 0.5rem', fontSize: '0.82rem', width: '110px' }}
-                    value={renameValue}
-                    onChange={(e) => setRenameValue(e.target.value)}
-                    autoFocus
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') handleRenameSubmit(tab);
-                      if (e.key === 'Escape') setEditingTab(null);
-                    }}
-                  />
-                  <button
-                    type="button"
-                    className="icon-btn-ghost"
-                    onClick={() => handleRenameSubmit(tab)}
-                    title="Confirmar"
-                  >
-                    <Check size={14} color="var(--neon-green)" />
-                  </button>
+                <div key={tab} className="vfd-preset-screen-module active" style={{ minWidth: '140px', padding: '4px 6px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px', width: '100%' }}>
+                    <input
+                      type="text"
+                      className="input-deck"
+                      style={{ padding: '0.15rem 0.4rem', fontSize: '0.78rem', width: '100%' }}
+                      value={renameValue}
+                      onChange={(e) => setRenameValue(e.target.value)}
+                      autoFocus
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') handleRenameSubmit(tab);
+                        if (e.key === 'Escape') setEditingTab(null);
+                      }}
+                    />
+                    <button
+                      type="button"
+                      className="icon-btn-ghost"
+                      onClick={() => handleRenameSubmit(tab)}
+                      title="Confirmar"
+                    >
+                      <Check size={13} color="var(--neon-green)" />
+                    </button>
+                  </div>
                 </div>
               );
             }
@@ -123,150 +133,115 @@ export const SoundboardTabsBar: React.FC<SoundboardTabsBarProps> = ({
             return (
               <div
                 key={tab}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.35rem',
-                  padding: '0.4rem 0.85rem',
-                  borderRadius: 'var(--radius-md)',
-                  background: isActive
-                    ? 'linear-gradient(135deg, rgba(255, 0, 128, 0.35) 0%, rgba(0, 240, 255, 0.25) 100%)'
-                    : 'rgba(255, 255, 255, 0.04)',
-                  border: isActive ? '1px solid var(--neon-cyan)' : '1px solid rgba(255, 255, 255, 0.08)',
-                  boxShadow: isActive ? '0 0 16px var(--neon-cyan-glow)' : 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.15s ease',
-                  userSelect: 'none',
-                }}
+                className={`vfd-preset-screen-module ${isActive ? 'active' : ''}`}
                 onClick={() => onSelectTab(tab)}
+                title={`Preset ${idx + 1}: ${tab} (${count} sons)`}
               >
-                <Folder size={14} color={isActive ? 'var(--neon-cyan)' : 'var(--text-muted)'} />
-                <span
-                  style={{
-                    fontFamily: 'var(--font-retro)',
-                    fontSize: '0.88rem',
-                    color: isActive ? '#ffffff' : 'var(--text-secondary)',
-                    fontWeight: isActive ? 700 : 500,
-                  }}
-                >
-                  {tab}
-                </span>
-                <span
-                  style={{
-                    fontFamily: 'var(--font-pixel)',
-                    fontSize: '0.85rem',
-                    background: 'rgba(0, 0, 0, 0.5)',
-                    padding: '0 5px',
-                    borderRadius: '4px',
-                    color: isActive ? 'var(--neon-yellow)' : 'var(--text-muted)',
-                  }}
-                >
-                  {count}
-                </span>
+                {/* Smoked Glass VFD Screen Display */}
+                <div className="vfd-screen-lens">
+                  <span className="vfd-screen-text">
+                    {tab}
+                  </span>
+                  <span className="vfd-count-tag">
+                    {count < 10 ? `0${count}` : count}
+                  </span>
+                </div>
 
-                {/* Edit / Delete actions for custom tabs */}
-                {isActive && tab !== 'Geral' && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '2px', marginLeft: '4px' }}>
-                    <button
-                      type="button"
-                      className="icon-btn-ghost"
-                      style={{ padding: '2px' }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setEditingTab(tab);
-                        setRenameValue(tab);
-                      }}
-                      title="Renomear aba"
-                    >
-                      <Edit2 size={11} />
-                    </button>
-                    {tabs.length > 1 && (
+                {/* Subtitle / Channel Code under Screen */}
+                <div className="vfd-sub-indicator">
+                  <span className="vfd-ch-code">
+                    BANK-{idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
+                  </span>
+
+                  {/* Edit / Delete actions for custom tabs */}
+                  {isActive && tab !== 'Geral' && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
                       <button
                         type="button"
                         className="icon-btn-ghost"
-                        style={{ padding: '2px', color: '#ff7777' }}
+                        style={{ padding: '1px' }}
                         onClick={(e) => {
                           e.stopPropagation();
-                          if (confirm(`Deseja excluir a aba "${tab}"? Os sons serão movidos para a aba "Geral".`)) {
-                            onDeleteTab(tab);
-                          }
+                          setEditingTab(tab);
+                          setRenameValue(tab);
                         }}
-                        title="Excluir aba"
+                        title="Renomear aba"
                       >
-                        <Trash2 size={11} />
+                        <Edit2 size={10} />
                       </button>
-                    )}
-                  </div>
-                )}
+                      {tabs.length > 1 && (
+                        <button
+                          type="button"
+                          className="icon-btn-ghost"
+                          style={{ padding: '1px', color: '#ff7777' }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (confirm(`Deseja excluir a aba "${tab}"? Os sons serão movidos para a aba "Geral".`)) {
+                              onDeleteTab(tab);
+                            }
+                          }}
+                          title="Excluir aba"
+                        >
+                          <Trash2 size={10} />
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
             );
           })}
 
-          {/* Add Tab Form */}
+          {/* Add Tab Preset Key */}
           {isAdding ? (
-            <form onSubmit={handleCreateSubmit} style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <input
-                type="text"
-                className="input-deck"
-                style={{ padding: '0.25rem 0.6rem', fontSize: '0.8rem', width: '120px' }}
-                placeholder="Nome da Aba..."
-                value={newTabName}
-                onChange={(e) => setNewTabName(e.target.value)}
-                autoFocus
-              />
-              <button type="submit" className="btn-steamdeck btn-steamdeck-primary" style={{ padding: '0.25rem 0.5rem', fontSize: '0.75rem' }}>
-                Criar
-              </button>
-              <button
-                type="button"
-                className="icon-btn-ghost"
-                onClick={() => setIsAdding(false)}
-              >
-                ✕
-              </button>
+            <form onSubmit={handleCreateSubmit} className="vfd-preset-screen-module active" style={{ minWidth: '150px', padding: '4px 6px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', width: '100%' }}>
+                <input
+                  type="text"
+                  className="input-deck"
+                  style={{ padding: '0.15rem 0.4rem', fontSize: '0.78rem', width: '100px' }}
+                  placeholder="Nova Aba..."
+                  value={newTabName}
+                  onChange={(e) => setNewTabName(e.target.value)}
+                  autoFocus
+                />
+                <button type="submit" className="btn-steamdeck btn-steamdeck-primary" style={{ padding: '0.15rem 0.4rem', fontSize: '0.7rem' }}>
+                  Ok
+                </button>
+                <button
+                  type="button"
+                  className="icon-btn-ghost"
+                  onClick={() => setIsAdding(false)}
+                >
+                  ✕
+                </button>
+              </div>
             </form>
           ) : (
             <button
               type="button"
-              className="btn-steamdeck btn-steamdeck-secondary"
-              style={{ padding: '0.35rem 0.7rem', fontSize: '0.78rem' }}
+              className="vfd-preset-screen-module"
+              style={{ minWidth: '85px', borderStyle: 'dashed' }}
               onClick={() => setIsAdding(true)}
-              title="Criar nova aba para a soundboard"
+              title="Criar nova aba / preset"
             >
-              <Plus size={13} />
-              <span>Nova Aba</span>
+              <div className="vfd-screen-lens" style={{ justifyContent: 'center', gap: '4px' }}>
+                <Plus size={12} color="var(--neon-cyan)" />
+                <span className="vfd-screen-text" style={{ fontSize: '0.9rem' }}>+ NOVO</span>
+              </div>
             </button>
           )}
         </div>
 
-        {/* Right control: Next Tab with > shortcut */}
+        {/* Right Skip Key (>) */}
         <button
           type="button"
-          className="btn-steamdeck btn-steamdeck-secondary"
-          style={{ padding: '0.4rem 0.6rem', fontSize: '0.8rem' }}
+          className="analog-skip-key"
           onClick={handleNextTab}
           title="Próxima Aba (Atalho: Tecla > ou ponto)"
         >
-          <span style={{ fontFamily: 'var(--font-pixel)', fontSize: '1rem', color: 'var(--neon-yellow)' }}>&gt;</span>
-          <ChevronRight size={16} color="var(--neon-cyan)" />
+          <ChevronRight size={16} />
         </button>
-      </div>
-
-      {/* Hotkey Helper Badge */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-        <span
-          style={{
-            fontFamily: 'var(--font-pixel)',
-            fontSize: '0.95rem',
-            color: 'var(--neon-yellow)',
-            background: 'rgba(255, 230, 0, 0.08)',
-            border: '1px solid rgba(255, 230, 0, 0.3)',
-            borderRadius: '6px',
-            padding: '2px 8px',
-          }}
-        >
-          ⌨️ Atalho: Teclas &lt; e &gt; navegam entre as abas
-        </span>
       </div>
     </div>
   );

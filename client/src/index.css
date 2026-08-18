@@ -102,8 +102,11 @@ body::before {
   flex-direction: column;
   min-height: 100vh;
   max-width: 1540px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 1.25rem 5rem 1.25rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* =========================================================================
@@ -116,18 +119,21 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1.25rem;
-  margin: 0.5rem 0 1.25rem 0;
-  background: rgba(17, 14, 36, 0.92);
+  padding: 0.65rem 1.15rem;
+  margin: 0.5rem 0 1.15rem 0;
+  background: linear-gradient(180deg, rgba(38, 42, 53, 0.96) 0%, rgba(22, 25, 32, 0.98) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 2px solid transparent;
-  border-image: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan), var(--neon-yellow)) 1;
+  border: 1px solid #4a5266;
+  border-top: 1px solid #6b7794;
+  border-bottom: 2px solid #0d0f14;
   border-radius: var(--radius-lg);
   box-shadow: 
     0 10px 40px rgba(0, 0, 0, 0.7),
-    0 0 20px rgba(255, 0, 127, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    0 0 20px rgba(0, 240, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .brand-section {
@@ -2122,5 +2128,297 @@ body.theme-blood, html.theme-blood {
   box-shadow: 0 0 14px var(--neon-cyan-glow);
   background: rgba(12, 9, 26, 0.95);
 }
+
+/* =========================================================================
+   BRUSHED TITANIUM GRAY CHASSIS & VFD ILLUMINATED SCREENS (PRESET BANK)
+   ========================================================================= */
+.studio-rack-frame {
+  position: relative;
+  background: linear-gradient(180deg, #2c303b 0%, #20232c 40%, #16181f 100%);
+  border: 1px solid #474e60;
+  border-top: 1px solid #636d85;
+  border-bottom: 3px solid #0c0e12;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  padding: 0.4rem;
+  margin-bottom: 1.15rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* 19" Rack Mounting Flange Ears with Bolts */
+.rack-ear-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 6px;
+  background: linear-gradient(180deg, #1c1e26 0%, #111318 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px 6px 0 0;
+  margin-bottom: 0.4rem;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.rack-screw-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* Authentic Metallic Rack Hex Screw with Nylon Washer */
+.rack-hex-screw {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #aaa 0%, #555 60%, #111 100%);
+  border: 1px solid #111;
+  box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.8);
+  position: relative;
+}
+
+.rack-hex-screw::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 1.5px;
+  background: #080808;
+}
+
+.rack-screw-wash {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #08080c;
+  border: 1px solid #333;
+}
+
+/* Metal Spec Nameplate Badge */
+.rack-spec-plate {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(180deg, #2a2e38 0%, #16181f 100%);
+  border: 1px solid #505768;
+  padding: 1px 6px;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.rack-spec-text {
+  font-family: monospace;
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: #cbd5e1;
+  letter-spacing: 0.6px;
+}
+
+/* Amplifier Ventilation Grille Mesh */
+.rack-vent-grille {
+  height: 6px;
+  background-image: radial-gradient(circle, #080a0e 35%, transparent 40%);
+  background-size: 5px 5px;
+  opacity: 0.8;
+  border-radius: 2px;
+}
+
+/* Main Tuner / Preset Bank Chassis */
+.analog-preset-bank-chassis {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(180deg, #1f222b 0%, #13151b 100%);
+  border: 1px solid #383d4a;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 2px solid #08090d;
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.radio-preset-keys-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding: 2px;
+  flex: 1;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
+/* Skip Navigation Keys (< and >) */
+.analog-skip-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  min-width: 38px;
+  height: 38px;
+  background: linear-gradient(180deg, #323744 0%, #20242e 60%, #15181f 100%);
+  border: 1px solid #4a5266;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 2px solid #090a0d;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--neon-cyan);
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: all 0.1s ease;
+}
+
+.analog-skip-key:hover {
+  background: linear-gradient(180deg, #3d4352 0%, #292d39 60%, #1c2028 100%);
+  border-color: #616a82;
+}
+
+.analog-skip-key:active {
+  transform: translateY(1.5px);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Individual VFD Screen Preset Module */
+.vfd-preset-screen-module {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px 6px;
+  min-width: 120px;
+  background: linear-gradient(180deg, #282c37 0%, #1c1f26 100%);
+  border: 1px solid #3d4352;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid #08090d;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+  transition: all 0.12s ease;
+}
+
+.vfd-preset-screen-module:hover {
+  border-color: #555d70;
+  background: linear-gradient(180deg, #313642 0%, #222630 100%);
+}
+
+.vfd-preset-screen-module.active {
+  background: linear-gradient(180deg, #15171d 0%, #1f232c 100%);
+  border: 1px solid var(--neon-cyan);
+  border-top: 2px solid #0a0b0f;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.4);
+  transform: translateY(1.5px);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8), 0 0 12px var(--neon-cyan-glow);
+}
+
+/* VFD Dark Smoked Glass Screen Display */
+.vfd-screen-lens {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  background: radial-gradient(circle at 50% 50%, #03140e 0%, #010906 100%);
+  border: 1px solid #142920;
+  border-radius: 4px;
+  padding: 3px 7px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 4px rgba(0, 255, 136, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Screen CRT scanline overlay */
+.vfd-screen-lens::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.25) 0px,
+    rgba(0, 0, 0, 0.25) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}
+
+/* Inactive Screen Phosphor Text */
+.vfd-screen-text {
+  font-family: var(--font-pixel), 'VT323', monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #2b5744;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1;
+  text-shadow: none;
+}
+
+/* Active Screen Phosphor Glowing Text */
+.vfd-preset-screen-module.active .vfd-screen-lens {
+  background: radial-gradient(circle at 50% 50%, #05261b 0%, #010f0a 100%);
+  border-color: #00ff88;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 255, 136, 0.35);
+}
+
+.vfd-preset-screen-module.active .vfd-screen-text {
+  color: #00ffaa;
+  text-shadow: 0 0 6px #00ffaa, 0 0 12px rgba(0, 255, 170, 0.7);
+}
+
+.vfd-count-tag {
+  font-family: var(--font-pixel), monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #2b5744;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0 4px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 255, 136, 0.15);
+  line-height: 1;
+}
+
+.vfd-preset-screen-module.active .vfd-count-tag {
+  color: var(--neon-yellow);
+  border-color: rgba(255, 230, 0, 0.4);
+  text-shadow: 0 0 6px var(--neon-yellow);
+}
+
+/* Subtitle Channel Indicator under Screen */
+.vfd-sub-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2px 2px 0 2px;
+}
+
+.vfd-ch-code {
+  font-family: monospace;
+  font-size: 0.55rem;
+  font-weight: 800;
+  color: #64748b;
+  letter-spacing: 0.5px;
+}
+
+.vfd-preset-screen-module.active .vfd-ch-code {
+  color: var(--neon-cyan);
+}
+
+
 
 

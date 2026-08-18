@@ -16,6 +16,11 @@ export const GamepadOverlay: React.FC = () => {
 
   return (
     <footer className="deck-bottom-dock">
+      {/* Left Rack Hex Screw */}
+      <div className="rack-screw-wash" title="19-Inch Lower Rack Mount Flange Bolt">
+        <div className="rack-hex-screw" />
+      </div>
+
       <div className="dock-status-group">
         <div className="dock-status-badge" style={{ color: 'var(--neon-cyan)', textShadow: '0 0 8px var(--neon-cyan-glow)' }}>
           <Radio size={15} />
@@ -56,6 +61,11 @@ export const GamepadOverlay: React.FC = () => {
             <VisualizerCanvas />
           </div>
         )}
+
+        {/* Right Rack Hex Screw */}
+        <div className="rack-screw-wash" title="19-Inch Lower Rack Mount Flange Bolt">
+          <div className="rack-hex-screw" />
+        </div>
       </div>
     </footer>
   );

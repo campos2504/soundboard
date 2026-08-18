@@ -51,6 +51,11 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
   return (
     <header className="steamdeck-header">
       <div className="brand-section">
+        {/* Left Rack Hex Screw */}
+        <div className="rack-screw-wash" title="19-Inch Rack Mount Flange Bolt">
+          <div className="rack-hex-screw" />
+        </div>
+
         <img
           src="/assets/logo-90s.jpg"
           alt="90s Soundwave Arcade"
@@ -140,6 +145,11 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
         {/* 90s Digital Clock */}
         <div style={{ fontSize: '1.25rem', color: 'var(--neon-yellow)', paddingLeft: '0.4rem', fontFamily: 'var(--font-pixel)', letterSpacing: '1px' }}>
           {time}
+        </div>
+
+        {/* Right Rack Hex Screw */}
+        <div className="rack-screw-wash" title="19-Inch Rack Mount Flange Bolt">
+          <div className="rack-hex-screw" />
         </div>
       </div>
     </header>
