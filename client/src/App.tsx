@@ -232,8 +232,23 @@ export default function App() {
 
   const handleDeleteSound = async (id: string) => {
     try {
+      const soundToDelete = sounds.find((s) => s.id === id);
       await deleteSound(id);
-      setSounds((prev) => prev.filter((s) => s.id !== id));
+
+      const targetTab = (soundToDelete?.tab || activeSoundboardTab).trim();
+      const remainingSounds = sounds.filter((s) => s.id !== id);
+
+      // If auto-assign is active, resequence remaining sounds in that tab
+      const seq = getCurrentHotkeySequence();
+      if (seq !== null) {
+        const tabSounds = remainingSounds.filter((s) => (s.tab || 'Geral').trim() === targetTab);
+        tabSounds.forEach((s, idx) => {
+          s.hotkey = idx < seq.length ? seq[idx] : undefined;
+        });
+        Promise.all(tabSounds.map((s) => updateSound(s.id, { hotkey: s.hotkey }))).catch(() => {});
+      }
+
+      setSounds(remainingSounds);
       const refreshedTags = await fetchTags();
       setTags(refreshedTags);
     } catch (err) {
@@ -243,22 +258,32 @@ export default function App() {
 
   const handleAddSound = async (soundData: Partial<SoundItem>) => {
     try {
+      const targetTab = (soundData.tab || activeSoundboardTab).trim();
+      const tabSounds = sounds.filter((s) => (s.tab || 'Geral').trim() === targetTab);
+      const seq = getCurrentHotkeySequence();
+
+      let assignedHotkey = soundData.hotkey;
+      if (!assignedHotkey && seq !== null && tabSounds.length < seq.length) {
+        assignedHotkey = seq[tabSounds.length];
+      }
+
       const dataWithTab = {
         ...soundData,
-        tab: soundData.tab || activeSoundboardTab,
+        tab: targetTab,
+        hotkey: assignedHotkey,
       };
+
       const created = await createSound(dataWithTab);
       const normalizedHotkey = created.hotkey ? created.hotkey.toUpperCase().trim() : undefined;
-      const targetTab = (created.tab || 'Geral').trim();
 
       setSounds((prev) => [
-        created,
         ...prev.map((s) => {
           const sTab = (s.tab || 'Geral').trim();
           return sTab === targetTab && normalizedHotkey && s.hotkey && s.hotkey.toUpperCase().trim() === normalizedHotkey
             ? { ...s, hotkey: undefined }
             : s;
         }),
+        created,
       ]);
       const refreshedTags = await fetchTags();
       setTags(refreshedTags);

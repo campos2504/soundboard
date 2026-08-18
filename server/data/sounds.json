@@ -1,220 +1,5 @@
 [
   {
-    "id": "sound_1787063808662_tz54f",
-    "title": "Igor Guimarães - Bandidinho",
-    "url": "https://www.myinstants.com/media/sounds/igor-guimaraes-bandidinho.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/igor-guimaraes-bandidinho-55893/",
-    "tags": [
-      "brasil",
-      "tv",
-      "meme"
-    ],
-    "color": "#56FFC7",
-    "tab": "Tech",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787063808662,
-    "hotkey": "1"
-  },
-  {
-    "id": "sound_1787063584194_0ig0v",
-    "title": "Como você é burro",
-    "url": "https://www.myinstants.com/media/sounds/como-voce-e-burro.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/como-voce-e-burro/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#3300ff",
-    "tab": "Tech",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787063584194,
-    "hotkey": "2"
-  },
-  {
-    "id": "sound_1787059829816_p04qv",
-    "title": "Mbappe dictador",
-    "url": "https://www.myinstants.com/media/sounds/mbappe-dictador_bAAKC8q.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/mbappe-dictador-25021/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#000000",
-    "tab": "Tech",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787059829816
-  },
-  {
-    "id": "sound_1787061552385_3q7oe",
-    "title": "serjao verdade naominto meme",
-    "url": "https://www.myinstants.com/media/sounds/serjao-verdade-naominto-meme.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/serjao-verdade-naominto-meme-19519/",
-    "tags": [
-      "meme"
-    ],
-    "color": "#1406FF",
-    "tab": "Tech",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787061552385
-  },
-  {
-    "id": "sound_1787061477413_a6whs",
-    "title": "Uma mentira foi detectada",
-    "url": "https://www.myinstants.com/media/sounds/avast-mentira-detectada.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/uma-mentira-foi-detectada-8600/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#FF0000",
-    "tab": "Tech",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787061477413
-  },
-  {
-    "id": "sound_1787061437903_8hbew",
-    "title": "Flapjack-mentiroso",
-    "url": "https://www.myinstants.com/media/sounds/flapjack_-mentiroooso.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/flapjack-mentiroso/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#ffff00",
-    "tab": "Tech",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787061437903,
-    "hotkey": "6"
-  },
-  {
-    "id": "sound_1787060430633_0pqde",
-    "title": "Baguncinha na Califórnia",
-    "url": "https://www.myinstants.com/media/sounds/tmp29inpzdo.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/baguncinha-na-california-79430/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#00FF00",
-    "tab": "Tech",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787060430633
-  },
-  {
-    "id": "sound_1787060245116_5fa0r",
-    "title": "Harry potter flute",
-    "url": "https://www.myinstants.com/media/sounds/harry-potter-themesong-fail-recorder-cover-1.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/harry-potter-flute-12646/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#3123FF",
-    "tab": "Tech",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787060245116
-  },
-  {
-    "id": "sound_1787061749488_mrlr9",
-    "title": "Peru (GluGluGlu)",
-    "url": "https://www.myinstants.com/media/sounds/peru-glugluglu-de-boas-vindas.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/peru-glugluglu/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#660066",
-    "tab": "Tech",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787061749488,
-    "hotkey": "9"
-  },
-  {
-    "id": "sound_1787024840916_pd5ns",
-    "title": "Galvão - Acabou",
-    "url": "https://www.myinstants.com/media/sounds/acabou.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/galvao-acabou/",
-    "tags": [
-      "geral",
-      "myinstants",
-      "brasil",
-      "futebol",
-      "tv",
-      "galvao",
-      "grito",
-      "emocao"
-    ],
-    "color": "#ffcc00",
-    "hotkey": "2",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024840916,
-    "tab": "Galvao"
-  },
-  {
-    "id": "sound_1787024840916_uce04",
-    "title": "galvão - TAFFAREL!",
-    "url": "https://www.myinstants.com/media/sounds/tafarel.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/galvao-taffarel/",
-    "tags": [
-      "geral",
-      "myinstants",
-      "brasil",
-      "futebol",
-      "tv",
-      "galvao",
-      "grito",
-      "emocao"
-    ],
-    "color": "#6633cc",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024840916,
-    "tab": "Galvao"
-  },
-  {
-    "id": "sound_1787024840916_cc8uw",
-    "title": "Bem amigos, terminou!",
-    "url": "https://www.myinstants.com/media/sounds/bem-amigos-terminou.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/bem-amigos-terminou-73810/",
-    "tags": [
-      "geral",
-      "myinstants"
-    ],
-    "color": "#FFDE1F",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024840916,
-    "tab": "Galvao",
-    "hotkey": "3"
-  },
-  {
     "id": "sound_1787024840853_3lzve",
     "title": "UEPA RATINHO",
     "url": "https://www.myinstants.com/media/sounds/uepa-mp3cut.mp3",
@@ -231,6 +16,29 @@
     ],
     "color": "#FFEF09",
     "hotkey": "1",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787024840853,
+    "tab": "Rodrigo Faro"
+  },
+  {
+    "id": "sound_1787024840853_iz0rx",
+    "title": "Rapaz Xaropinho (Ratinho)",
+    "url": "https://www.myinstants.com/media/sounds/vinheta-xaropinho-rapaz_dx3f4Be.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/rapaz-xaropinho-ratinho-20505/",
+    "tags": [
+      "brasil",
+      "tv",
+      "meme",
+      "myinstants",
+      "ratinho",
+      "reacao",
+      "sonoplastia"
+    ],
+    "color": "#FF0000",
+    "hotkey": "2",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -259,30 +67,8 @@
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1787024844557
-  },
-  {
-    "id": "sound_1787024840853_iz0rx",
-    "title": "Rapaz Xaropinho (Ratinho)",
-    "url": "https://www.myinstants.com/media/sounds/vinheta-xaropinho-rapaz_dx3f4Be.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/rapaz-xaropinho-ratinho-20505/",
-    "tags": [
-      "brasil",
-      "tv",
-      "meme",
-      "myinstants",
-      "ratinho",
-      "reacao",
-      "sonoplastia"
-    ],
-    "color": "#FF0000",
-    "hotkey": "3",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024840853,
-    "tab": "Rodrigo Faro"
+    "createdAt": 1787024844557,
+    "hotkey": "3"
   },
   {
     "id": "sound_faro_1787024844557_rnye",
@@ -306,7 +92,8 @@
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1787024844557
+    "createdAt": 1787024844557,
+    "hotkey": "4"
   },
   {
     "id": "sound_faro_1787024844557_kreo",
@@ -656,7 +443,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024841877,
-    "tab": "Rodrigo Faro"
+    "tab": "Rodrigo Faro",
+    "hotkey": "I"
   },
   {
     "id": "sound_1787024840853_ayqgn",
@@ -682,91 +470,159 @@
     "hotkey": "O"
   },
   {
-    "id": "sound_1787024841876_qcgdj",
-    "title": "GULP GULP GULP GULP",
-    "url": "https://soundbuttonsworld.com/uploads/0d81a729-727a-4ed8-948f-a1e2bbd45732.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/gulp-gulp-gulp-gulp-1671088913732",
+    "id": "sound_1787063808662_tz54f",
+    "title": "Igor Guimarães - Bandidinho",
+    "url": "https://www.myinstants.com/media/sounds/igor-guimaraes-bandidinho.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/igor-guimaraes-bandidinho-55893/",
     "tags": [
-      "memes",
-      "soundbuttonsworld",
+      "brasil",
+      "tv",
       "meme"
     ],
-    "color": "green",
+    "color": "#56FFC7",
+    "tab": "Tech",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1787024841876,
-    "tab": "La Ele",
+    "createdAt": 1787063808662,
     "hotkey": "1"
   },
   {
-    "id": "sound_1787061999159_j6d9v",
-    "title": "Ainn cafezinho",
-    "url": "https://www.myinstants.com/media/sounds/ainn-cafezinho.mp3",
+    "id": "sound_1787059829816_p04qv",
+    "title": "Mbappe dictador",
+    "url": "https://www.myinstants.com/media/sounds/mbappe-dictador_bAAKC8q.mp3",
     "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/ainn-cafezinho-71168/",
+    "sourceUrl": "https://www.myinstants.com/en/instant/mbappe-dictador-25021/",
     "tags": [
       "geral"
     ],
-    "color": "#FFF7FA",
-    "tab": "La Ele",
+    "color": "#000000",
+    "tab": "Tech",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1787061999159,
+    "createdAt": 1787059829816,
     "hotkey": "2"
   },
   {
-    "id": "sound_1787060819692_8er1r",
-    "title": "Sua mãe sabe que você gosta de rapazes",
-    "url": "https://www.myinstants.com/media/sounds/sua-mae-sabe-que-voce-gosta-de-rapazes.mp3",
+    "id": "sound_1787063584194_0ig0v",
+    "title": "Como você é burro",
+    "url": "https://www.myinstants.com/media/sounds/como-voce-e-burro.mp3",
     "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/pt/instant/sua-mae-sabe-que-voce-gosta-de-rapazes-80078/",
+    "sourceUrl": "https://www.myinstants.com/en/instant/como-voce-e-burro/",
     "tags": [
       "geral"
     ],
-    "color": "#61FF1A",
-    "tab": "La Ele",
+    "color": "#3300ff",
+    "tab": "Tech",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1787060819693
+    "createdAt": 1787063584194,
+    "hotkey": "3"
   },
   {
-    "id": "sound_1787060497831_jp7y6",
-    "title": "Lá ele",
-    "url": "https://www.myinstants.com/media/sounds/la-ele.mp3",
+    "id": "sound_1787061552385_3q7oe",
+    "title": "serjao verdade naominto meme",
+    "url": "https://www.myinstants.com/media/sounds/serjao-verdade-naominto-meme.mp3",
     "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/la-ele-16021/",
+    "sourceUrl": "https://www.myinstants.com/en/instant/serjao-verdade-naominto-meme-19519/",
+    "tags": [
+      "meme"
+    ],
+    "color": "#1406FF",
+    "tab": "Tech",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787061552385,
+    "hotkey": "4"
+  },
+  {
+    "id": "sound_1787061477413_a6whs",
+    "title": "Uma mentira foi detectada",
+    "url": "https://www.myinstants.com/media/sounds/avast-mentira-detectada.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/uma-mentira-foi-detectada-8600/",
     "tags": [
       "geral"
-    ],
-    "color": "#7A00FF",
-    "tab": "La Ele",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787060497831
-  },
-  {
-    "id": "sound_1787024840745_0c7dk",
-    "title": "ai meu c",
-    "url": "https://www.myinstants.com/media/sounds/ai-meu-c.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/pt/instant/ai-meu-c-25533/",
-    "tags": [
-      "geral",
-      "myinstants",
-      "brasil"
     ],
     "color": "#FF0000",
+    "tab": "Tech",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1787024840745,
-    "tab": "La Ele",
+    "createdAt": 1787061477413,
     "hotkey": "5"
+  },
+  {
+    "id": "sound_1787061437903_8hbew",
+    "title": "Flapjack-mentiroso",
+    "url": "https://www.myinstants.com/media/sounds/flapjack_-mentiroooso.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/flapjack-mentiroso/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#ffff00",
+    "tab": "Tech",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787061437903,
+    "hotkey": "6"
+  },
+  {
+    "id": "sound_1787060430633_0pqde",
+    "title": "Baguncinha na Califórnia",
+    "url": "https://www.myinstants.com/media/sounds/tmp29inpzdo.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/baguncinha-na-california-79430/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#00FF00",
+    "tab": "Tech",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787060430633,
+    "hotkey": "7"
+  },
+  {
+    "id": "sound_1787060245116_5fa0r",
+    "title": "Harry potter flute",
+    "url": "https://www.myinstants.com/media/sounds/harry-potter-themesong-fail-recorder-cover-1.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/harry-potter-flute-12646/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#3123FF",
+    "tab": "Tech",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787060245116,
+    "hotkey": "8"
+  },
+  {
+    "id": "sound_1787061749488_mrlr9",
+    "title": "Peru (GluGluGlu)",
+    "url": "https://www.myinstants.com/media/sounds/peru-glugluglu-de-boas-vindas.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/peru-glugluglu/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#660066",
+    "tab": "Tech",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787061749488,
+    "hotkey": "9"
   },
   {
     "id": "sound_1787026599961_ijj6l",
@@ -803,22 +659,6 @@
     "hotkey": "2"
   },
   {
-    "id": "sound_1787026696380_cr54z",
-    "title": "Mas que porra é essa (goku)",
-    "url": "https://www.myinstants.com/media/sounds/audio-m4a-mas-que-porra-e-essa_-goku-dragon-anime.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/mas-que-porra-e-essa-goku-8025/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#FF0000",
-    "tab": "Geral",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787026696380
-  },
-  {
     "id": "sound_1787026854981_y3bko",
     "title": "Smzinho comunista",
     "url": "https://www.myinstants.com/media/sounds/smzinho-comunista_QKaYpbf.mp3",
@@ -832,7 +672,25 @@
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1787026854981
+    "createdAt": 1787026854981,
+    "hotkey": "3"
+  },
+  {
+    "id": "sound_1787026696380_cr54z",
+    "title": "Mas que porra é essa (goku)",
+    "url": "https://www.myinstants.com/media/sounds/audio-m4a-mas-que-porra-e-essa_-goku-dragon-anime.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/mas-que-porra-e-essa-goku-8025/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#FF0000",
+    "tab": "Geral",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787026696380,
+    "hotkey": "4"
   },
   {
     "id": "sound_1787026643396_rgsqd",
@@ -909,25 +767,6 @@
     "hotkey": "8"
   },
   {
-    "id": "sound_1787024840745_bseks",
-    "title": "Du bist gut genug",
-    "url": "https://www.myinstants.com/media/sounds/du-bist-gut-genug.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/pt/instant/du-bist-gut-genug-22336/",
-    "tags": [
-      "geral",
-      "myinstants",
-      "brasil"
-    ],
-    "color": "#000000",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": true,
-    "createdAt": 1787024840745,
-    "tab": "Músicas",
-    "hotkey": "9"
-  },
-  {
     "id": "sound_1787024840745_7wqg7",
     "title": "ILARI ILARI ILARIÊ TROLL",
     "url": "https://www.myinstants.com/media/sounds/ilari-ilari-ilarie-troll.mp3",
@@ -963,7 +802,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024840745,
-    "tab": "Geral"
+    "tab": "Geral",
+    "hotkey": "0"
   },
   {
     "id": "sound_1787024840745_91e9g",
@@ -1000,7 +840,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024840831,
-    "tab": "Geral"
+    "tab": "Geral",
+    "hotkey": "W"
   },
   {
     "id": "sound_1787024840916_j1ezo",
@@ -1018,7 +859,7 @@
     "isFavorite": false,
     "createdAt": 1787024840916,
     "tab": "Geral",
-    "hotkey": "P"
+    "hotkey": "E"
   },
   {
     "id": "sound_1787024840940_zzltr",
@@ -1054,7 +895,7 @@
     "isFavorite": false,
     "createdAt": 1787024840987,
     "tab": "Geral",
-    "hotkey": "Y"
+    "hotkey": "T"
   },
   {
     "id": "sound_1787024841009_2nb3y",
@@ -1072,7 +913,7 @@
     "isFavorite": false,
     "createdAt": 1787024841009,
     "tab": "Geral",
-    "hotkey": "D"
+    "hotkey": "Y"
   },
   {
     "id": "sound_1787024841876_lr26x",
@@ -1091,7 +932,7 @@
     "isFavorite": false,
     "createdAt": 1787024841876,
     "tab": "Geral",
-    "hotkey": "I"
+    "hotkey": "U"
   },
   {
     "id": "sound_1787024841876_fhusy",
@@ -1109,7 +950,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024841876,
-    "tab": "Geral"
+    "tab": "Geral",
+    "hotkey": "I"
   },
   {
     "id": "sound_1787024841877_rm22r",
@@ -1129,22 +971,6 @@
     "createdAt": 1787024841877,
     "tab": "Geral",
     "hotkey": "O"
-  },
-  {
-    "id": "sound_1787061914724_5ldl0",
-    "title": "Sergio Sacani - Complicado isso aí, cara",
-    "url": "https://www.myinstants.com/media/sounds/sergio-sacani-complicado-isso-ai-cara.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/sergio-sacani-complicado-isso-ai-cara-84844/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#FF0000",
-    "tab": "Memes & TV",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787061914724
   },
   {
     "id": "sound_1787024840745_5bzu1",
@@ -1168,184 +994,24 @@
     "isFavorite": false,
     "createdAt": 1787024840745,
     "tab": "Memes & TV",
-    "hotkey": "2"
-  },
-  {
-    "id": "sound_1787024840745_8mbv1",
-    "title": "auraa",
-    "url": "https://www.myinstants.com/media/sounds/auraa.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/pt/instant/auraa-81623/",
-    "tags": [
-      "geral",
-      "myinstants",
-      "brasil"
-    ],
-    "color": "#FF0000",
-    "hotkey": "1",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024840745,
-    "tab": "Músicas"
-  },
-  {
-    "id": "sound_1787024843460_8cwpb",
-    "title": "Discord Notification Sound Remix",
-    "url": "https://soundbuttonsworld.com/uploads/1bd67b55-9d4e-4f9f-b8c6-d78cc5770b4d.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/discord-leave-and-join-sound-8-1749483399680",
-    "tags": [
-      "effects",
-      "energetic",
-      "sfx",
-      "soundbuttonsworld",
-      "discord",
-      "notificacao",
-      "troll",
-      "som",
-      "musica",
-      "ritmo",
-      "meme"
-    ],
-    "color": "red",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024843460,
-    "tab": "Músicas",
-    "hotkey": "7"
-  },
-  {
-    "id": "sound_1787024841876_x836m",
-    "title": "TURN UP VOLUME FOR MUSIC",
-    "url": "https://soundbuttonsworld.com/uploads/73a46c82-fbca-41d8-9706-25df6c8ab748.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/turn-up-volume-for-music-1673376392581",
-    "tags": [
-      "memes",
-      "soundbuttonsworld",
-      "musica",
-      "som",
-      "ritmo",
-      "meme"
-    ],
-    "color": "black",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024841876,
-    "tab": "Músicas",
-    "hotkey": "4"
-  },
-  {
-    "id": "sound_1787024841876_xv6nc",
-    "title": "INDIAN",
-    "url": "https://soundbuttonsworld.com/uploads/70360589-c856-4ad8-94ed-776c988776c5.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/indian-1666048064876",
-    "tags": [
-      "movies",
-      "soundbuttonsworld"
-    ],
-    "color": "purple",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024841876,
-    "tab": "Músicas"
-  },
-  {
-    "id": "sound_1787024841029_xq7bh",
-    "title": "GTA V - Wasted",
-    "url": "https://www.myinstants.com/media/sounds/gta-v-death-sound-effect-102.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/gta-v-wasted/",
-    "tags": [
-      "gaming",
-      "myinstants",
-      "gta",
-      "meme",
-      "vitoria",
-      "derrota"
-    ],
-    "color": "#ff3300",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024841029,
-    "tab": "Gaming",
     "hotkey": "1"
   },
   {
-    "id": "sound_1787024841876_rj4dc",
-    "title": "GOOFY AHH LAUGH",
-    "url": "https://soundbuttonsworld.com/uploads/8db42d7e-b714-4220-98c1-431c0a04ecb0.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/goofy-ahh-laugh-1668034461376",
+    "id": "sound_1787061914724_5ldl0",
+    "title": "Sergio Sacani - Complicado isso aí, cara",
+    "url": "https://www.myinstants.com/media/sounds/sergio-sacani-complicado-isso-ai-cara.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/sergio-sacani-complicado-isso-ai-cara-84844/",
     "tags": [
-      "memes",
-      "meme",
-      "risada",
-      "soundbuttonsworld",
-      "humor",
-      "engracado",
-      "reacao",
-      "gaming",
-      "roblox",
-      "sfx",
-      "derrota"
+      "geral"
     ],
-    "color": "purple",
+    "color": "#FF0000",
+    "tab": "Memes & TV",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1787024841876,
-    "tab": "Gaming",
-    "hotkey": "5"
-  },
-  {
-    "id": "sound_1787024842893_3078o",
-    "title": "Retro Arcade Game Over Voice",
-    "url": "https://soundbuttonsworld.com/uploads/83695013-6faf-45ef-be86-7ed117a9f7a3.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/game-overe-1739263767001",
-    "tags": [
-      "games",
-      "conclusive",
-      "gaming",
-      "soundbuttonsworld"
-    ],
-    "color": "blue",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024842893,
-    "tab": "Gaming",
-    "hotkey": "3"
-  },
-  {
-    "id": "sound_1787024841877_r3rz7",
-    "title": "GOOFY AHH SOUNDS",
-    "url": "https://soundbuttonsworld.com/uploads/fb64d9f6-7584-4a3f-930b-ba6094d37fd5.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/goofy-ahh-sounds-1668035277484",
-    "tags": [
-      "memes",
-      "meme",
-      "sfx",
-      "soundbuttonsworld",
-      "gaming",
-      "roblox",
-      "derrota"
-    ],
-    "color": "blue",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024841877,
-    "tab": "Gaming",
-    "hotkey": "4"
+    "createdAt": 1787061914724,
+    "hotkey": "2"
   },
   {
     "id": "sound_1787024840831_nwd9x",
@@ -1364,7 +1030,7 @@
       "humor"
     ],
     "color": "#FF0000",
-    "hotkey": "1",
+    "hotkey": "3",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -1387,7 +1053,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024840745,
-    "tab": "Memes & TV"
+    "tab": "Memes & TV",
+    "hotkey": "4"
   },
   {
     "id": "sound_1787024840831_0g7py",
@@ -1410,7 +1077,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024840831,
-    "tab": "Memes & TV"
+    "tab": "Memes & TV",
+    "hotkey": "5"
   },
   {
     "id": "sound_1787024840875_qxgbd",
@@ -1479,7 +1147,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024840896,
-    "tab": "Memes & TV"
+    "tab": "Memes & TV",
+    "hotkey": "8"
   },
   {
     "id": "sound_1787024840896_7m7ec",
@@ -1567,7 +1236,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024840940,
-    "tab": "Memes & TV"
+    "tab": "Memes & TV",
+    "hotkey": "W"
   },
   {
     "id": "sound_1787024840940_68e9d",
@@ -1589,7 +1259,7 @@
     "isFavorite": false,
     "createdAt": 1787024840940,
     "tab": "Memes & TV",
-    "hotkey": "T"
+    "hotkey": "E"
   },
   {
     "id": "sound_1787024840987_bc2yu",
@@ -1633,7 +1303,7 @@
     "isFavorite": false,
     "createdAt": 1787024841009,
     "tab": "Memes & TV",
-    "hotkey": "H"
+    "hotkey": "T"
   },
   {
     "id": "sound_1787024841877_5ia2u",
@@ -1651,7 +1321,7 @@
     "isFavorite": false,
     "createdAt": 1787024841877,
     "tab": "Memes & TV",
-    "hotkey": "U"
+    "hotkey": "Y"
   },
   {
     "id": "sound_1787024843460_osxnl",
@@ -1677,26 +1347,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024843460,
-    "tab": "Efeitos"
-  },
-  {
-    "id": "sound_1787024840745_w5tm7",
-    "title": "FAAAH",
-    "url": "https://www.myinstants.com/media/sounds/faaah.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/pt/instant/faaah-63455/",
-    "tags": [
-      "geral",
-      "myinstants",
-      "brasil"
-    ],
-    "color": "#000000",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": true,
-    "createdAt": 1787024840745,
     "tab": "Efeitos",
-    "hotkey": "6"
+    "hotkey": "1"
   },
   {
     "id": "sound_1787024840745_f5xpp",
@@ -1713,6 +1365,25 @@
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
+    "createdAt": 1787024840745,
+    "tab": "Efeitos",
+    "hotkey": "2"
+  },
+  {
+    "id": "sound_1787024840745_w5tm7",
+    "title": "FAAAH",
+    "url": "https://www.myinstants.com/media/sounds/faaah.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/pt/instant/faaah-63455/",
+    "tags": [
+      "geral",
+      "myinstants",
+      "brasil"
+    ],
+    "color": "#000000",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": true,
     "createdAt": 1787024840745,
     "tab": "Efeitos",
     "hotkey": "3"
@@ -1734,7 +1405,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024841876,
-    "tab": "Efeitos"
+    "tab": "Efeitos",
+    "hotkey": "4"
   },
   {
     "id": "sound_1787024841876_zi7h0",
@@ -1773,7 +1445,7 @@
     "isFavorite": false,
     "createdAt": 1787024841876,
     "tab": "Efeitos",
-    "hotkey": "L"
+    "hotkey": "6"
   },
   {
     "id": "sound_1787024840963_j23ky",
@@ -1794,7 +1466,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024840963,
-    "tab": "Efeitos"
+    "tab": "Efeitos",
+    "hotkey": "7"
   },
   {
     "id": "sound_1787024841146_k1i6o",
@@ -1817,7 +1490,7 @@
     "isFavorite": false,
     "createdAt": 1787024841146,
     "tab": "Efeitos",
-    "hotkey": "2"
+    "hotkey": "8"
   },
   {
     "id": "sound_1787024841146_dzugy",
@@ -1863,7 +1536,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024841166,
-    "tab": "Efeitos"
+    "tab": "Efeitos",
+    "hotkey": "0"
   },
   {
     "id": "sound_1787024841166_89s00",
@@ -1914,7 +1588,7 @@
     "isFavorite": false,
     "createdAt": 1787024841876,
     "tab": "Efeitos",
-    "hotkey": "0"
+    "hotkey": "W"
   },
   {
     "id": "sound_1787024843460_s6bdr",
@@ -1938,7 +1612,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024843460,
-    "tab": "Efeitos"
+    "tab": "Efeitos",
+    "hotkey": "E"
   },
   {
     "id": "sound_1787024844149_9t1pb",
@@ -1961,7 +1636,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024844149,
-    "tab": "Efeitos"
+    "tab": "Efeitos",
+    "hotkey": "R"
   },
   {
     "id": "sound_1787024844327_mqlgo",
@@ -2007,7 +1683,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024844327,
-    "tab": "Efeitos"
+    "tab": "Efeitos",
+    "hotkey": "Y"
   },
   {
     "id": "sound_1787024844327_q2wwz",
@@ -2058,7 +1735,7 @@
     "isFavorite": false,
     "createdAt": 1787024844327,
     "tab": "Efeitos",
-    "hotkey": "D"
+    "hotkey": "I"
   },
   {
     "id": "sound_1787024844504_qielw",
@@ -2082,7 +1759,7 @@
     "isFavorite": false,
     "createdAt": 1787024844504,
     "tab": "Efeitos",
-    "hotkey": "F"
+    "hotkey": "O"
   },
   {
     "id": "sound_1787024844504_mhz6d",
@@ -2106,7 +1783,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024844504,
-    "tab": "Efeitos"
+    "tab": "Efeitos",
+    "hotkey": "P"
   },
   {
     "id": "sound_1787024844504_flr3d",
@@ -2155,6 +1833,358 @@
     "isFavorite": false,
     "createdAt": 1787024844504,
     "tab": "Efeitos",
-    "hotkey": "J"
+    "hotkey": "S"
+  },
+  {
+    "id": "sound_1787024840916_pd5ns",
+    "title": "Galvão - Acabou",
+    "url": "https://www.myinstants.com/media/sounds/acabou.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/galvao-acabou/",
+    "tags": [
+      "geral",
+      "myinstants",
+      "brasil",
+      "futebol",
+      "tv",
+      "galvao",
+      "grito",
+      "emocao"
+    ],
+    "color": "#ffcc00",
+    "hotkey": "1",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787024840916,
+    "tab": "Galvao"
+  },
+  {
+    "id": "sound_1787024840916_uce04",
+    "title": "galvão - TAFFAREL!",
+    "url": "https://www.myinstants.com/media/sounds/tafarel.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/galvao-taffarel/",
+    "tags": [
+      "geral",
+      "myinstants",
+      "brasil",
+      "futebol",
+      "tv",
+      "galvao",
+      "grito",
+      "emocao"
+    ],
+    "color": "#6633cc",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787024840916,
+    "tab": "Galvao",
+    "hotkey": "2"
+  },
+  {
+    "id": "sound_1787024840916_cc8uw",
+    "title": "Bem amigos, terminou!",
+    "url": "https://www.myinstants.com/media/sounds/bem-amigos-terminou.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/bem-amigos-terminou-73810/",
+    "tags": [
+      "geral",
+      "myinstants"
+    ],
+    "color": "#FFDE1F",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787024840916,
+    "tab": "Galvao",
+    "hotkey": "3"
+  },
+  {
+    "id": "sound_1787024841876_qcgdj",
+    "title": "GULP GULP GULP GULP",
+    "url": "https://soundbuttonsworld.com/uploads/0d81a729-727a-4ed8-948f-a1e2bbd45732.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/gulp-gulp-gulp-gulp-1671088913732",
+    "tags": [
+      "memes",
+      "soundbuttonsworld",
+      "meme"
+    ],
+    "color": "green",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787024841876,
+    "tab": "La Ele",
+    "hotkey": "1"
+  },
+  {
+    "id": "sound_1787061999159_j6d9v",
+    "title": "Ainn cafezinho",
+    "url": "https://www.myinstants.com/media/sounds/ainn-cafezinho.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/ainn-cafezinho-71168/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#FFF7FA",
+    "tab": "La Ele",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787061999159,
+    "hotkey": "2"
+  },
+  {
+    "id": "sound_1787060819692_8er1r",
+    "title": "Sua mãe sabe que você gosta de rapazes",
+    "url": "https://www.myinstants.com/media/sounds/sua-mae-sabe-que-voce-gosta-de-rapazes.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/pt/instant/sua-mae-sabe-que-voce-gosta-de-rapazes-80078/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#61FF1A",
+    "tab": "La Ele",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787060819693,
+    "hotkey": "3"
+  },
+  {
+    "id": "sound_1787060497831_jp7y6",
+    "title": "Lá ele",
+    "url": "https://www.myinstants.com/media/sounds/la-ele.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/la-ele-16021/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#7A00FF",
+    "tab": "La Ele",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787060497831,
+    "hotkey": "4"
+  },
+  {
+    "id": "sound_1787024840745_0c7dk",
+    "title": "ai meu c",
+    "url": "https://www.myinstants.com/media/sounds/ai-meu-c.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/pt/instant/ai-meu-c-25533/",
+    "tags": [
+      "geral",
+      "myinstants",
+      "brasil"
+    ],
+    "color": "#FF0000",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787024840745,
+    "tab": "La Ele",
+    "hotkey": "5"
+  },
+  {
+    "id": "sound_1787024840745_bseks",
+    "title": "Du bist gut genug",
+    "url": "https://www.myinstants.com/media/sounds/du-bist-gut-genug.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/pt/instant/du-bist-gut-genug-22336/",
+    "tags": [
+      "geral",
+      "myinstants",
+      "brasil"
+    ],
+    "color": "#000000",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": true,
+    "createdAt": 1787024840745,
+    "tab": "Músicas",
+    "hotkey": "1"
+  },
+  {
+    "id": "sound_1787024840745_8mbv1",
+    "title": "auraa",
+    "url": "https://www.myinstants.com/media/sounds/auraa.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/pt/instant/auraa-81623/",
+    "tags": [
+      "geral",
+      "myinstants",
+      "brasil"
+    ],
+    "color": "#FF0000",
+    "hotkey": "2",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787024840745,
+    "tab": "Músicas"
+  },
+  {
+    "id": "sound_1787024843460_8cwpb",
+    "title": "Discord Notification Sound Remix",
+    "url": "https://soundbuttonsworld.com/uploads/1bd67b55-9d4e-4f9f-b8c6-d78cc5770b4d.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/discord-leave-and-join-sound-8-1749483399680",
+    "tags": [
+      "effects",
+      "energetic",
+      "sfx",
+      "soundbuttonsworld",
+      "discord",
+      "notificacao",
+      "troll",
+      "som",
+      "musica",
+      "ritmo",
+      "meme"
+    ],
+    "color": "red",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787024843460,
+    "tab": "Músicas",
+    "hotkey": "3"
+  },
+  {
+    "id": "sound_1787024841876_x836m",
+    "title": "TURN UP VOLUME FOR MUSIC",
+    "url": "https://soundbuttonsworld.com/uploads/73a46c82-fbca-41d8-9706-25df6c8ab748.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/turn-up-volume-for-music-1673376392581",
+    "tags": [
+      "memes",
+      "soundbuttonsworld",
+      "musica",
+      "som",
+      "ritmo",
+      "meme"
+    ],
+    "color": "black",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787024841876,
+    "tab": "Músicas",
+    "hotkey": "4"
+  },
+  {
+    "id": "sound_1787024841876_xv6nc",
+    "title": "INDIAN",
+    "url": "https://soundbuttonsworld.com/uploads/70360589-c856-4ad8-94ed-776c988776c5.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/indian-1666048064876",
+    "tags": [
+      "movies",
+      "soundbuttonsworld"
+    ],
+    "color": "purple",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787024841876,
+    "tab": "Músicas",
+    "hotkey": "5"
+  },
+  {
+    "id": "sound_1787024841029_xq7bh",
+    "title": "GTA V - Wasted",
+    "url": "https://www.myinstants.com/media/sounds/gta-v-death-sound-effect-102.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/gta-v-wasted/",
+    "tags": [
+      "gaming",
+      "myinstants",
+      "gta",
+      "meme",
+      "vitoria",
+      "derrota"
+    ],
+    "color": "#ff3300",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787024841029,
+    "tab": "Gaming",
+    "hotkey": "1"
+  },
+  {
+    "id": "sound_1787024841876_rj4dc",
+    "title": "GOOFY AHH LAUGH",
+    "url": "https://soundbuttonsworld.com/uploads/8db42d7e-b714-4220-98c1-431c0a04ecb0.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/goofy-ahh-laugh-1668034461376",
+    "tags": [
+      "memes",
+      "meme",
+      "risada",
+      "soundbuttonsworld",
+      "humor",
+      "engracado",
+      "reacao",
+      "gaming",
+      "roblox",
+      "sfx",
+      "derrota"
+    ],
+    "color": "purple",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787024841876,
+    "tab": "Gaming",
+    "hotkey": "2"
+  },
+  {
+    "id": "sound_1787024842893_3078o",
+    "title": "Retro Arcade Game Over Voice",
+    "url": "https://soundbuttonsworld.com/uploads/83695013-6faf-45ef-be86-7ed117a9f7a3.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/game-overe-1739263767001",
+    "tags": [
+      "games",
+      "conclusive",
+      "gaming",
+      "soundbuttonsworld"
+    ],
+    "color": "blue",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787024842893,
+    "tab": "Gaming",
+    "hotkey": "3"
+  },
+  {
+    "id": "sound_1787024841877_r3rz7",
+    "title": "GOOFY AHH SOUNDS",
+    "url": "https://soundbuttonsworld.com/uploads/fb64d9f6-7584-4a3f-930b-ba6094d37fd5.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/goofy-ahh-sounds-1668035277484",
+    "tags": [
+      "memes",
+      "meme",
+      "sfx",
+      "soundbuttonsworld",
+      "gaming",
+      "roblox",
+      "derrota"
+    ],
+    "color": "blue",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787024841877,
+    "tab": "Gaming",
+    "hotkey": "4"
   }
 ]
