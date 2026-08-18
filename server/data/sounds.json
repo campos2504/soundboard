@@ -1563,25 +1563,6 @@
     "hotkey": "K"
   },
   {
-    "id": "sound_1787024841876_lg0g3",
-    "title": "FORTNITE DEFAULT DANCE",
-    "url": "https://soundbuttonsworld.com/uploads/939f1050-5855-470d-9630-5637dd080435.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/fortnite-default-dance-1666033249120",
-    "tags": [
-      "games",
-      "gaming",
-      "soundbuttonsworld"
-    ],
-    "color": "blue",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024841876,
-    "tab": "Geral",
-    "hotkey": "L"
-  },
-  {
     "id": "sound_1787024841876_fhusy",
     "title": "I LIVE WITH ROCHES",
     "url": "https://soundbuttonsworld.com/uploads/3fb16427-aa99-4692-90d9-b3e0a9998a15.mp3",
@@ -1599,25 +1580,6 @@
     "createdAt": 1787024841876,
     "tab": "Geral",
     "hotkey": "Z"
-  },
-  {
-    "id": "sound_1787024841877_d4onf",
-    "title": "STOP THE CAP",
-    "url": "https://soundbuttonsworld.com/uploads/67e45010-f4c7-4e92-8ec2-5f5a601ec470.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/stop-the-cap-1670611694609",
-    "tags": [
-      "memes",
-      "soundbuttonsworld",
-      "meme"
-    ],
-    "color": "red",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024841877,
-    "tab": "Geral",
-    "hotkey": "X"
   },
   {
     "id": "sound_1787024841877_r3rz7",
@@ -1718,7 +1680,7 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024841877,
-    "tab": "Geral",
+    "tab": "Memes & TV",
     "hotkey": "B"
   },
   {
@@ -1744,83 +1706,6 @@
     "hotkey": "2"
   },
   {
-    "id": "sound_1787024841877_2jisc",
-    "title": "GET OUT TUCO",
-    "url": "https://soundbuttonsworld.com/uploads/92116289-98e0-4dea-babc-e6f7f8bd08d9.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/get-out-tuco-1713706345464",
-    "tags": [
-      "memes",
-      "soundbuttonsworld",
-      "meme"
-    ],
-    "color": "red",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024841877,
-    "tab": "Geral",
-    "hotkey": "N"
-  },
-  {
-    "id": "sound_1787024842407_ghjjm",
-    "title": "Aspirations of Meme Fame",
-    "url": "https://soundbuttonsworld.com/uploads/7a731a55-551e-4b3d-9002-8a3220eada9e.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/i-will-be-a-frickin-meme-1690641999772",
-    "tags": [
-      "memes",
-      "hopeful",
-      "meme",
-      "soundbuttonsworld"
-    ],
-    "color": "red",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024842407,
-    "tab": "Geral",
-    "hotkey": "M"
-  },
-  {
-    "id": "sound_1787024842407_pctx7",
-    "title": "Do You Want to Get Mewed Meme",
-    "url": "https://soundbuttonsworld.com/uploads/9792a17f-3d67-4a94-93bd-f3b0a30800e6.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/do-you-wanna-get-mewed-1711869875361",
-    "tags": [
-      "memes",
-      "playful",
-      "meme",
-      "soundbuttonsworld"
-    ],
-    "color": "purple",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024842407,
-    "tab": "Geral"
-  },
-  {
-    "id": "sound_1787024842407_fh7l4",
-    "title": "I Can Has Cheezburger Meme Voiceover",
-    "url": "https://soundbuttonsworld.com/uploads/c2a5f8bc-aef5-4aac-a0ba-c4390103ce9c.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/burder-1709398450535",
-    "tags": [
-      "memes",
-      "humorous",
-      "meme",
-      "soundbuttonsworld"
-    ],
-    "color": "purple",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024842407,
-    "tab": "Geral"
-  },
-  {
     "id": "sound_1787024842893_3078o",
     "title": "Retro Arcade Game Over Voice",
     "url": "https://soundbuttonsworld.com/uploads/83695013-6faf-45ef-be86-7ed117a9f7a3.mp3",
@@ -1837,63 +1722,7 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787024842893,
-    "tab": "Geral"
-  },
-  {
-    "id": "sound_1787024842893_xxo6e",
-    "title": "NoobTube Podcast: Gaming Culture and Community Discussion",
-    "url": "https://soundbuttonsworld.com/uploads/6b71fa40-ccea-4c0f-afea-3a66d310fd33.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/noobtoob-43-community-section-1731691429726",
-    "tags": [
-      "games",
-      "energetic",
-      "soundbuttonsworld"
-    ],
-    "color": "red",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024842893,
-    "tab": "Geral"
-  },
-  {
-    "id": "sound_1787024842893_at72l",
-    "title": "Harsh Video Game Critique",
-    "url": "https://soundbuttonsworld.com/uploads/6df0d1ea-eff3-4ed6-b8dd-bde13b4aafc0.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/this-game-is-a-disgrace-1725063352999",
-    "tags": [
-      "games",
-      "angry",
-      "gaming",
-      "soundbuttonsworld"
-    ],
-    "color": "purple",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024842893,
-    "tab": "Geral"
-  },
-  {
-    "id": "sound_1787024842893_bwg7v",
-    "title": "Frustrated Gamer Choosing a Game",
-    "url": "https://soundbuttonsworld.com/uploads/41eaa81e-4b78-4844-b9c5-01e87fa4ffed.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/just-choose-one-1751384563543",
-    "tags": [
-      "reactions",
-      "humorous",
-      "gaming",
-      "soundbuttonsworld"
-    ],
-    "color": "black",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787024842893,
-    "tab": "Geral"
+    "tab": "Gaming"
   },
   {
     "id": "sound_1787024843091_d22d6",
