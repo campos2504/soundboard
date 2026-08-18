@@ -7,6 +7,7 @@ export interface SoundItem {
   tags: string[];
   color?: string;
   hotkey?: string;
+  tab?: string;            // Soundboard page / tab (default "Geral")
   volume?: number;
   playbackRate?: number;
   isFavorite?: boolean;

@@ -88,7 +88,7 @@ export class SoundsController {
 
   static async create(req: Request, res: Response): Promise<void> {
     try {
-      const { title, url, source, sourceUrl, tags, color, hotkey, volume, playbackRate, isFavorite } = req.body;
+      const { title, url, source, sourceUrl, tags, color, hotkey, tab, volume, playbackRate, isFavorite } = req.body;
 
       if (!title || !url) {
         res.status(400).json({ error: 'title and url are required' });
@@ -96,6 +96,19 @@ export class SoundsController {
       }
 
       const sounds = await loadSounds();
+      const targetTab = (tab || 'Geral').trim();
+      const normalizedHotkey = hotkey ? hotkey.toUpperCase().trim() : undefined;
+
+      // Enforce unique hotkeys WITHIN THE SAME TAB
+      if (normalizedHotkey) {
+        for (const s of sounds) {
+          const sTab = (s.tab || 'Geral').trim();
+          if (sTab === targetTab && s.hotkey && s.hotkey.toUpperCase().trim() === normalizedHotkey) {
+            s.hotkey = undefined;
+          }
+        }
+      }
+
       const newSound: SoundItem = {
         id: 'sound_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7),
         title: title.trim(),
@@ -104,7 +117,8 @@ export class SoundsController {
         sourceUrl,
         tags: Array.isArray(tags) ? tags.map((t: string) => t.trim().toLowerCase()) : [],
         color: color || '#1a9fff',
-        hotkey: hotkey ? hotkey.toUpperCase().trim() : undefined,
+        hotkey: normalizedHotkey,
+        tab: targetTab,
         volume: typeof volume === 'number' ? Math.max(0, Math.min(2, volume)) : 1,
         playbackRate: typeof playbackRate === 'number' ? Math.max(0.2, Math.min(3, playbackRate)) : 1,
         isFavorite: Boolean(isFavorite),
@@ -134,6 +148,21 @@ export class SoundsController {
 
       const current = sounds[index];
       const updates = req.body;
+      const targetTab = (updates.tab !== undefined ? updates.tab : (current.tab || 'Geral')).trim();
+
+      const normalizedHotkey = updates.hotkey !== undefined 
+        ? (updates.hotkey ? updates.hotkey.toUpperCase().trim() : undefined) 
+        : current.hotkey;
+
+      // Enforce unique hotkeys WITHIN THE SAME TAB
+      if (normalizedHotkey) {
+        for (const s of sounds) {
+          const sTab = (s.tab || 'Geral').trim();
+          if (s.id !== id && sTab === targetTab && s.hotkey && s.hotkey.toUpperCase().trim() === normalizedHotkey) {
+            s.hotkey = undefined;
+          }
+        }
+      }
 
       const updated: SoundItem = {
         ...current,
@@ -143,7 +172,8 @@ export class SoundsController {
           ? (Array.isArray(updates.tags) ? updates.tags.map((t: string) => t.trim().toLowerCase()) : current.tags)
           : current.tags,
         color: updates.color !== undefined ? updates.color : current.color,
-        hotkey: updates.hotkey !== undefined ? (updates.hotkey ? updates.hotkey.toUpperCase().trim() : undefined) : current.hotkey,
+        hotkey: normalizedHotkey,
+        tab: targetTab,
         volume: updates.volume !== undefined ? Math.max(0, Math.min(2, Number(updates.volume))) : current.volume,
         playbackRate: updates.playbackRate !== undefined ? Math.max(0.2, Math.min(3, Number(updates.playbackRate))) : current.playbackRate,
         isFavorite: updates.isFavorite !== undefined ? Boolean(updates.isFavorite) : current.isFavorite,

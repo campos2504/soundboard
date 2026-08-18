@@ -3,6 +3,7 @@ import { HeaderBar } from './components/HeaderBar';
 import { NavigationTabs } from './components/NavigationTabs';
 import type { TabType } from './components/NavigationTabs';
 import { TagFilterBar } from './components/TagFilterBar';
+import { SoundboardTabsBar } from './components/SoundboardTabsBar';
 import { SoundCard } from './components/SoundCard';
 import { ExploreMyInstantsTab } from './components/ExploreMyInstantsTab';
 import { ExploreSoundButtonsWorldTab } from './components/ExploreSoundButtonsWorldTab';
@@ -25,6 +26,13 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('library');
   const [loading, setLoading] = useState(true);
   const [isEditMode, setIsEditMode] = useState(false);
+
+  // Soundboard Profiles / Pages / Tabs
+  const [soundboardTabs, setSoundboardTabs] = useState<string[]>(() => {
+    const saved = localStorage.getItem('soundboard_custom_tabs');
+    return saved ? JSON.parse(saved) : ['Geral', 'Memes & TV', 'Gaming', 'Efeitos'];
+  });
+  const [activeSoundboardTab, setActiveSoundboardTab] = useState<string>('Geral');
 
   // Filters
   const [searchQuery, setSearchQuery] = useState('');
@@ -65,6 +73,14 @@ export default function App() {
       ]);
       setSounds(soundList);
       setTags(tagList);
+
+      // Merge any new tab names present in sounds
+      const soundTabNames = soundList.map((s) => (s.tab || 'Geral').trim()).filter(Boolean);
+      setSoundboardTabs((prev) => {
+        const merged = Array.from(new Set(['Geral', ...prev, ...soundTabNames]));
+        localStorage.setItem('soundboard_custom_tabs', JSON.stringify(merged));
+        return merged;
+      });
     } catch (err) {
       console.error('Error loading soundboard data:', err);
     } finally {
@@ -76,11 +92,36 @@ export default function App() {
     loadData();
   }, [loadData]);
 
-  // Global Keyboard Shortcuts (Number -> Saída 1 | Shift + Number -> Saída de Teste 2)
+  // Global Keyboard Shortcuts (Number -> Saída 1 | Shift + Number -> Saída de Teste 2 | < and > -> Muda Aba)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const activeTag = (document.activeElement?.tagName || '').toLowerCase();
       if (activeTag === 'input' || activeTag === 'textarea' || activeTag === 'select') {
+        return;
+      }
+
+      // Switch Soundboard Tabs with < and > (or , and .)
+      if (e.key === '<' || e.key === ',') {
+        e.preventDefault();
+        setSoundboardTabs((tabs) => {
+          const idx = tabs.indexOf(activeSoundboardTab);
+          const prevIdx = idx <= 0 ? tabs.length - 1 : idx - 1;
+          const target = tabs[prevIdx] || 'Geral';
+          setActiveSoundboardTab(target);
+          return tabs;
+        });
+        return;
+      }
+
+      if (e.key === '>' || e.key === '.') {
+        e.preventDefault();
+        setSoundboardTabs((tabs) => {
+          const idx = tabs.indexOf(activeSoundboardTab);
+          const nextIdx = idx >= tabs.length - 1 ? 0 : idx + 1;
+          const target = tabs[nextIdx] || 'Geral';
+          setActiveSoundboardTab(target);
+          return tabs;
+        });
         return;
       }
 
@@ -93,7 +134,7 @@ export default function App() {
       const isShift = e.shiftKey;
       let pressedKey = e.key.toUpperCase();
 
-      // Normalize digit keys if Shift is pressed (e.g. on US keyboard Shift+1 is '!', on PT-BR Shift+1 is '!')
+      // Normalize digit keys if Shift is pressed
       let digitKey: string | null = null;
       if (e.code && e.code.startsWith('Digit')) {
         digitKey = e.code.replace('Digit', '');
@@ -101,8 +142,10 @@ export default function App() {
         digitKey = e.code.replace('Numpad', '');
       }
 
-      // Match hotkeys
+      // Match hotkeys ONLY FOR SOUNDS IN THE CURRENT ACTIVE SOUNDBOARD TAB!
       const matched = sounds.find((s) => {
+        const sTab = (s.tab || 'Geral').trim();
+        if (sTab !== activeSoundboardTab.trim()) return false;
         if (!s.hotkey) return false;
         const hk = s.hotkey.toUpperCase();
         return hk === pressedKey || (digitKey && hk === digitKey);
@@ -110,15 +153,13 @@ export default function App() {
 
       if (matched) {
         e.preventDefault();
-        // If Shift is held down -> routes to Secondary Output (Test Pill)
-        // Otherwise -> routes to Primary Output (Broadcast / Main)
         AudioEngine.play(matched, isShift);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [sounds]);
+  }, [sounds, activeSoundboardTab]);
 
   // Handlers for Sounds
   const handlePlayMain = (sound: SoundItem) => {
@@ -126,7 +167,6 @@ export default function App() {
   };
 
   const handlePlayTest = (sound: SoundItem) => {
-    // Routes directly to secondary output device (Test Pill)
     AudioEngine.play(sound, true);
   };
 
@@ -147,7 +187,19 @@ export default function App() {
   const handleSaveSoundEdit = async (id: string, updates: Partial<SoundItem>) => {
     try {
       const updated = await updateSound(id, updates);
-      setSounds((prev) => prev.map((s) => (s.id === id ? updated : s)));
+      const normalizedHotkey = updated.hotkey ? updated.hotkey.toUpperCase().trim() : undefined;
+      const targetTab = (updated.tab || 'Geral').trim();
+
+      setSounds((prev) =>
+        prev.map((s) => {
+          if (s.id === id) return updated;
+          const sTab = (s.tab || 'Geral').trim();
+          if (sTab === targetTab && normalizedHotkey && s.hotkey && s.hotkey.toUpperCase().trim() === normalizedHotkey) {
+            return { ...s, hotkey: undefined };
+          }
+          return s;
+        })
+      );
       const refreshedTags = await fetchTags();
       setTags(refreshedTags);
     } catch (err) {
@@ -168,8 +220,23 @@ export default function App() {
 
   const handleAddSound = async (soundData: Partial<SoundItem>) => {
     try {
-      const created = await createSound(soundData);
-      setSounds((prev) => [created, ...prev]);
+      const dataWithTab = {
+        ...soundData,
+        tab: soundData.tab || activeSoundboardTab,
+      };
+      const created = await createSound(dataWithTab);
+      const normalizedHotkey = created.hotkey ? created.hotkey.toUpperCase().trim() : undefined;
+      const targetTab = (created.tab || 'Geral').trim();
+
+      setSounds((prev) => [
+        created,
+        ...prev.map((s) => {
+          const sTab = (s.tab || 'Geral').trim();
+          return sTab === targetTab && normalizedHotkey && s.hotkey && s.hotkey.toUpperCase().trim() === normalizedHotkey
+            ? { ...s, hotkey: undefined }
+            : s;
+        }),
+      ]);
       const refreshedTags = await fetchTags();
       setTags(refreshedTags);
       setActiveTab('library');
@@ -199,6 +266,44 @@ export default function App() {
     }
   };
 
+  // Soundboard Tab Management Handlers
+  const handleAddTab = (newTab: string) => {
+    const updated = Array.from(new Set([...soundboardTabs, newTab]));
+    setSoundboardTabs(updated);
+    localStorage.setItem('soundboard_custom_tabs', JSON.stringify(updated));
+  };
+
+  const handleRenameTab = async (oldName: string, newName: string) => {
+    const updatedTabs = soundboardTabs.map((t) => (t === oldName ? newName : t));
+    setSoundboardTabs(updatedTabs);
+    localStorage.setItem('soundboard_custom_tabs', JSON.stringify(updatedTabs));
+    if (activeSoundboardTab === oldName) {
+      setActiveSoundboardTab(newName);
+    }
+    for (const s of sounds) {
+      if ((s.tab || 'Geral') === oldName) {
+        await updateSound(s.id, { tab: newName });
+      }
+    }
+    await loadData();
+  };
+
+  const handleDeleteTab = async (tabToDelete: string) => {
+    const updatedTabs = soundboardTabs.filter((t) => t !== tabToDelete);
+    const fallback = updatedTabs.length > 0 ? updatedTabs : ['Geral'];
+    setSoundboardTabs(fallback);
+    localStorage.setItem('soundboard_custom_tabs', JSON.stringify(fallback));
+    if (activeSoundboardTab === tabToDelete) {
+      setActiveSoundboardTab('Geral');
+    }
+    for (const s of sounds) {
+      if (s.tab === tabToDelete) {
+        await updateSound(s.id, { tab: 'Geral' });
+      }
+    }
+    await loadData();
+  };
+
   // Tag Filtering Logic
   const handleToggleTag = (tagName: string) => {
     setSelectedTags((prev) =>
@@ -210,9 +315,25 @@ export default function App() {
     setSelectedTags([]);
   };
 
-  // Filtered sound list
+  // Sound count per soundboard tab
+  const tabCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const s of sounds) {
+      const t = (s.tab || 'Geral').trim();
+      counts[t] = (counts[t] || 0) + 1;
+    }
+    return counts;
+  }, [sounds]);
+
+  // Filtered sound list: Filtered by active soundboard tab + search + tags
   const filteredSounds = useMemo(() => {
     return sounds.filter((s) => {
+      // Must match active soundboard tab
+      const soundTab = (s.tab || 'Geral').trim();
+      if (soundTab !== activeSoundboardTab.trim()) {
+        return false;
+      }
+
       // Search filter
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
@@ -241,7 +362,7 @@ export default function App() {
 
       return true;
     });
-  }, [sounds, searchQuery, selectedTags, selectedSource, onlyFavorites]);
+  }, [sounds, activeSoundboardTab, searchQuery, selectedTags, selectedSource, onlyFavorites]);
 
   return (
     <div className="app-container">
@@ -262,6 +383,17 @@ export default function App() {
       {/* TAB: SOUNDBOARD LIBRARY */}
       {activeTab === 'library' && (
         <main>
+          {/* Soundboard Profile / Page Switcher Bar */}
+          <SoundboardTabsBar
+            tabs={soundboardTabs}
+            activeTab={activeSoundboardTab}
+            onSelectTab={setActiveSoundboardTab}
+            onAddTab={handleAddTab}
+            onRenameTab={handleRenameTab}
+            onDeleteTab={handleDeleteTab}
+            tabCounts={tabCounts}
+          />
+
           {/* Tag Filter & Action Bar */}
           <TagFilterBar
             searchQuery={searchQuery}
@@ -312,20 +444,20 @@ export default function App() {
           ) : (
             <div className="empty-state-container">
               <Radio size={48} color="var(--deck-cyan)" />
-              <h3>Nenhum som encontrado para os filtros atuais</h3>
-              <p>Tente limpar a busca ou explore as abas **MyInstants** e **SoundButtonsWorld** para adicionar novos memes à sua soundboard!</p>
+              <h3>Nenhum som na aba "{activeSoundboardTab}"</h3>
+              <p>Adicione novos memes nesta aba ou clique em <strong>✏️ Editar</strong> em qualquer som para movê-lo para esta aba!</p>
               <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>
+                <button
+                  className="btn-steamdeck btn-steamdeck-primary"
+                  onClick={() => setIsAddModalOpen(true)}
+                >
+                  + Novo Som Nesta Aba
+                </button>
                 <button
                   className="btn-steamdeck btn-steamdeck-amber"
                   onClick={() => setActiveTab('myinstants')}
                 >
                   🔥 Explorar MyInstants
-                </button>
-                <button
-                  className="btn-steamdeck btn-steamdeck-primary"
-                  onClick={() => setActiveTab('soundbuttonsworld')}
-                >
-                  🌐 Explorar SoundButtonsWorld
                 </button>
               </div>
             </div>
@@ -364,6 +496,7 @@ export default function App() {
         isOpen={Boolean(editingSound)}
         sound={editingSound}
         availableTags={tags}
+        availableSoundboardTabs={soundboardTabs}
         onClose={() => setEditingSound(null)}
         onSave={handleSaveSoundEdit}
         onDelete={handleDeleteSound}

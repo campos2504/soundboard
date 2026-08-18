@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Sliders, Keyboard, Palette, Volume2, Gauge, Check, Play, Square, Headphones, Upload, Trash2 } from 'lucide-react';
+import { X, Sliders, Keyboard, Palette, Volume2, Gauge, Check, Play, Square, Headphones, Upload, Trash2, Folder } from 'lucide-react';
 import type { SoundItem } from '../types';
 import { TagInputSelector } from './TagInputSelector';
 import { uploadAudioFile } from '../services/api';
@@ -9,6 +9,7 @@ interface TagEditorModalProps {
   isOpen: boolean;
   sound: SoundItem | null;
   availableTags?: Array<string | { name: string; count?: number }>;
+  availableSoundboardTabs?: string[];
   onClose: () => void;
   onSave: (id: string, updates: Partial<SoundItem>) => void;
   onDelete?: (id: string) => void;
@@ -29,12 +30,14 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
   isOpen,
   sound,
   availableTags = [],
+  availableSoundboardTabs = ['Geral'],
   onClose,
   onSave,
   onDelete,
 }) => {
   const [title, setTitle] = useState('');
   const [url, setUrl] = useState('');
+  const [tab, setTab] = useState('Geral');
   const [tags, setTags] = useState<string[]>([]);
   const [color, setColor] = useState('#00f0ff');
   const [hotkey, setHotkey] = useState('');
@@ -49,6 +52,7 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
     if (sound) {
       setTitle(sound.title || '');
       setUrl(sound.url || '');
+      setTab(sound.tab || 'Geral');
       setTags(sound.tags || []);
       setColor(sound.color || '#00f0ff');
       setHotkey(sound.hotkey || '');
@@ -106,7 +110,7 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
 
   const handleTogglePlayPreview = () => {
     if (isPlayingPreview) {
-      AudioEngine.stopAll();
+      AudioEngine.stopAllNonTest();
       setIsPlayingPreview(false);
     } else {
       setIsPlayingPreview(true);
@@ -120,7 +124,7 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
 
   const handleToggleTestPreview = () => {
     if (isTestingPreview) {
-      AudioEngine.stopAll();
+      AudioEngine.stopAllTest();
       setIsTestingPreview(false);
     } else {
       setIsTestingPreview(true);
@@ -134,10 +138,10 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    AudioEngine.stopAll();
     onSave(sound.id, {
       title: title.trim() || sound.title,
       url: url.trim() || sound.url,
+      tab: tab.trim() || 'Geral',
       tags,
       color,
       hotkey: hotkey.trim() || undefined,
@@ -149,7 +153,6 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
 
   const handleDeleteSound = () => {
     if (confirm(`Tem certeza que deseja excluir "${sound.title}" da soundboard?`)) {
-      AudioEngine.stopAll();
       if (onDelete) onDelete(sound.id);
       onClose();
     }
@@ -208,17 +211,39 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
             </div>
           </div>
 
-          {/* Title */}
-          <div className="form-group-deck">
-            <label>Nome do Som</label>
-            <input
-              type="text"
-              className="input-deck"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="Digite o título do som..."
-              required
-            />
+          {/* Title and Soundboard Tab Row */}
+          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '0.75rem' }}>
+            {/* Title */}
+            <div className="form-group-deck">
+              <label>Nome do Som</label>
+              <input
+                type="text"
+                className="input-deck"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Digite o título do som..."
+                required
+              />
+            </div>
+
+            {/* Soundboard Tab / Page */}
+            <div className="form-group-deck">
+              <label style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                <Folder size={14} />
+                Aba da Soundboard
+              </label>
+              <select
+                className="select-deck"
+                value={tab}
+                onChange={(e) => setTab(e.target.value)}
+              >
+                {Array.from(new Set(['Geral', ...availableSoundboardTabs, tab])).map((t) => (
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           {/* Audio URL & Replacement */}
@@ -296,7 +321,7 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
           <div className="form-group-deck">
             <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
               <Keyboard size={14} />
-              Atalho de Teclado
+              Atalho de Teclado (Exclusivo para a aba "{tab}")
             </label>
             <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
               <button
@@ -319,7 +344,7 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
               )}
             </div>
             <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-              Pressione a tecla para tocar na Saída 1, ou segure <strong>Shift + Tecla</strong> para tocar na Saída 2 de Teste (Fones).
+              Sons em abas diferentes podem ter a mesma tecla de atalho. O atalho é disparado apenas quando a aba <strong>"{tab}"</strong> estiver ativa.
             </p>
           </div>
 

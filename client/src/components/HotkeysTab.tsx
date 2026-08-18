@@ -104,7 +104,7 @@ export const HotkeysTab: React.FC<HotkeysTabProps> = ({
                     <div>
                       <strong style={{ fontSize: '0.95rem', color: '#fff', display: 'block' }}>{s.title}</strong>
                       <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
-                        Tecla: [{s.hotkey}] • Teste: [Shift+{s.hotkey}]
+                        Tecla: [{s.hotkey}] • Teste: [Shift+{s.hotkey}] • <span style={{ color: 'var(--neon-cyan)', fontWeight: 600 }}>Aba: {s.tab || 'Geral'}</span>
                       </span>
                     </div>
                   </div>

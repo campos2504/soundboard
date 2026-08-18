@@ -7,6 +7,7 @@ export interface SoundItem {
   tags: string[];          // e.g. ["meme", "gaming", "anime"]
   color?: string;          // Steam Deck accent color hex or class
   hotkey?: string;         // e.g. "1", "Q", "F1", "Numpad1"
+  tab?: string;            // Soundboard page / tab (default "Geral")
   volume?: number;         // 0 to 1 (multiplier, default 1)
   playbackRate?: number;   // 0.5 to 2.0 (default 1)
   isFavorite?: boolean;

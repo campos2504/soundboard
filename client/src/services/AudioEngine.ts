@@ -192,8 +192,12 @@ class AudioEngineService {
     sound: { id: string; url: string; volume?: number; playbackRate?: number; title?: string },
     isTestPreview: boolean = false
   ): Promise<void> {
-    // STRICT MUTUAL EXCLUSIVITY: Stop any and all existing audio across the entire app
-    this.stopAll();
+    // CHANNEL-ISOLATED CUT: Stop audio only on the active output channel
+    if (isTestPreview) {
+      this.stopAllTest();
+    } else {
+      this.stopAllNonTest();
+    }
 
     const soundKey = isTestPreview ? `test_${sound.id}` : sound.id;
 
