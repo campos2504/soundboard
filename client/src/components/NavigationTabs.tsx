@@ -48,7 +48,7 @@ export const NavigationTabs: React.FC<NavigationTabsProps> = ({
         onClick={() => onSelectTab('hotkeys')}
       >
         <Keyboard size={18} color="var(--neon-yellow)" />
-        <span>⌨️ Atalhos & Shift</span>
+        <span>⚙️ Configurar Ordem & Atalhos</span>
       </button>
     </nav>
   );

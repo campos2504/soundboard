@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Play, Square, Scissors, RotateCcw } from 'lucide-react';
 import { getAudioProxyUrl } from '../services/api';
+import { AudioEngine } from '../services/AudioEngine';
 
 interface WaveformTrimmerProps {
   audioUrl: string;
@@ -191,6 +192,13 @@ export const WaveformTrimmer: React.FC<WaveformTrimmerProps> = ({
 
     const streamUrl = getAudioProxyUrl(audioUrl);
     const audio = new Audio(streamUrl);
+    const config = AudioEngine.getConfig();
+    audio.volume = Math.max(0, Math.min(1, config.previewVolume));
+
+    if (config.secondaryDeviceId && config.secondaryDeviceId !== 'default' && typeof (audio as any).setSinkId === 'function') {
+      (audio as any).setSinkId(config.secondaryDeviceId).catch(() => {});
+    }
+
     previewAudioRef.current = audio;
     audio.currentTime = startTime;
 

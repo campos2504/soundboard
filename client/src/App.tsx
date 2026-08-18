@@ -283,6 +283,35 @@ export default function App() {
     setDragOverIndex(null);
   };
 
+  // Helper to retrieve user's configured hotkey sequence (or null if manual mode)
+  const getCurrentHotkeySequence = (): string[] | null => {
+    const strategy = localStorage.getItem('soundboard_hotkey_strategy') || 'standard_qwerty';
+    const autoAssign = localStorage.getItem('soundboard_auto_assign_on_drag');
+    if (autoAssign === 'false' || strategy === 'manual') {
+      return null;
+    }
+    if (strategy === 'numpad_only') {
+      return ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+    }
+    if (strategy === 'letters_only') {
+      return [
+        'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
+        'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
+        'Z', 'X', 'C', 'V', 'B', 'N', 'M',
+      ];
+    }
+    if (strategy === 'custom') {
+      const custom = localStorage.getItem('soundboard_custom_sequence') || '1234567890QWERTYUIOPASDFGHJKLZXCVBNM';
+      return custom.split('');
+    }
+    return [
+      '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+      'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
+      'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
+      'Z', 'X', 'C', 'V', 'B', 'N', 'M',
+    ];
+  };
+
   const handleDrop = async (e: React.DragEvent, targetIndex: number) => {
     e.preventDefault();
     if (draggedIndex === null || draggedIndex === targetIndex) {
@@ -304,10 +333,13 @@ export default function App() {
 
     ProceduralAudio.playTapeInsert();
 
-    // Re-assign hotkeys based on new card order in this tab
-    tabSounds.forEach((s, idx) => {
-      s.hotkey = idx < HOTKEY_GRID_SEQUENCE.length ? HOTKEY_GRID_SEQUENCE[idx] : undefined;
-    });
+    // Re-assign hotkeys based on user's active strategy (if not manual mode)
+    const seq = getCurrentHotkeySequence();
+    if (seq !== null) {
+      tabSounds.forEach((s, idx) => {
+        s.hotkey = idx < seq.length ? seq[idx] : undefined;
+      });
+    }
 
     // Reassemble full array
     const otherSounds = sounds.filter((s) => (s.tab || 'Geral').trim() !== activeSoundboardTab.trim());
@@ -319,21 +351,15 @@ export default function App() {
 
     try {
       await reorderSounds(updatedSounds.map((s) => s.id));
-      await Promise.all(
-        tabSounds.map((s) => updateSound(s.id, { hotkey: s.hotkey }))
-      );
+      if (seq !== null) {
+        await Promise.all(
+          tabSounds.map((s) => updateSound(s.id, { hotkey: s.hotkey }))
+        );
+      }
     } catch (err) {
       console.error('Failed to save drag-and-drop order:', err);
     }
   };
-
-  // Universal Alphanumeric Hotkey Grid Sequence
-  const HOTKEY_GRID_SEQUENCE = [
-    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-    'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
-    'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
-    'Z', 'X', 'C', 'V', 'B', 'N', 'M',
-  ];
 
   // Reorder Sound position: The order of cards dictates the order of hotkeys!
   const handleMoveSound = async (soundId: string, direction: 'left' | 'right') => {
@@ -351,10 +377,13 @@ export default function App() {
 
     ProceduralAudio.playTapeInsert();
 
-    // Re-assign hotkeys based on the new card order in this tab
-    tabSounds.forEach((s, idx) => {
-      s.hotkey = idx < HOTKEY_GRID_SEQUENCE.length ? HOTKEY_GRID_SEQUENCE[idx] : undefined;
-    });
+    // Re-assign hotkeys based on user's active strategy (if not manual mode)
+    const seq = getCurrentHotkeySequence();
+    if (seq !== null) {
+      tabSounds.forEach((s, idx) => {
+        s.hotkey = idx < seq.length ? seq[idx] : undefined;
+      });
+    }
 
     // Reassemble the full sounds array preserving other tabs
     const otherSounds = sounds.filter((s) => (s.tab || 'Geral').trim() !== activeSoundboardTab.trim());
@@ -364,12 +393,39 @@ export default function App() {
 
     try {
       await reorderSounds(updatedSounds.map((s) => s.id));
-      await Promise.all([
-        updateSound(tabSounds[targetIndexInTab].id, { hotkey: tabSounds[targetIndexInTab].hotkey }),
-        updateSound(tabSounds[currentIndexInTab].id, { hotkey: tabSounds[currentIndexInTab].hotkey }),
-      ]);
+      if (seq !== null) {
+        await Promise.all([
+          updateSound(tabSounds[targetIndexInTab].id, { hotkey: tabSounds[targetIndexInTab].hotkey }),
+          updateSound(tabSounds[currentIndexInTab].id, { hotkey: tabSounds[currentIndexInTab].hotkey }),
+        ]);
+      }
     } catch (err) {
       console.error('Failed to save soundboard order and hotkeys:', err);
+    }
+  };
+
+  const handleBatchUpdateSounds = async (updates: Array<{ id: string; hotkey?: string }>) => {
+    try {
+      const updateMap = new Map(updates.map((u) => [u.id, u.hotkey]));
+      setSounds((prev) =>
+        prev.map((s) => (updateMap.has(s.id) ? { ...s, hotkey: updateMap.get(s.id) } : s))
+      );
+      await Promise.all(
+        updates.map((u) => updateSound(u.id, { hotkey: u.hotkey }))
+      );
+    } catch (err) {
+      console.error('Batch update sounds failed:', err);
+    }
+  };
+
+  const handleReorderSoundsList = async (newOrderedIds: string[]) => {
+    try {
+      const soundMap = new Map(sounds.map((s) => [s.id, s]));
+      const reordered = newOrderedIds.map((id) => soundMap.get(id)!).filter(Boolean);
+      setSounds(reordered);
+      await reorderSounds(newOrderedIds);
+    } catch (err) {
+      console.error('Reorder sounds failed:', err);
     }
   };
 
@@ -597,12 +653,17 @@ export default function App() {
         <ExploreSoundButtonsWorldTab onAddSound={handleAddSound} />
       )}
 
-      {/* TAB: HOTKEYS */}
+      {/* TAB: HOTKEYS & SEQUENCING CONFIGURATOR */}
       {activeTab === 'hotkeys' && (
         <HotkeysTab
           sounds={sounds}
+          soundboardTabs={soundboardTabs}
+          activeSoundboardTab={activeSoundboardTab}
+          onUpdateSound={handleSaveSoundEdit}
+          onBatchUpdateSounds={handleBatchUpdateSounds}
+          onReorderSounds={handleReorderSoundsList}
           onPlaySound={handlePlayMain}
-          onEditSound={(s) => setEditingSound(s)}
+          onPlayTest={handlePlayTest}
         />
       )}
 
