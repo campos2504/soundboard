@@ -1,12 +1,15 @@
 import React from 'react';
-import { Play, Square, Headphones, Star, Edit3, Trash2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Play, Square, Headphones, Star, Edit3, Trash2, ChevronLeft, ChevronRight, GripVertical } from 'lucide-react';
 import type { SoundItem } from '../types';
 
 interface SoundCardProps {
   sound: SoundItem;
+  index: number;
   isPlayingMain: boolean;
   isPlayingTest: boolean;
   isEditMode?: boolean;
+  isDragging?: boolean;
+  isDragOver?: boolean;
   primaryDeviceLabel?: string;
   secondaryDeviceLabel?: string;
   onPlayMain: (sound: SoundItem) => void;
@@ -18,13 +21,20 @@ interface SoundCardProps {
   onSelectTag: (tag: string) => void;
   onMoveLeft?: () => void;
   onMoveRight?: () => void;
+  onDragStart?: (e: React.DragEvent, index: number) => void;
+  onDragOver?: (e: React.DragEvent, index: number) => void;
+  onDragEnd?: (e: React.DragEvent) => void;
+  onDrop?: (e: React.DragEvent, index: number) => void;
 }
 
 export const SoundCard: React.FC<SoundCardProps> = ({
   sound,
+  index,
   isPlayingMain,
   isPlayingTest,
   isEditMode = false,
+  isDragging = false,
+  isDragOver = false,
   primaryDeviceLabel = 'Saída 1 (Stream)',
   secondaryDeviceLabel = 'Saída 2 (Fones)',
   onPlayMain,
@@ -36,24 +46,49 @@ export const SoundCard: React.FC<SoundCardProps> = ({
   onSelectTag,
   onMoveLeft,
   onMoveRight,
+  onDragStart,
+  onDragOver,
+  onDragEnd,
+  onDrop,
 }) => {
   return (
     <div
+      draggable
+      onDragStart={(e) => onDragStart && onDragStart(e, index)}
+      onDragOver={(e) => onDragOver && onDragOver(e, index)}
+      onDragEnd={(e) => onDragEnd && onDragEnd(e)}
+      onDrop={(e) => onDrop && onDrop(e, index)}
       className={`sound-card-item ${
         isPlayingMain ? 'playing-main' : isPlayingTest ? 'playing-test' : ''
       }`}
       style={{
         borderLeftColor: sound.color || 'var(--neon-cyan)',
         borderLeftWidth: '5px',
+        opacity: isDragging ? 0.35 : 1,
+        transform: isDragging ? 'scale(0.96)' : isDragOver ? 'scale(1.03)' : 'none',
+        outline: isDragOver ? '2px dashed var(--neon-yellow)' : 'none',
+        outlineOffset: '2px',
+        boxShadow: isDragOver ? '0 0 25px rgba(255, 230, 0, 0.4)' : undefined,
+        cursor: 'grab',
+        transition: 'all 0.18s cubic-bezier(0.16, 1, 0.3, 1)',
       }}
     >
       {/* Sound Card Header */}
       <div className="card-header-row">
-        <div
-          className="sound-color-indicator"
-          style={{ background: sound.color || 'var(--neon-cyan)', color: sound.color || 'var(--neon-cyan)' }}
-          title={`Cor do Som: ${sound.color || 'Padrão'}`}
-        />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+          <div
+            className="drag-handle"
+            title="Arraste para reordenar"
+            style={{ cursor: 'grab', opacity: 0.6, display: 'flex', alignItems: 'center' }}
+          >
+            <GripVertical size={14} color="var(--text-muted)" />
+          </div>
+          <div
+            className="sound-color-indicator"
+            style={{ background: sound.color || 'var(--neon-cyan)', color: sound.color || 'var(--neon-cyan)' }}
+            title={`Cor do Som: ${sound.color || 'Padrão'}`}
+          />
+        </div>
 
         <div
           className="sound-title-text"
@@ -76,6 +111,8 @@ export const SoundCard: React.FC<SoundCardProps> = ({
 
           <button
             className={`icon-btn-ghost ${sound.isFavorite ? 'favorite-active' : ''}`}
+            onMouseDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
             onClick={(e) => {
               e.stopPropagation();
               onToggleFavorite(sound);
@@ -88,6 +125,8 @@ export const SoundCard: React.FC<SoundCardProps> = ({
           <button
             className="icon-btn-ghost"
             style={{ color: 'var(--neon-cyan)' }}
+            onMouseDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
             onClick={(e) => {
               e.stopPropagation();
               onEditTags(sound);
@@ -97,21 +136,21 @@ export const SoundCard: React.FC<SoundCardProps> = ({
             <Edit3 size={14} />
           </button>
 
-          {isEditMode && (
-            <button
-              className="icon-btn-ghost"
-              style={{ color: '#ff7777' }}
-              onClick={(e) => {
-                e.stopPropagation();
-                if (confirm(`Deseja excluir "${sound.title}" da Soundboard?`)) {
-                  onDelete(sound.id);
-                }
-              }}
-              title="Excluir Som"
-            >
-              <Trash2 size={14} />
-            </button>
-          )}
+          <button
+            className="icon-btn-ghost"
+            style={{ color: '#ff7777' }}
+            onMouseDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (confirm(`Deseja excluir "${sound.title}" da Soundboard?`)) {
+                onDelete(sound.id);
+              }
+            }}
+            title="Excluir Som da Soundboard"
+          >
+            <Trash2 size={14} />
+          </button>
         </div>
       </div>
 
@@ -168,6 +207,8 @@ export const SoundCard: React.FC<SoundCardProps> = ({
             <span
               key={tag}
               className="card-tag-pill"
+              onMouseDown={(e) => e.stopPropagation()}
+              onTouchStart={(e) => e.stopPropagation()}
               onClick={(e) => {
                 e.stopPropagation();
                 onSelectTag(tag);
@@ -181,6 +222,8 @@ export const SoundCard: React.FC<SoundCardProps> = ({
           <span
             className="card-tag-pill"
             style={{ opacity: 0.6, fontStyle: 'italic', cursor: 'pointer' }}
+            onMouseDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
             onClick={(e) => {
               e.stopPropagation();
               onEditTags(sound);
@@ -196,7 +239,12 @@ export const SoundCard: React.FC<SoundCardProps> = ({
         {/* MAIN PLAY BUTTON */}
         <button
           className={`btn-deck-play ${isPlayingMain ? 'is-playing' : ''}`}
-          onClick={() => (isPlayingMain ? onStop(sound.id) : onPlayMain(sound))}
+          onMouseDown={(e) => e.stopPropagation()}
+          onTouchStart={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation();
+            isPlayingMain ? onStop(sound.id) : onPlayMain(sound);
+          }}
           title={`Tocar na Saída Principal: ${primaryDeviceLabel}`}
         >
           {isPlayingMain ? (
@@ -215,7 +263,12 @@ export const SoundCard: React.FC<SoundCardProps> = ({
         {/* DEDICATED TEST PILL BUTTON */}
         <button
           className={`btn-deck-test-pill ${isPlayingTest ? 'is-testing' : ''}`}
-          onClick={() => (isPlayingTest ? onStop(sound.id) : onPlayTest(sound))}
+          onMouseDown={(e) => e.stopPropagation()}
+          onTouchStart={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation();
+            isPlayingTest ? onStop(sound.id) : onPlayTest(sound);
+          }}
           title={`Pílula de Teste: Ouvir nos fones na Saída 2 (${secondaryDeviceLabel})`}
         >
           <Headphones size={13} />

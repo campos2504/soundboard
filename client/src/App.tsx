@@ -252,6 +252,71 @@ export default function App() {
     }
   };
 
+  // Drag and Drop State
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+
+  const handleDragStart = (e: React.DragEvent, index: number) => {
+    setDraggedIndex(index);
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', String(index));
+  };
+
+  const handleDragOver = (e: React.DragEvent, index: number) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    if (dragOverIndex !== index) {
+      setDragOverIndex(index);
+    }
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
+    setDragOverIndex(null);
+  };
+
+  const handleDrop = async (e: React.DragEvent, targetIndex: number) => {
+    e.preventDefault();
+    if (draggedIndex === null || draggedIndex === targetIndex) {
+      setDraggedIndex(null);
+      setDragOverIndex(null);
+      return;
+    }
+
+    const tabSounds = sounds.filter((s) => (s.tab || 'Geral').trim() === activeSoundboardTab.trim());
+    if (draggedIndex < 0 || draggedIndex >= tabSounds.length || targetIndex < 0 || targetIndex >= tabSounds.length) {
+      setDraggedIndex(null);
+      setDragOverIndex(null);
+      return;
+    }
+
+    // Splice and insert at target position
+    const [moved] = tabSounds.splice(draggedIndex, 1);
+    tabSounds.splice(targetIndex, 0, moved);
+
+    // Re-assign hotkeys based on new card order in this tab
+    tabSounds.forEach((s, idx) => {
+      s.hotkey = idx < HOTKEY_GRID_SEQUENCE.length ? HOTKEY_GRID_SEQUENCE[idx] : undefined;
+    });
+
+    // Reassemble full array
+    const otherSounds = sounds.filter((s) => (s.tab || 'Geral').trim() !== activeSoundboardTab.trim());
+    const updatedSounds = [...tabSounds, ...otherSounds];
+
+    setSounds(updatedSounds);
+    setDraggedIndex(null);
+    setDragOverIndex(null);
+
+    try {
+      await reorderSounds(updatedSounds.map((s) => s.id));
+      await Promise.all(
+        tabSounds.map((s) => updateSound(s.id, { hotkey: s.hotkey }))
+      );
+    } catch (err) {
+      console.error('Failed to save drag-and-drop order:', err);
+    }
+  };
+
   // Universal Alphanumeric Hotkey Grid Sequence
   const HOTKEY_GRID_SEQUENCE = [
     '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
@@ -454,9 +519,12 @@ export default function App() {
                 <SoundCard
                   key={sound.id}
                   sound={sound}
+                  index={idx}
                   isPlayingMain={playingMainIds.has(sound.id)}
                   isPlayingTest={playingTestIds.has(sound.id)}
                   isEditMode={isEditMode}
+                  isDragging={draggedIndex === idx}
+                  isDragOver={dragOverIndex === idx}
                   primaryDeviceLabel={audioConfig.primaryDeviceLabel}
                   secondaryDeviceLabel={audioConfig.secondaryDeviceLabel}
                   onPlayMain={handlePlayMain}
@@ -468,6 +536,10 @@ export default function App() {
                   onSelectTag={handleToggleTag}
                   onMoveLeft={idx > 0 ? () => handleMoveSound(sound.id, 'left') : undefined}
                   onMoveRight={idx < filteredSounds.length - 1 ? () => handleMoveSound(sound.id, 'right') : undefined}
+                  onDragStart={handleDragStart}
+                  onDragOver={handleDragOver}
+                  onDragEnd={handleDragEnd}
+                  onDrop={handleDrop}
                 />
               ))}
             </div>

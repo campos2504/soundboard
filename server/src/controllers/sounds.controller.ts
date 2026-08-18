@@ -8,19 +8,54 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DATA_FILE = path.join(__dirname, '../../data/sounds.json');
 
-async function loadSounds(): Promise<SoundItem[]> {
+let fileLockPromise = Promise.resolve();
+
+async function withLock<T>(fn: () => Promise<T>): Promise<T> {
+  let release: () => void;
+  const nextLock = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  const currentLock = fileLockPromise;
+  fileLockPromise = fileLockPromise.then(() => nextLock);
+
+  await currentLock;
   try {
-    const data = await fs.readFile(DATA_FILE, 'utf-8');
-    return JSON.parse(data);
-  } catch (err) {
-    console.error('Error loading sounds.json, returning empty:', err);
-    return [];
+    return await fn();
+  } finally {
+    release!();
   }
 }
 
+let memorySoundsCache: SoundItem[] | null = null;
+
+async function loadSounds(): Promise<SoundItem[]> {
+  return withLock(async () => {
+    try {
+      const data = await fs.readFile(DATA_FILE, 'utf-8');
+      const parsed = JSON.parse(data);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        memorySoundsCache = parsed;
+        return parsed;
+      }
+      if (memorySoundsCache && memorySoundsCache.length > 0) {
+        return memorySoundsCache;
+      }
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (err) {
+      console.error('Error loading sounds.json:', err);
+      return memorySoundsCache || [];
+    }
+  });
+}
+
 async function saveSounds(sounds: SoundItem[]): Promise<void> {
-  await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
-  await fs.writeFile(DATA_FILE, JSON.stringify(sounds, null, 2), 'utf-8');
+  return withLock(async () => {
+    memorySoundsCache = sounds;
+    await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
+    const tempFile = `${DATA_FILE}.tmp.${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
+    await fs.writeFile(tempFile, JSON.stringify(sounds, null, 2), 'utf-8');
+    await fs.rename(tempFile, DATA_FILE);
+  });
 }
 
 export class SoundsController {

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Search, Plus, Mic, Link as LinkIcon, Star, X, Tag as TagIcon, Edit3, CheckSquare } from 'lucide-react';
+import React, { useState } from 'react';
+import { Search, Plus, Mic, Link as LinkIcon, Star, X, Tag as TagIcon, Edit3, CheckSquare, ChevronDown, ChevronUp } from 'lucide-react';
 import type { TagInfo } from '../types';
 
 interface TagFilterBarProps {
@@ -37,6 +37,18 @@ export const TagFilterBar: React.FC<TagFilterBarProps> = ({
   onOpenRecordModal,
   onOpenImportUrlModal,
 }) => {
+  const [isTagsCollapsed, setIsTagsCollapsed] = useState(() => {
+    return localStorage.getItem('soundboard_tags_collapsed') === 'true';
+  });
+
+  const toggleCollapse = () => {
+    setIsTagsCollapsed((prev) => {
+      const next = !prev;
+      localStorage.setItem('soundboard_tags_collapsed', String(next));
+      return next;
+    });
+  };
+
   return (
     <div className="tag-filter-container">
       {/* Search and Action Buttons Row */}
@@ -45,7 +57,7 @@ export const TagFilterBar: React.FC<TagFilterBarProps> = ({
           <Search size={16} />
           <input
             type="text"
-            placeholder="Pesquisar sons por nome, tag (#meme, #gaming) ou atalho..."
+            placeholder="Pesquisar sons por nome, tag (#meme, #faro) ou atalho..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
           />
@@ -120,60 +132,79 @@ export const TagFilterBar: React.FC<TagFilterBarProps> = ({
         </div>
       </div>
 
-      {/* Tag Cloud & Source Filters */}
-      <div className="tag-chips-row">
-        <span className="tag-chip-label">
-          <TagIcon size={12} style={{ display: 'inline', marginRight: '4px' }} />
-          Tags:
-        </span>
+      {/* Tag Cloud Header & Collapse Toggle */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          paddingTop: '0.45rem',
+          borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+          gap: '0.5rem',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <button
+            type="button"
+            className="btn-steamdeck btn-steamdeck-secondary"
+            style={{ padding: '0.25rem 0.6rem', fontSize: '0.78rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+            onClick={toggleCollapse}
+            title={isTagsCollapsed ? 'Expandir nuvem de tags' : 'Minimizar nuvem de tags'}
+          >
+            <TagIcon size={13} color="var(--neon-cyan)" />
+            <span>Filtro de Tags ({tags.length})</span>
+            {isTagsCollapsed ? <ChevronDown size={14} /> : <ChevronUp size={14} />}
+          </button>
 
-        {/* Source Pills */}
-        <button
-          className={`tag-pill ${selectedSource === '' ? 'active' : ''}`}
-          onClick={() => onSelectSource('')}
-        >
-          Todas Fontes
-        </button>
-        <button
-          className={`tag-pill ${selectedSource === 'myinstants' ? 'active' : ''}`}
-          onClick={() => onSelectSource(selectedSource === 'myinstants' ? '' : 'myinstants')}
-        >
-          🔥 MyInstants
-        </button>
-        <button
-          className={`tag-pill ${selectedSource === 'soundbuttonsworld' ? 'active' : ''}`}
-          onClick={() => onSelectSource(selectedSource === 'soundbuttonsworld' ? '' : 'soundbuttonsworld')}
-        >
-          💾 SoundButtonsWorld
-        </button>
-        <button
-          className={`tag-pill ${selectedSource === 'local' ? 'active' : ''}`}
-          onClick={() => onSelectSource(selectedSource === 'local' ? '' : 'local')}
-        >
-          📁 Locais/Gravações
-        </button>
-
-        <div style={{ width: '1px', height: '16px', background: 'rgba(255,255,255,0.1)', margin: '0 4px' }} />
-
-        {/* Dynamic Tags */}
-        {tags.map((t) => {
-          const isSelected = selectedTags.includes(t.name);
-          return (
+          {/* Source Filter Quick Pills (always available) */}
+          <div style={{ display: 'flex', gap: '0.35rem', alignItems: 'center' }}>
             <button
-              key={t.name}
-              className={`tag-pill ${isSelected ? 'active' : ''}`}
-              onClick={() => onToggleTag(t.name)}
+              className={`tag-pill ${selectedSource === '' ? 'active' : ''}`}
+              style={{ padding: '0.2rem 0.55rem', fontSize: '0.75rem' }}
+              onClick={() => onSelectSource('')}
             >
-              <span>#{t.name}</span>
-              <span className="tag-pill-count">{t.count}</span>
+              Todas
             </button>
-          );
-        })}
+            <button
+              className={`tag-pill ${selectedSource === 'myinstants' ? 'active' : ''}`}
+              style={{ padding: '0.2rem 0.55rem', fontSize: '0.75rem' }}
+              onClick={() => onSelectSource(selectedSource === 'myinstants' ? '' : 'myinstants')}
+            >
+              🔥 MyInstants
+            </button>
+            <button
+              className={`tag-pill ${selectedSource === 'soundbuttonsworld' ? 'active' : ''}`}
+              style={{ padding: '0.2rem 0.55rem', fontSize: '0.75rem' }}
+              onClick={() => onSelectSource(selectedSource === 'soundbuttonsworld' ? '' : 'soundbuttonsworld')}
+            >
+              💾 SoundButtons
+            </button>
+          </div>
 
+          {/* When collapsed, display active selected tag chips */}
+          {isTagsCollapsed && selectedTags.length > 0 && (
+            <div style={{ display: 'flex', gap: '0.35rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <span style={{ fontSize: '0.75rem', color: 'var(--neon-yellow)' }}>Ativos:</span>
+              {selectedTags.map((tag) => (
+                <span
+                  key={tag}
+                  className="tag-pill active"
+                  style={{ padding: '0.2rem 0.55rem', fontSize: '0.75rem' }}
+                  onClick={() => onToggleTag(tag)}
+                  title="Clique para remover filtro"
+                >
+                  #{tag} ×
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Clear Tags Filter */}
         {selectedTags.length > 0 && (
           <button
             className="tag-pill"
-            style={{ borderColor: 'rgba(239, 68, 68, 0.4)', color: '#ff7777' }}
+            style={{ borderColor: 'rgba(239, 68, 68, 0.4)', color: '#ff7777', padding: '0.2rem 0.55rem', fontSize: '0.75rem' }}
             onClick={onClearTags}
           >
             <X size={12} />
@@ -181,6 +212,34 @@ export const TagFilterBar: React.FC<TagFilterBarProps> = ({
           </button>
         )}
       </div>
+
+      {/* Expanded Tag Cloud */}
+      {!isTagsCollapsed && (
+        <div
+          className="tag-chips-row"
+          style={{
+            marginTop: '0.45rem',
+            paddingTop: '0.45rem',
+            borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+            maxHeight: '140px',
+            overflowY: 'auto',
+          }}
+        >
+          {tags.map((t) => {
+            const isSelected = selectedTags.includes(t.name);
+            return (
+              <button
+                key={t.name}
+                className={`tag-pill ${isSelected ? 'active' : ''}`}
+                onClick={() => onToggleTag(t.name)}
+              >
+                <span>#{t.name}</span>
+                <span className="tag-pill-count">{t.count}</span>
+              </button>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
