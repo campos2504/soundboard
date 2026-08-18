@@ -48,4 +48,5 @@ export interface AudioRoutingConfig {
   previewVolume: number;       // 0 to 1
   dualOutputEnabled: boolean;  // play on both outputs simultaneously
   overlapMode: 'overlap' | 'cut' | 'queue';
+  earProtectionMode?: boolean; // Limiter anti-estouro automático nos fones
 }

@@ -32,6 +32,7 @@ export const AudioRoutingModal: React.FC<AudioRoutingModalProps> = ({
   const [previewVolume, setPreviewVolume] = useState(config.previewVolume);
   const [dualOutput, setDualOutput] = useState(config.dualOutputEnabled);
   const [overlapMode, setOverlapMode] = useState(config.overlapMode);
+  const [earProtection, setEarProtection] = useState(config.earProtectionMode !== false);
   const [testingPrimaryTone, setTestingPrimaryTone] = useState(false);
   const [testingSecondaryTone, setTestingSecondaryTone] = useState(false);
   const [testingPrimarySample, setTestingPrimarySample] = useState(false);
@@ -55,6 +56,7 @@ export const AudioRoutingModal: React.FC<AudioRoutingModalProps> = ({
       setPreviewVolume(config.previewVolume);
       setDualOutput(config.dualOutputEnabled);
       setOverlapMode(config.overlapMode);
+      setEarProtection(config.earProtectionMode !== false);
     }
   }, [isOpen, config]);
 
@@ -115,6 +117,7 @@ export const AudioRoutingModal: React.FC<AudioRoutingModalProps> = ({
       previewVolume,
       dualOutputEnabled: dualOutput,
       overlapMode,
+      earProtectionMode: earProtection,
     };
 
     onSaveConfig(updated);
@@ -329,6 +332,26 @@ export const AudioRoutingModal: React.FC<AudioRoutingModalProps> = ({
               </span>
               <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                 Interrompe sons anteriores ao disparar um novo som.
+              </p>
+            </div>
+          </label>
+
+          <label style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer', background: 'rgba(0, 255, 136, 0.06)', padding: '8px 10px', borderRadius: '8px', border: '1px solid rgba(0, 255, 136, 0.25)' }}>
+            <input
+              type="checkbox"
+              checked={earProtection}
+              onChange={(e) => {
+                setEarProtection(e.target.checked);
+                AudioEngine.saveConfig({ earProtectionMode: e.target.checked });
+              }}
+              style={{ width: '18px', height: '18px', accentColor: 'var(--neon-green)' }}
+            />
+            <div>
+              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--neon-green)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                🛡️ Proteção Auricular Anti-Estouro (Limiter Dinâmico nos Fones)
+              </span>
+              <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
+                Comprime e limita automaticamente o ganho de memes explosivos na saída de teste para evitar saturação e proteger seus ouvidos.
               </p>
             </div>
           </label>

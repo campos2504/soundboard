@@ -61,9 +61,10 @@ class AudioEngineService {
     secondaryDeviceId: 'default',
     secondaryDeviceLabel: 'Padrão do Sistema (Fones / Preview)',
     masterVolume: 1.0,
-    previewVolume: 1.0,
+    previewVolume: 0.70,
     dualOutputEnabled: false,
     overlapMode: 'cut',
+    earProtectionMode: true,
   };
 
   constructor() {
@@ -205,8 +206,14 @@ class AudioEngineService {
     const audio = new Audio(streamUrl);
 
     const baseVol = sound.volume !== undefined ? sound.volume : 1.0;
-    const masterVol = isTestPreview ? this.config.previewVolume : this.config.masterVolume;
-    audio.volume = Math.max(0, Math.min(1, baseVol * masterVol));
+    const masterVol = isTestPreview ? (this.config.previewVolume !== undefined ? this.config.previewVolume : 0.70) : this.config.masterVolume;
+    let finalVol = baseVol * masterVol;
+
+    // Dynamic Anti-Clipping / Ear Protection Limiter for Test Output (Headphones)
+    if (isTestPreview && this.config.earProtectionMode !== false) {
+      finalVol = Math.min(0.72, finalVol * 0.90);
+    }
+    audio.volume = Math.max(0, Math.min(1, finalVol));
 
     if (sound.playbackRate && sound.playbackRate > 0) {
       audio.playbackRate = sound.playbackRate;
