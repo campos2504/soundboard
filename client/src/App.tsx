@@ -102,6 +102,13 @@ export default function App() {
         localStorage.setItem('soundboard_custom_tabs', JSON.stringify(merged));
         return merged;
       });
+
+      // Background Pre-scan: Pre-analyze loudness profile for all sounds to detect bursts before playback
+      setTimeout(() => {
+        soundList.forEach((s) => {
+          if (s.url) AudioEngine.analyzeSoundLoudness(s.url).catch(() => {});
+        });
+      }, 500);
     } catch (err) {
       console.error('Error loading soundboard data:', err);
     } finally {

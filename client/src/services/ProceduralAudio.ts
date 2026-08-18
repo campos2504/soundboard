@@ -58,7 +58,7 @@ class ProceduralAudioService {
     }
 
     if (this.sinkAudioEl) {
-      this.sinkAudioEl.volume = Math.max(0, Math.min(1, config.previewVolume));
+      this.sinkAudioEl.volume = Math.max(0, Math.min(0.50, config.previewVolume * 0.50));
       if (this.lastTargetDeviceId !== targetDevice) {
         this.lastTargetDeviceId = targetDevice;
         if (targetDevice !== 'default' && typeof (this.sinkAudioEl as any).setSinkId === 'function') {

@@ -48,12 +48,20 @@ function generateChimeWav(isSecondary: boolean = false): string {
   return 'data:audio/wav;base64,' + btoa(binary);
 }
 
+export interface LoudnessProfile {
+  multiplier: number;
+  isBurst: boolean;
+  rms: number;
+  peak: number;
+}
+
 class AudioEngineService {
   private activeAudios: Map<string, { element: HTMLAudioElement; isTest: boolean }> = new Map();
   private playingSoundIds: Set<string> = new Set();
   private activeTestSoundIds: Set<string> = new Set();
   private stateListeners: Set<PlayingStateCallback> = new Set();
   private simulatedVisualizerData: Uint8Array = new Uint8Array(32);
+  private loudnessCache: Map<string, LoudnessProfile> = new Map();
 
   private config: AudioRoutingConfig = {
     primaryDeviceId: 'default',
@@ -131,6 +139,74 @@ class AudioEngineService {
   }
 
   /**
+   * Pre-scan sound waveform PCM buffer to detect if audio is clipped / overloaded (estourado)
+   * Returns exact safe gain multiplier (e.g. 0.50 for ear-rape memes, 1.0 for normal memes)
+   */
+  public async analyzeSoundLoudness(url: string): Promise<LoudnessProfile> {
+    if (this.loudnessCache.has(url)) {
+      return this.loudnessCache.get(url)!;
+    }
+
+    try {
+      const proxyUrl = getAudioProxyUrl(url);
+      const res = await fetch(proxyUrl);
+      const arrayBuffer = await res.arrayBuffer();
+      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+      const ctx = new AudioCtx();
+      const audioBuffer = await ctx.decodeAudioData(arrayBuffer);
+
+      let maxPeak = 0;
+      let sumSquares = 0;
+      let clipCount = 0;
+      const data = audioBuffer.getChannelData(0);
+      const len = data.length;
+      const step = Math.max(1, Math.floor(len / 40000));
+      let sampleCount = 0;
+
+      for (let i = 0; i < len; i += step) {
+        const abs = Math.abs(data[i]);
+        if (abs > maxPeak) maxPeak = abs;
+        if (abs >= 0.96) clipCount++;
+        sumSquares += abs * abs;
+        sampleCount++;
+      }
+
+      const rms = Math.sqrt(sumSquares / Math.max(1, sampleCount));
+      const clipRatio = clipCount / Math.max(1, sampleCount);
+
+      let multiplier = 1.0;
+      let isBurst = false;
+
+      // Heavy ear-rape / distorted / clipped meme detection
+      if (rms > 0.35 || clipRatio > 0.08 || (maxPeak >= 0.99 && rms > 0.30)) {
+        isBurst = true;
+        multiplier = 0.52; // Reduce by ~48% to protect ears
+      } else if (rms > 0.26 || clipRatio > 0.03 || maxPeak >= 0.98) {
+        isBurst = true;
+        multiplier = 0.70; // Reduce by 30%
+      } else if (rms > 0.20) {
+        isBurst = false;
+        multiplier = 0.88;
+      } else {
+        isBurst = false;
+        multiplier = 1.0; // Normal or quiet sound: 100% natural volume!
+      }
+
+      const profile: LoudnessProfile = { multiplier, isBurst, rms, peak: maxPeak };
+      this.loudnessCache.set(url, profile);
+      ctx.close().catch(() => {});
+      return profile;
+    } catch {
+      const fallback: LoudnessProfile = { multiplier: 1.0, isBurst: false, rms: 0.15, peak: 0.8 };
+      return fallback;
+    }
+  }
+
+  public getLoudnessProfile(url: string): LoudnessProfile | undefined {
+    return this.loudnessCache.get(url);
+  }
+
+  /**
    * Enumerate available output devices. Requests audio permission if necessary to unlock labels & hardware routing.
    */
   public async getAvailableOutputDevices(forcePrompt: boolean = false): Promise<AudioOutputDevice[]> {
@@ -205,9 +281,22 @@ class AudioEngineService {
     const streamUrl = getAudioProxyUrl(sound.url);
     const audio = new Audio(streamUrl);
 
+    // Pre-check if sound has an analyzed loudness profile
+    const profile = this.loudnessCache.get(sound.url);
+    if (!profile && sound.url) {
+      this.analyzeSoundLoudness(sound.url).catch(() => {});
+    }
+
     const baseVol = sound.volume !== undefined ? sound.volume : 1.0;
     const masterVol = isTestPreview ? (this.config.previewVolume !== undefined ? this.config.previewVolume : 0.70) : this.config.masterVolume;
-    let finalVol = baseVol * masterVol;
+    
+    // Selective auto-attenuation applied ONLY to sounds detected as burst / clipping
+    const autoScale = (profile && profile.isBurst) ? profile.multiplier : 1.0;
+    let finalVol = baseVol * masterVol * autoScale;
+
+    if (profile && profile.isBurst) {
+      console.log(`[AudioEngine] 🛡️ Som estourado detectado ("${sound.title || sound.id}"). Ganho compensado automaticamente de 100% para ${Math.round(profile.multiplier * 100)}%`);
+    }
 
     // Dynamic Anti-Clipping / Ear Protection Limiter for Test Output (Headphones)
     if (isTestPreview && this.config.earProtectionMode !== false) {
