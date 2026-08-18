@@ -195,7 +195,7 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
             }}
           >
             <span style={{ fontSize: '0.85rem', color: '#fff', fontWeight: 600 }}>
-              🔊 Testar Configuração Atual:
+              Testar Configuração Atual:
             </span>
             <div style={{ display: 'flex', gap: '0.5rem' }}>
               <button

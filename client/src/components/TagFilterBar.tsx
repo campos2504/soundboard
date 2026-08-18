@@ -66,14 +66,24 @@ export const TagFilterBar: React.FC<TagFilterBarProps> = ({
               onClick={() => onSearchChange('')}
               style={{
                 position: 'absolute',
-                right: '10px',
-                background: 'transparent',
-                border: 'none',
-                color: 'var(--text-muted)',
+                right: '8px',
+                background: 'rgba(255, 0, 85, 0.15)',
+                border: '1px solid rgba(255, 0, 85, 0.4)',
+                borderRadius: '3px',
+                color: '#ff4d88',
                 cursor: 'pointer',
+                padding: '2px 6px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '2px',
+                fontFamily: 'var(--font-pixel)',
+                fontSize: '0.85rem',
+                zIndex: 3,
               }}
+              title="Limpar pesquisa"
             >
-              <X size={14} />
+              <span>CLR</span>
+              <X size={11} />
             </button>
           )}
         </div>
@@ -97,7 +107,7 @@ export const TagFilterBar: React.FC<TagFilterBarProps> = ({
             title="Ativar/Desativar modo de organização e edição da soundboard"
           >
             {isEditMode ? <CheckSquare size={14} /> : <Edit3 size={14} color="var(--neon-cyan)" />}
-            <span>{isEditMode ? 'Concluir Edição' : '✏️ Modo Edição'}</span>
+            <span>{isEditMode ? 'Concluir Edição' : 'Modo Edição'}</span>
           </button>
 
           {/* Record Button */}
@@ -170,14 +180,14 @@ export const TagFilterBar: React.FC<TagFilterBarProps> = ({
               style={{ padding: '0.2rem 0.55rem', fontSize: '0.75rem' }}
               onClick={() => onSelectSource(selectedSource === 'myinstants' ? '' : 'myinstants')}
             >
-              🔥 MyInstants
+              MyInstants
             </button>
             <button
               className={`tag-pill ${selectedSource === 'soundbuttonsworld' ? 'active' : ''}`}
               style={{ padding: '0.2rem 0.55rem', fontSize: '0.75rem' }}
               onClick={() => onSelectSource(selectedSource === 'soundbuttonsworld' ? '' : 'soundbuttonsworld')}
             >
-              💾 SoundButtons
+              SoundButtons
             </button>
           </div>
 

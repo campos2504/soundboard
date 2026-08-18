@@ -364,7 +364,7 @@ export const SoundCard: React.FC<SoundCardProps> = ({
             title={`Ouvir prévia no Fone (Saída 2: ${secondaryDeviceLabel})`}
           >
             <Headphones size={12} />
-            <span>{isPlayingTest ? 'PARAR' : 'TEST 🎧'}</span>
+            <span>{isPlayingTest ? 'PARAR' : 'TEST'}</span>
           </button>
         </div>
       </div>

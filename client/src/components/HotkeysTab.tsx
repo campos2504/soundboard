@@ -19,7 +19,7 @@ type HotkeyStrategy = 'standard_qwerty' | 'numpad_only' | 'letters_only' | 'cust
 
 const STRATEGY_PRESETS: Record<string, { label: string; description: string; sequence: string[] }> = {
   standard_qwerty: {
-    label: '🕹️ Padrão Arcade (1-0 ➔ QWERTY)',
+    label: 'Padrão Arcade (1-0 ➔ QWERTY)',
     description: 'Números de 1 a 0 seguidos pelas linhas do teclado QWERTY.',
     sequence: [
       '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
@@ -29,12 +29,12 @@ const STRATEGY_PRESETS: Record<string, { label: string; description: string; seq
     ],
   },
   numpad_only: {
-    label: '🔢 Apenas Números (1 a 0)',
+    label: 'Apenas Números (1 a 0)',
     description: 'Atribui apenas dígitos numéricos (ideal para teclado numérico).',
     sequence: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
   },
   letters_only: {
-    label: '🔤 Apenas Letras (Q a M)',
+    label: 'Apenas Letras (Q a M)',
     description: 'Atribui apenas teclas de letras, sem números.',
     sequence: [
       'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
@@ -43,12 +43,12 @@ const STRATEGY_PRESETS: Record<string, { label: string; description: string; seq
     ],
   },
   custom: {
-    label: '✏️ Sequência Customizada',
+    label: 'Sequência Customizada',
     description: 'Defina manualmente a ordem exata de teclas que deseja usar.',
     sequence: [],
   },
   manual: {
-    label: '🔒 Modo 100% Manual (Sem Auto-Atribuição)',
+    label: 'Modo 100% Manual (Sem Auto-Atribuição)',
     description: 'Não altera atalhos ao mover cards. Cada som mantém seu atalho fixo.',
     sequence: [],
   },
@@ -295,7 +295,7 @@ export const HotkeysTab: React.FC<HotkeysTabProps> = ({
               color: 'var(--text-muted)',
             }}
           >
-            <span>🎧 <strong>Dica:</strong> [Tecla] = Saída 1 | [Shift + Tecla] = Fones</span>
+            <span><strong>Dica:</strong> [Tecla] = Saída 1 | [Shift + Tecla] = Fones</span>
           </div>
         </div>
 

@@ -75,7 +75,7 @@ export const SoundboardTabsBar: React.FC<SoundboardTabsBarProps> = ({
 
         <div className="rack-screw-group">
           <span style={{ fontFamily: 'var(--font-pixel)', fontSize: '0.85rem', color: 'var(--neon-yellow)' }}>
-            ⌨️ &lt; &gt; NAVEGAR PRESETS
+            &lt; &gt; NAVEGAR PRESETS
           </span>
           <div className="rack-screw-wash">
             <div className="rack-hex-screw" />

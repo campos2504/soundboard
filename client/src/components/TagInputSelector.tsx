@@ -130,7 +130,7 @@ export const TagInputSelector: React.FC<TagInputSelectorProps> = ({
           }}
         >
           <span style={{ fontSize: '0.74rem', color: 'var(--text-secondary)', display: 'block', marginBottom: '0.4rem', fontWeight: 600 }}>
-            🏷️ Tags Existentes na Soundboard (Clique para selecionar):
+            Tags Existentes na Soundboard (Clique para selecionar):
           </span>
           <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap', maxHeight: '110px', overflowY: 'auto' }}>
             {allUniqueTags.map((tag) => {

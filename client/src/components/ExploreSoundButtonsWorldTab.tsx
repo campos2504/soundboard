@@ -287,7 +287,7 @@ export const ExploreSoundButtonsWorldTab: React.FC<ExploreSoundButtonsWorldTabPr
                       title="Pílula de Teste: Ouvir no Fone"
                     >
                       <Headphones size={12} />
-                      <span>{isTesting ? 'PARAR' : 'TEST 🎧'}</span>
+                      <span>{isTesting ? 'PARAR' : 'TEST'}</span>
                     </button>
                   </div>
                 </div>

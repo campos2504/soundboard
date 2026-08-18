@@ -378,61 +378,106 @@ body::before {
   border: 1px solid rgba(255, 230, 0, 0.4);
 }
 
-/* Tag Filter Container */
+/* =========================================================================
+   STUDIO RACK SEARCH & VFD TERMINAL FILTER STATION
+   ========================================================================= */
 .tag-filter-container {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  background: rgba(23, 19, 48, 0.85);
-  border: 1px solid rgba(0, 240, 255, 0.25);
-  border-radius: var(--radius-lg);
-  padding: 1rem 1.25rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  gap: 0.75rem;
+  background: linear-gradient(180deg, #2b2f3a 0%, #1d2028 100%);
+  border: 1px solid #444b5c;
+  border-top: 1px solid #636d85;
+  border-bottom: 2px solid #0a0c10;
+  border-radius: 10px;
+  padding: 0.85rem 1.15rem;
+  margin-bottom: 1.35rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .filter-search-row {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
   flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
+/* VFD / CRT Green Phosphor Search Terminal Screen */
 .search-input-box {
   flex: 1;
-  min-width: 250px;
+  min-width: 260px;
   position: relative;
   display: flex;
   align-items: center;
+  background: radial-gradient(circle at 50% 50%, #03170f 0%, #010a07 100%);
+  border: 1px solid #143324;
+  border-radius: 6px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.9), 0 0 6px rgba(0, 255, 136, 0.12);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+/* CRT Screen Scanlines */
+.search-input-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.25) 0px,
+    rgba(0, 0, 0, 0.25) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 .search-input-box svg {
   position: absolute;
-  left: 1rem;
-  color: var(--neon-pink);
+  left: 0.85rem;
+  color: var(--neon-green);
+  filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.6));
+  z-index: 2;
 }
 
 .search-input-box input {
   width: 100%;
-  padding: 0.65rem 1rem 0.65rem 2.6rem;
-  background: #0d0a1c;
-  border: 1px solid rgba(255, 0, 128, 0.3);
-  border-radius: var(--radius-md);
-  color: var(--text-primary);
-  font-size: 0.9rem;
+  padding: 0.6rem 2.4rem 0.6rem 2.5rem;
+  background: transparent;
+  border: none;
+  color: #00ffaa;
+  font-family: var(--font-pixel), 'VT323', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.6px;
   outline: none;
-  transition: all 0.2s ease;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 0 5px rgba(0, 255, 170, 0.6);
 }
 
-.search-input-box input:focus {
-  border-color: var(--neon-cyan);
-  box-shadow: 0 0 15px var(--neon-cyan-glow);
+.search-input-box input::placeholder {
+  color: #24553f;
+  font-family: var(--font-pixel), monospace;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  text-shadow: none;
+}
+
+.search-input-box:focus-within {
+  border-color: #00ff88;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.9), 0 0 16px rgba(0, 255, 136, 0.4);
 }
 
 .action-buttons-group {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
   flex-wrap: wrap;
 }
 
@@ -440,47 +485,53 @@ body::before {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.6rem 1rem;
-  border-radius: var(--radius-md);
+  padding: 0.5rem 0.85rem;
+  border-radius: 6px;
   font-family: var(--font-retro);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid transparent;
+  user-select: none;
 }
 
 .btn-steamdeck-primary {
-  background: linear-gradient(135deg, var(--neon-pink) 0%, #b30059 100%);
+  background: linear-gradient(180deg, #e6005c 0%, #99003d 100%);
   color: #ffffff;
-  border-color: #ff3399;
-  box-shadow: 0 4px 15px rgba(255, 0, 128, 0.4);
+  border: 1px solid #ff4d94;
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 3px 8px rgba(230, 0, 92, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 .btn-steamdeck-primary:hover {
-  background: linear-gradient(135deg, #ff1a8c 0%, #cc0066 100%);
-  box-shadow: 0 4px 22px rgba(255, 0, 128, 0.8);
-  transform: translateY(-2px);
+  background: linear-gradient(180deg, #ff1a75 0%, #b30047 100%);
+  box-shadow: 0 4px 16px rgba(255, 0, 102, 0.7);
+  transform: translateY(-1.5px);
 }
 
 .btn-steamdeck-amber {
-  background: linear-gradient(135deg, var(--neon-orange) 0%, #cc4400 100%);
+  background: linear-gradient(180deg, #e67300 0%, #994d00 100%);
   color: #ffffff;
-  border-color: #ff8833;
-  box-shadow: 0 4px 15px rgba(255, 102, 0, 0.4);
+  border: 1px solid #ff9933;
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 3px 8px rgba(230, 115, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 .btn-steamdeck-amber:hover {
-  background: linear-gradient(135deg, #ff771a 0%, #e64d00 100%);
-  box-shadow: 0 4px 22px rgba(255, 102, 0, 0.8);
-  transform: translateY(-2px);
+  background: linear-gradient(180deg, #ff851a 0%, #b35900 100%);
+  box-shadow: 0 4px 16px rgba(255, 133, 26, 0.7);
+  transform: translateY(-1.5px);
 }
 
 .btn-steamdeck-secondary {
-  background: #1c173c;
-  color: var(--text-primary);
-  border: 1px solid rgba(0, 240, 255, 0.25);
+  background: linear-gradient(180deg, #323744 0%, #20242e 100%);
+  color: #e2e8f0;
+  border: 1px solid #4a5266;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid #0c0e12;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 .btn-steamdeck-secondary:hover {
-  background: #2a225a;
-  border-color: var(--neon-cyan);
+  background: linear-gradient(180deg, #3d4352 0%, #282d3a 100%);
+  border-color: #646f8a;
   color: #ffffff;
 }
 
@@ -488,7 +539,7 @@ body::before {
 .tag-chips-row {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.4rem;
   flex-wrap: wrap;
   padding-top: 0.35rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -496,7 +547,7 @@ body::before {
 
 .tag-chip-label {
   font-family: var(--font-pixel);
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--neon-yellow);
   margin-right: 0.25rem;
   text-transform: uppercase;
@@ -507,40 +558,38 @@ body::before {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.28rem 0.75rem;
-  background: #110e28;
-  border: 1px solid rgba(255, 0, 128, 0.25);
-  border-radius: var(--radius-pill);
-  color: var(--text-secondary);
+  padding: 0.25rem 0.65rem;
+  background: #14171e;
+  border: 1px solid #383e4d;
+  border-radius: 4px;
+  color: #94a3b8;
   font-size: 0.76rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.12s ease;
   user-select: none;
 }
 
 .tag-pill:hover {
-  border-color: var(--neon-cyan);
-  color: #ffffff;
-  background: #201948;
-  box-shadow: 0 0 8px var(--neon-cyan-glow);
+  border-color: var(--neon-green);
+  color: #00ffaa;
+  background: #19221f;
 }
 
 .tag-pill.active {
-  background: rgba(0, 240, 255, 0.2);
-  border-color: var(--neon-cyan);
-  color: var(--neon-cyan);
-  box-shadow: 0 0 12px var(--neon-cyan-glow);
+  background: radial-gradient(circle at 50% 50%, #062419 0%, #02120c 100%);
+  border-color: #00ff88;
+  color: #00ffaa;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
   font-weight: 700;
 }
 
 .tag-pill-count {
   font-family: var(--font-pixel);
   font-size: 0.85rem;
-  opacity: 0.8;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 0 5px;
-  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0 4px;
+  border-radius: 2px;
   color: var(--neon-yellow);
 }
 

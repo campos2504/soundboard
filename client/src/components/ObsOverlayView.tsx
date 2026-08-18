@@ -114,7 +114,7 @@ export const ObsOverlayView: React.FC<ObsOverlayViewProps> = ({ sounds }) => {
               )}
               {activeSound?.tab && (
                 <span className="obs-tab-badge">
-                  📁 {activeSound.tab}
+                  {activeSound.tab}
                 </span>
               )}
               <span className="obs-sound-status">

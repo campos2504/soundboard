@@ -670,7 +670,7 @@ export default function App() {
             <div className="empty-state-container">
               <Radio size={48} color="var(--deck-cyan)" />
               <h3>Nenhum som na aba "{activeSoundboardTab}"</h3>
-              <p>Adicione novos memes nesta aba ou clique em <strong>✏️ Editar</strong> em qualquer som para movê-lo para esta aba!</p>
+              <p>Adicione novos memes nesta aba ou clique em <strong>Editar</strong> em qualquer som para movê-lo para esta aba!</p>
               <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>
                 <button
                   className="btn-steamdeck btn-steamdeck-primary"
@@ -682,7 +682,7 @@ export default function App() {
                   className="btn-steamdeck btn-steamdeck-amber"
                   onClick={() => setActiveTab('myinstants')}
                 >
-                  🔥 Explorar MyInstants
+                  Explorar MyInstants
                 </button>
               </div>
             </div>

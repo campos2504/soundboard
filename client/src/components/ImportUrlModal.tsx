@@ -195,7 +195,7 @@ export const ImportUrlModal: React.FC<ImportUrlModalProps> = ({
 
             <div style={{ marginTop: '0.5rem', background: 'rgba(26, 159, 255, 0.06)', border: '1px solid rgba(26, 159, 255, 0.15)', borderRadius: '8px', padding: '0.6rem 0.75rem' }}>
               <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
-                💡 <strong>Como copiar do site:</strong> No <strong>MyInstants</strong> ou <strong>SoundButtonsWorld</strong>, clique com o botão direito no botão do meme e escolha <em>"Copiar endereço do link"</em> ou copie o link da página no navegador. O extrator identifica o som automaticamente!
+                <strong>Como copiar do site:</strong> No <strong>MyInstants</strong> ou <strong>SoundButtonsWorld</strong>, clique com o botão direito no botão do meme e escolha <em>"Copiar endereço do link"</em> ou copie o link da página no navegador. O extrator identifica o som automaticamente!
               </p>
             </div>
           </div>

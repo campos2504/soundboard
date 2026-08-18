@@ -328,7 +328,7 @@ class AudioEngineService {
     (audio as any)._autoScale = autoScale;
 
     if (profile && profile.isBurst) {
-      console.log(`[AudioEngine] 🛡️ Som estourado detectado ("${sound.title || sound.id}"). Ganho compensado automaticamente de 100% para ${Math.round(profile.multiplier * 100)}%`);
+      console.log(`[AudioEngine] Som estourado detectado ("${sound.title || sound.id}"). Ganho compensado automaticamente de 100% para ${Math.round(profile.multiplier * 100)}%`);
     }
 
     // Dynamic Anti-Clipping / Ear Protection Limiter for Test Output (Headphones)

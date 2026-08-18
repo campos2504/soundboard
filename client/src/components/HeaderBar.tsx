@@ -63,7 +63,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
         />
         <div className="deck-title-group">
           <h1>ARCADE SOUNDWAVE 90s</h1>
-          <p>★ Stereo Soundboard Anos 90 • MyInstants & SoundButtonsWorld ★</p>
+          <p>Stereo Soundboard Anos 90 • MyInstants & SoundButtonsWorld</p>
         </div>
       </div>
 

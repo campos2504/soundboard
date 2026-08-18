@@ -21,7 +21,7 @@ export const NavigationTabs: React.FC<NavigationTabsProps> = ({
         onClick={() => onSelectTab('library')}
       >
         <LayoutGrid size={18} color={activeTab === 'library' ? 'var(--neon-cyan)' : 'inherit'} />
-        <span>🕹️ Arcade Soundboard</span>
+        <span>Arcade Soundboard</span>
         <span className="nav-tab-badge">{soundCount} Sons</span>
       </button>
 
@@ -30,7 +30,7 @@ export const NavigationTabs: React.FC<NavigationTabsProps> = ({
         onClick={() => onSelectTab('myinstants')}
       >
         <Flame size={18} color="var(--neon-pink)" />
-        <span>🔥 MyInstants Feed</span>
+        <span>MyInstants Feed</span>
         <span className="nav-tab-badge">Em Alta</span>
       </button>
 
@@ -39,7 +39,7 @@ export const NavigationTabs: React.FC<NavigationTabsProps> = ({
         onClick={() => onSelectTab('soundbuttonsworld')}
       >
         <Globe2 size={18} color="var(--neon-cyan)" />
-        <span>💾 SoundButtonsWorld</span>
+        <span>SoundButtonsWorld</span>
         <span className="nav-tab-badge">180k+ Sons</span>
       </button>
 
@@ -48,7 +48,7 @@ export const NavigationTabs: React.FC<NavigationTabsProps> = ({
         onClick={() => onSelectTab('hotkeys')}
       >
         <Keyboard size={18} color="var(--neon-yellow)" />
-        <span>⚙️ Configurar Ordem & Atalhos</span>
+        <span>Configurar Ordem & Atalhos</span>
       </button>
     </nav>
   );

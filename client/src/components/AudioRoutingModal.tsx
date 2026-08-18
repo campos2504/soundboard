@@ -250,7 +250,7 @@ export const AudioRoutingModal: React.FC<AudioRoutingModalProps> = ({
             </button>
           </div>
           <p style={{ fontSize: '0.74rem', color: 'var(--text-muted)', marginTop: '0.4rem' }}>
-            💡 Ao clicar no botão <strong>Testar [X]</strong> em qualquer som na Soundboard, o áudio será enviado <strong>exclusivamente para esta saída secundária</strong>!
+            Ao clicar no botão <strong>Testar [X]</strong> em qualquer som na Soundboard, o áudio será enviado <strong>exclusivamente para esta saída secundária</strong>!
           </p>
         </div>
 
@@ -275,7 +275,7 @@ export const AudioRoutingModal: React.FC<AudioRoutingModalProps> = ({
           </div>
 
           <div className="form-group-deck">
-            <label>Volume Pílula de Teste ({Math.round(previewVolume * 100)}%)</label>
+            <label>Volume Pílula de Teste / Fones ({Math.round(previewVolume * 100)}%)</label>
             <input
               type="range"
               min="0"
@@ -303,14 +303,14 @@ export const AudioRoutingModal: React.FC<AudioRoutingModalProps> = ({
                 setDualOutput(e.target.checked);
                 AudioEngine.saveConfig({ dualOutputEnabled: e.target.checked });
               }}
-              style={{ width: '18px', height: '18px', accentColor: 'var(--deck-cyan)' }}
+              style={{ width: '18px', height: '18px', accentColor: 'var(--neon-pink)' }}
             />
             <div>
               <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#fff' }}>
-                Modo Saída Dupla Simultânea
+                Habilitar Saída Dupla Simultânea
               </span>
               <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-                Ao tocar na Saída 1 [A], toca também automaticamente nos seus fones (Saída 2).
+                Ao tocar um som normal, reproduz ao mesmo tempo na saída principal e secundária.
               </p>
             </div>
           </label>
@@ -348,7 +348,7 @@ export const AudioRoutingModal: React.FC<AudioRoutingModalProps> = ({
             />
             <div>
               <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--neon-green)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                🛡️ Proteção Auricular Anti-Estouro (Limiter Dinâmico nos Fones)
+                Proteção Auricular Anti-Estouro (Limiter Dinâmico nos Fones)
               </span>
               <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                 Comprime e limita automaticamente o ganho de memes explosivos na saída de teste para evitar saturação e proteger seus ouvidos.

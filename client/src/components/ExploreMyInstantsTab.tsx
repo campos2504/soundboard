@@ -126,7 +126,7 @@ export const ExploreMyInstantsTab: React.FC<ExploreMyInstantsTabProps> = ({ onAd
               setRegion('brazil');
             }}
           >
-            🇧🇷 Brasil
+            Brasil
           </button>
           <button
             className={`tag-pill ${region === 'global' && !query ? 'active' : ''}`}
@@ -135,7 +135,7 @@ export const ExploreMyInstantsTab: React.FC<ExploreMyInstantsTabProps> = ({ onAd
               setRegion('global');
             }}
           >
-            🌍 Global
+            Global
           </button>
           <button
             className={`tag-pill ${region === 'us' && !query ? 'active' : ''}`}
@@ -144,7 +144,7 @@ export const ExploreMyInstantsTab: React.FC<ExploreMyInstantsTabProps> = ({ onAd
               setRegion('us');
             }}
           >
-            🇺🇸 Estados Unidos
+            EUA
           </button>
         </div>
       </div>
@@ -303,7 +303,7 @@ export const ExploreMyInstantsTab: React.FC<ExploreMyInstantsTabProps> = ({ onAd
                       title="Pílula de Teste: Ouvir no Fone"
                     >
                       <Headphones size={12} />
-                      <span>{isTesting ? 'PARAR' : 'TEST 🎧'}</span>
+                      <span>{isTesting ? 'PARAR' : 'TEST'}</span>
                     </button>
                   </div>
                 </div>
