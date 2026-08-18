@@ -1,22 +1,5 @@
 [
   {
-    "id": "sound_1787015144883_7qae7",
-    "title": "Sua mãe sabe que você gosta de rapazes",
-    "url": "https://www.myinstants.com/media/sounds/sua-mae-sabe-que-voce-gosta-de-rapazes.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/pt/instant/sua-mae-sabe-que-voce-gosta-de-rapazes-80078/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#ff007f",
-    "tab": "La Ele",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787015144883,
-    "hotkey": "2"
-  },
-  {
     "id": "sound_1787014824225_5jvtr",
     "title": "HIHI (Michael Jackson)",
     "url": "https://www.myinstants.com/media/sounds/mp3download_zgIWEmK.mp3",
@@ -32,48 +15,6 @@
     "isFavorite": false,
     "createdAt": 1787014824225,
     "hotkey": "1"
-  },
-  {
-    "id": "sound_1787008605791_itjcc",
-    "title": "AAAl",
-    "url": "https://www.myinstants.com/media/sounds/aaal.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/aaal-41211/?utm_source=copy&utm_medium=share",
-    "tags": [
-      "myinstants",
-      "meme",
-      "faro"
-    ],
-    "color": "#FFF702",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787008605791,
-    "tab": "La Ele",
-    "hotkey": "1"
-  },
-  {
-    "id": "vine-boom-default",
-    "title": "Vine Boom",
-    "url": "https://soundbuttonsworld.com/uploads/707db471-c834-494e-a3d9-ada985203ef6.mp3",
-    "source": "soundbuttonsworld",
-    "tags": [
-      "meme",
-      "sfx",
-      "loud",
-      "impact",
-      "soundbuttonsworld",
-      "impacto",
-      "vineboom",
-      "bass"
-    ],
-    "color": "#1a9fff",
-    "hotkey": "SPACE",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": true,
-    "createdAt": 1700000000000,
-    "tab": "Efeitos"
   },
   {
     "id": "bruh-sound-default",
@@ -111,12 +52,873 @@
       "fofo"
     ],
     "color": "#ff3399",
-    "hotkey": "3",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1700000002000,
+    "tab": "Memes & TV",
+    "hotkey": "3"
+  },
+  {
+    "id": "we-do-not-care-default",
+    "title": "WE DO NOT CARE",
+    "url": "https://soundbuttonsworld.com/uploads/ab48a9f6-5007-4dac-a55d-6362677e40d6.mp3",
+    "source": "soundbuttonsworld",
+    "tags": [
+      "meme",
+      "reaction",
+      "loud",
+      "soundbuttonsworld"
+    ],
+    "color": "#e02424",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1700000004000,
     "tab": "Memes & TV"
+  },
+  {
+    "id": "sound_1787010740662_myrnt",
+    "title": "ILARI ILARI ILARIÊ TROLL",
+    "url": "https://www.myinstants.com/media/sounds/ilari-ilari-ilarie-troll.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/pt/instant/ilari-ilari-ilarie-troll-12455/",
+    "tags": [
+      "geral",
+      "myinstants",
+      "meme",
+      "brasil"
+    ],
+    "color": "#000000",
+    "hotkey": "5",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010740662,
+    "tab": "Memes & TV"
+  },
+  {
+    "id": "sound_1787010740662_qmk8h",
+    "title": "Bom dia a todos e todes *Meme*",
+    "url": "https://www.myinstants.com/media/sounds/bom-dia-a-todos-e-todes-meme.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/pt/instant/bom-dia-a-todos-e-todes-meme-63851/",
+    "tags": [
+      "meme",
+      "myinstants",
+      "brasil"
+    ],
+    "color": "#FF15E4",
+    "hotkey": "6",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010740662,
+    "tab": "Memes & TV"
+  },
+  {
+    "id": "sound_1787010740768_1f9bk",
+    "title": "UEPA RATINHO",
+    "url": "https://www.myinstants.com/media/sounds/uepa-mp3cut.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/uepa-ratinho-539/",
+    "tags": [
+      "brasil",
+      "tv",
+      "meme",
+      "myinstants",
+      "ratinho",
+      "reacao",
+      "sonoplastia"
+    ],
+    "color": "#FFEF09",
+    "hotkey": "7",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010740768,
+    "tab": "Memes & TV"
+  },
+  {
+    "id": "sound_1787010740813_qy3wh",
+    "title": "acorda Casimiro",
+    "url": "https://www.myinstants.com/media/sounds/acorda-casimiro.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/acorda-casimiro-67351/",
+    "tags": [
+      "geral",
+      "myinstants",
+      "brasil",
+      "streamer",
+      "reacao",
+      "meme"
+    ],
+    "color": "#FFC47C",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010740813,
+    "tab": "Memes & TV",
+    "hotkey": "8"
+  },
+  {
+    "id": "sound_1787010740813_cqfc3",
+    "title": "Aceitas Pix?? - Casimiro",
+    "url": "https://www.myinstants.com/media/sounds/aceitas-pix-casimiro.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/aceitas-pix-casimiro-62021/",
+    "tags": [
+      "geral",
+      "myinstants",
+      "brasil",
+      "streamer",
+      "reacao",
+      "meme"
+    ],
+    "color": "#00FF00",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010740813,
+    "tab": "Memes & TV",
+    "hotkey": "9"
+  },
+  {
+    "id": "sound_1787010740813_m0cq0",
+    "title": "falando da elite - casimiro",
+    "url": "https://www.myinstants.com/media/sounds/falando-da-elite-casimiro.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/falando-da-elite-casimiro-35376/",
+    "tags": [
+      "geral",
+      "myinstants",
+      "brasil",
+      "streamer",
+      "reacao",
+      "meme"
+    ],
+    "color": "#3BFF1D",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010740813,
+    "tab": "Memes & TV",
+    "hotkey": "0"
+  },
+  {
+    "id": "sound_1787010740813_9uwg6",
+    "title": "CP Casimiro Comedor",
+    "url": "https://www.myinstants.com/media/sounds/cp-casimiro-comedor.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/cp-casimiro-comedor-69981/",
+    "tags": [
+      "geral",
+      "myinstants",
+      "brasil",
+      "streamer",
+      "reacao",
+      "meme"
+    ],
+    "color": "#671EFF",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010740813,
+    "tab": "Memes & TV",
+    "hotkey": "Q"
+  },
+  {
+    "id": "sound_1787010740853_j61ca",
+    "title": "Risada Carlos Alberto Nobrega",
+    "url": "https://www.myinstants.com/media/sounds/risada_carlos_alberto_mp3cut.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/risada-carlos-alberto-nobrega/",
+    "tags": [
+      "risada",
+      "myinstants",
+      "humor",
+      "meme",
+      "engracado",
+      "reacao",
+      "brasil"
+    ],
+    "color": "#FF0000",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010740853,
+    "tab": "Memes & TV",
+    "hotkey": "W"
+  },
+  {
+    "id": "sound_1787010740853_0ghjt",
+    "title": "A risada do kiko",
+    "url": "https://www.myinstants.com/media/sounds/a-risada-do-kiko.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/a-risada-do-kiko-65965/",
+    "tags": [
+      "risada",
+      "myinstants",
+      "humor",
+      "meme",
+      "engracado",
+      "reacao"
+    ],
+    "color": "#FF0000",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010740853,
+    "tab": "Memes & TV",
+    "hotkey": "E"
+  },
+  {
+    "id": "sound_1787010740874_m0mcj",
+    "title": "Wow Anime meme",
+    "url": "https://www.myinstants.com/media/sounds/anime-wow-sound-effect-mp3cut.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/wow-anime-meme-55752/",
+    "tags": [
+      "meme",
+      "anime",
+      "myinstants",
+      "japao",
+      "reacao",
+      "fofo"
+    ],
+    "color": "#FF3C00",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010740874,
+    "tab": "Memes & TV",
+    "hotkey": "R"
+  },
+  {
+    "id": "sound_1787010740874_5qh3c",
+    "title": "Anime Wow22",
+    "url": "https://www.myinstants.com/media/sounds/anime-wow-sound-effect_Q6Q4ech.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/anime-wow22-55326/",
+    "tags": [
+      "anime",
+      "myinstants",
+      "japao",
+      "reacao",
+      "meme",
+      "fofo"
+    ],
+    "color": "#FF0000",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010740874,
+    "tab": "Memes & TV",
+    "hotkey": "T"
+  },
+  {
+    "id": "sound_1787010740874_fwjci",
+    "title": "&quot;Wow!&quot; (anime voice accent)",
+    "url": "https://www.myinstants.com/media/sounds/wow-anime-voice-accent.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/wow-anime-voice-accent-54170/",
+    "tags": [
+      "anime",
+      "myinstants",
+      "japao",
+      "reacao",
+      "meme",
+      "fofo"
+    ],
+    "color": "#D872FF",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010740874,
+    "tab": "Memes & TV",
+    "hotkey": "Y"
+  },
+  {
+    "id": "sound_1787010740897_hglr1",
+    "title": "Emotional Damage Meme",
+    "url": "https://www.myinstants.com/media/sounds/emotional-damage-meme.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/emotional-damage-meme-74555/",
+    "tags": [
+      "meme",
+      "myinstants",
+      "reacao",
+      "emotionaldamage",
+      "humor"
+    ],
+    "color": "#E50000",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010740897,
+    "tab": "Memes & TV",
+    "hotkey": "U"
+  },
+  {
+    "id": "sound_1787010740897_s5hir",
+    "title": "Emotional damage (Meme)",
+    "url": "https://www.myinstants.com/media/sounds/emotional-damage-meme_ZeX8ITi.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/emotional-damage-meme-91997/",
+    "tags": [
+      "meme",
+      "myinstants",
+      "reacao",
+      "emotionaldamage",
+      "humor"
+    ],
+    "color": "#FF0000",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010740897,
+    "tab": "Memes & TV",
+    "hotkey": "I"
+  },
+  {
+    "id": "sound_1787010740897_wx5oq",
+    "title": "Emotional Damage x Pompeii",
+    "url": "https://www.myinstants.com/media/sounds/emotional-damage-x-pompeii.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/emotional-damage-x-pompeii-9493/",
+    "tags": [
+      "geral",
+      "myinstants",
+      "meme",
+      "reacao",
+      "emotionaldamage",
+      "humor"
+    ],
+    "color": "#802A00",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010740897,
+    "tab": "Memes & TV",
+    "hotkey": "O"
+  },
+  {
+    "id": "sound_1787010741154_sbpy1",
+    "title": "ANDROID BEEP",
+    "url": "https://soundbuttonsworld.com/uploads/cfa1f779-0954-4623-a7db-cc93a703a7f9.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/android-beep-1668025154070",
+    "tags": [
+      "memes",
+      "sfx",
+      "soundbuttonsworld",
+      "meme"
+    ],
+    "color": "green",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010741154,
+    "tab": "Memes & TV",
+    "hotkey": "P"
+  },
+  {
+    "id": "sound_1787010741154_7lpow",
+    "title": "GULP GULP GULP GULP",
+    "url": "https://soundbuttonsworld.com/uploads/0d81a729-727a-4ed8-948f-a1e2bbd45732.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/gulp-gulp-gulp-gulp-1671088913732",
+    "tags": [
+      "memes",
+      "soundbuttonsworld",
+      "meme"
+    ],
+    "color": "green",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010741154,
+    "tab": "Memes & TV",
+    "hotkey": "A"
+  },
+  {
+    "id": "sound_1787010741154_mz855",
+    "title": "BRUH",
+    "url": "https://soundbuttonsworld.com/uploads/96c4a22c-f139-4d46-83d8-2333c8710a54.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/bruh-1664311555876",
+    "tags": [
+      "memes",
+      "meme",
+      "soundbuttonsworld",
+      "brasil"
+    ],
+    "color": "red",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010741154,
+    "tab": "Memes & TV",
+    "hotkey": "S"
+  },
+  {
+    "id": "sound_1787010741154_c1bm6",
+    "title": "I LIVE WITH ROCHES",
+    "url": "https://soundbuttonsworld.com/uploads/3fb16427-aa99-4692-90d9-b3e0a9998a15.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/i-live-with-roches-1675695807861",
+    "tags": [
+      "memes",
+      "soundbuttonsworld",
+      "meme"
+    ],
+    "color": "red",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010741154,
+    "tab": "Memes & TV",
+    "hotkey": "D"
+  },
+  {
+    "id": "sound_1787010741154_ip3b1",
+    "title": "STOP THE CAP",
+    "url": "https://soundbuttonsworld.com/uploads/67e45010-f4c7-4e92-8ec2-5f5a601ec470.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/stop-the-cap-1670611694609",
+    "tags": [
+      "memes",
+      "soundbuttonsworld",
+      "meme"
+    ],
+    "color": "red",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010741154,
+    "tab": "Memes & TV",
+    "hotkey": "F"
+  },
+  {
+    "id": "sound_1787010741154_dovvw",
+    "title": "AHHHHH!",
+    "url": "https://soundbuttonsworld.com/uploads/f79c30ab-003b-48ea-af96-b131c00ecddb.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/ahhhhh-1663858639507",
+    "tags": [
+      "memes",
+      "soundbuttonsworld",
+      "meme"
+    ],
+    "color": "purple",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010741154,
+    "tab": "Memes & TV",
+    "hotkey": "G"
+  },
+  {
+    "id": "sound_1787010741154_e8c4b",
+    "title": "UWU",
+    "url": "https://soundbuttonsworld.com/uploads/7734a0d8-d26f-49b1-9b87-45e8272b1183.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/uwu-1661985336863",
+    "tags": [
+      "anime",
+      "soundbuttonsworld",
+      "japao",
+      "reacao",
+      "meme",
+      "fofo"
+    ],
+    "color": "black",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010741154,
+    "tab": "Memes & TV",
+    "hotkey": "H"
+  },
+  {
+    "id": "sound_1787010741154_9f28r",
+    "title": "SWAG LIKE OHIO",
+    "url": "https://soundbuttonsworld.com/uploads/34717e8f-8feb-4197-aa60-a6dbd4610e9f.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/swag-like-ohio-1669752288087",
+    "tags": [
+      "memes",
+      "soundbuttonsworld",
+      "meme"
+    ],
+    "color": "black",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010741154,
+    "tab": "Memes & TV",
+    "hotkey": "J"
+  },
+  {
+    "id": "sound_1787010741154_lez1r",
+    "title": "GET OUT TUCO",
+    "url": "https://soundbuttonsworld.com/uploads/92116289-98e0-4dea-babc-e6f7f8bd08d9.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/get-out-tuco-1713706345464",
+    "tags": [
+      "memes",
+      "soundbuttonsworld",
+      "meme"
+    ],
+    "color": "red",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010741154,
+    "tab": "Memes & TV",
+    "hotkey": "K"
+  },
+  {
+    "id": "sound_1787010741182_punzw",
+    "title": "Starting to Mew Meme",
+    "url": "https://soundbuttonsworld.com/uploads/648e50e9-4d98-464f-a7f5-e73d29d61da1.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/mason-kelch4-1714783785261",
+    "tags": [
+      "anime",
+      "playful",
+      "meme",
+      "soundbuttonsworld",
+      "japao",
+      "reacao",
+      "fofo"
+    ],
+    "color": "blue",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010741182,
+    "tab": "Memes & TV",
+    "hotkey": "L"
+  },
+  {
+    "id": "sound_1787010741182_n8oco",
+    "title": "Aspirations of Meme Fame",
+    "url": "https://soundbuttonsworld.com/uploads/7a731a55-551e-4b3d-9002-8a3220eada9e.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/i-will-be-a-frickin-meme-1690641999772",
+    "tags": [
+      "memes",
+      "hopeful",
+      "meme",
+      "soundbuttonsworld"
+    ],
+    "color": "red",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010741182,
+    "tab": "Memes & TV",
+    "hotkey": "Z"
+  },
+  {
+    "id": "sound_1787010741182_a16in",
+    "title": "I Can Has Cheezburger Meme Voiceover",
+    "url": "https://soundbuttonsworld.com/uploads/c2a5f8bc-aef5-4aac-a0ba-c4390103ce9c.mp3",
+    "source": "soundbuttonsworld",
+    "sourceUrl": "https://soundbuttonsworld.com/burder-1709398450535",
+    "tags": [
+      "memes",
+      "humorous",
+      "meme",
+      "soundbuttonsworld"
+    ],
+    "color": "purple",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787010741182,
+    "tab": "Memes & TV",
+    "hotkey": "X"
+  },
+  {
+    "id": "sound_1787023488775_in3yq",
+    "title": "spiderman meme song",
+    "url": "https://www.myinstants.com/media/sounds/spiderman-meme-song.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/spiderman-meme-song-37638/",
+    "tags": [
+      "meme",
+      "musica"
+    ],
+    "color": "#FF0000",
+    "tab": "Músicas",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787023488775,
+    "hotkey": "1"
+  },
+  {
+    "id": "sound_faro_1787023164725_qawl",
+    "title": "RAPAIZ (Rodrigo Faro)",
+    "url": "https://www.myinstants.com/media/sounds/rapaz-faro.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/",
+    "tags": [
+      "faro",
+      "rapaz",
+      "brasil",
+      "tv",
+      "meme",
+      "reacao"
+    ],
+    "color": "#00ff88",
+    "hotkey": "1",
+    "tab": "Rodrigo Faro",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": true,
+    "createdAt": 1787023164725
+  },
+  {
+    "id": "sound_faro_1787023164725_vunj",
+    "title": "OLHA ELE AÊ (Rodrigo Faro)",
+    "url": "https://www.myinstants.com/media/sounds/olha-ele-ae.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/",
+    "tags": [
+      "faro",
+      "olha ele",
+      "brasil",
+      "tv",
+      "meme",
+      "reacao",
+      "auditorio"
+    ],
+    "color": "#a855f7",
+    "hotkey": "2",
+    "tab": "Rodrigo Faro",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": true,
+    "createdAt": 1787023164725
+  },
+  {
+    "id": "sound_faro_1787023164725_ozvc",
+    "title": "NÃO ! (Rodrigo Faro)",
+    "url": "https://www.myinstants.com/media/sounds/nao-rodrigo-faro.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/",
+    "tags": [
+      "faro",
+      "não",
+      "brasil",
+      "tv",
+      "meme",
+      "reacao"
+    ],
+    "color": "#ffe600",
+    "hotkey": "3",
+    "tab": "Rodrigo Faro",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": true,
+    "createdAt": 1787023164725
+  },
+  {
+    "id": "sound_faro_1787023164725_ap2o",
+    "title": "É BRINCADEIRA HEIN (Rodrigo Faro)",
+    "url": "https://www.myinstants.com/media/sounds/e-brincadeira-hein-rodrigo-faro.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/",
+    "tags": [
+      "faro",
+      "é brincadeira hein",
+      "brasil",
+      "tv",
+      "meme",
+      "reacao"
+    ],
+    "color": "#1a9fff",
+    "hotkey": "4",
+    "tab": "Rodrigo Faro",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": true,
+    "createdAt": 1787023164725
+  },
+  {
+    "id": "sound_faro_1787023164725_tnx1",
+    "title": "CHEGA ! (Rodrigo Faro)",
+    "url": "https://www.myinstants.com/media/sounds/chega-rodrigo-faro.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/",
+    "tags": [
+      "faro",
+      "chega",
+      "brasil",
+      "tv",
+      "meme",
+      "grito",
+      "reacao"
+    ],
+    "color": "#ef4444",
+    "hotkey": "5",
+    "tab": "Rodrigo Faro",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": true,
+    "createdAt": 1787023164725
+  },
+  {
+    "id": "sound_faro_1787023164725_dumy",
+    "title": "QUE PAPELÃO HEIN (Rodrigo Faro)",
+    "url": "https://www.myinstants.com/media/sounds/papepe.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/",
+    "tags": [
+      "faro",
+      "que papelão",
+      "brasil",
+      "tv",
+      "meme",
+      "reacao",
+      "vergonha"
+    ],
+    "color": "#ff007f",
+    "hotkey": "6",
+    "tab": "Rodrigo Faro",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": true,
+    "createdAt": 1787023164725
+  },
+  {
+    "id": "sound_faro_1787023164725_ezdj",
+    "title": "DEMAIS ! (Rodrigo Faro)",
+    "url": "https://www.myinstants.com/media/sounds/demais-rodrigo-faro.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/",
+    "tags": [
+      "faro",
+      "demais",
+      "brasil",
+      "tv",
+      "meme",
+      "reacao",
+      "vai dar namoro"
+    ],
+    "color": "#ff6600",
+    "hotkey": "7",
+    "tab": "Rodrigo Faro",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": true,
+    "createdAt": 1787023164725
+  },
+  {
+    "id": "sound_faro_1787023164725_m24q",
+    "title": "ELE GOSTA",
+    "url": "https://www.myinstants.com/media/sounds/tmpd9mca4be.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/",
+    "tags": [
+      "faro",
+      "ele gosta",
+      "brasil",
+      "tv",
+      "meme",
+      "reacao",
+      "vai dar namoro"
+    ],
+    "color": "#00f0ff",
+    "hotkey": "8",
+    "tab": "Rodrigo Faro",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": true,
+    "createdAt": 1787023164725
+  },
+  {
+    "id": "sound_1787023097555_0ooc9",
+    "title": "Du bist gut genug",
+    "url": "https://www.myinstants.com/media/sounds/du-bist-gut-genug.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/pt/instant/du-bist-gut-genug-22336/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#000000",
+    "tab": "Músicas",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787023097555,
+    "hotkey": "2"
+  },
+  {
+    "id": "sound_1787015144883_7qae7",
+    "title": "Sua mãe sabe que você gosta de rapazes",
+    "url": "https://www.myinstants.com/media/sounds/sua-mae-sabe-que-voce-gosta-de-rapazes.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/pt/instant/sua-mae-sabe-que-voce-gosta-de-rapazes-80078/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#ff007f",
+    "tab": "La Ele",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1787015144883,
+    "hotkey": "1"
+  },
+  {
+    "id": "sound_1787008605791_itjcc",
+    "title": "AAAl (Rodrigo Faro)",
+    "url": "https://www.myinstants.com/media/sounds/aaal.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/aaal-41211/?utm_source=copy&utm_medium=share",
+    "tags": [
+      "myinstants",
+      "meme",
+      "faro",
+      "brasil",
+      "tv",
+      "aaal",
+      "reacao"
+    ],
+    "color": "#ff6600",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": true,
+    "createdAt": 1787008605791,
+    "tab": "Rodrigo Faro",
+    "hotkey": "9"
+  },
+  {
+    "id": "vine-boom-default",
+    "title": "Vine Boom",
+    "url": "https://soundbuttonsworld.com/uploads/707db471-c834-494e-a3d9-ada985203ef6.mp3",
+    "source": "soundbuttonsworld",
+    "tags": [
+      "meme",
+      "sfx",
+      "loud",
+      "impact",
+      "soundbuttonsworld",
+      "impacto",
+      "vineboom",
+      "bass"
+    ],
+    "color": "#1a9fff",
+    "hotkey": "1",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": true,
+    "createdAt": 1700000000000,
+    "tab": "Efeitos"
   },
   {
     "id": "roblox-oof-default",
@@ -132,31 +934,12 @@
       "derrota"
     ],
     "color": "#00e676",
-    "hotkey": "4",
+    "hotkey": "1",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": true,
     "createdAt": 1700000003000,
     "tab": "Gaming"
-  },
-  {
-    "id": "we-do-not-care-default",
-    "title": "WE DO NOT CARE",
-    "url": "https://soundbuttonsworld.com/uploads/ab48a9f6-5007-4dac-a55d-6362677e40d6.mp3",
-    "source": "soundbuttonsworld",
-    "tags": [
-      "meme",
-      "reaction",
-      "loud",
-      "soundbuttonsworld"
-    ],
-    "color": "#e02424",
-    "hotkey": "5",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1700000004000,
-    "tab": "Memes & TV"
   },
   {
     "id": "ele-gosta-default",
@@ -174,16 +957,16 @@
       "humor"
     ],
     "color": "#f59e0b",
-    "hotkey": "6",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": true,
     "createdAt": 1700000005000,
-    "tab": "Memes & TV"
+    "tab": "Rodrigo Faro",
+    "hotkey": "0"
   },
   {
     "id": "cavalo-default",
-    "title": "CAVALO (Rodrigo Faro)",
+    "title": "CAVALO",
     "url": "https://www.myinstants.com/media/sounds/cavalo-rodrigo-faro.mp3",
     "source": "myinstants",
     "tags": [
@@ -194,19 +977,21 @@
       "myinstants",
       "reacao",
       "auditorio",
-      "humor"
+      "humor",
+      "cavalo",
+      "vai dar namoro"
     ],
-    "color": "#8b5cf6",
-    "hotkey": "7",
+    "color": "#ff007f",
+    "hotkey": "Q",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": true,
     "createdAt": 1700000006000,
-    "tab": "Memes & TV"
+    "tab": "Rodrigo Faro"
   },
   {
     "id": "ui-default",
-    "title": "UI RODRIGO FARO",
+    "title": "UI ! (Rodrigo Faro)",
     "url": "https://www.myinstants.com/media/sounds/ui-rodrigo-faro.mp3",
     "source": "myinstants",
     "tags": [
@@ -221,19 +1006,21 @@
       "humor",
       "sfx",
       "loud",
-      "susto"
+      "susto",
+      "ui",
+      "sonoplastia"
     ],
-    "color": "#06b6d4",
-    "hotkey": "8",
+    "color": "#ffe600",
+    "hotkey": "W",
     "volume": 1,
     "playbackRate": 1,
-    "isFavorite": false,
+    "isFavorite": true,
     "createdAt": 1700000007000,
-    "tab": "Gaming"
+    "tab": "Rodrigo Faro"
   },
   {
     "id": "tome-default",
-    "title": "TOME RODRIGO FARO",
+    "title": "TOME ! (Rodrigo Faro)",
     "url": "https://www.myinstants.com/media/sounds/tome-rodrigo-faro_xDXKGwq.mp3",
     "source": "myinstants",
     "tags": [
@@ -244,15 +1031,17 @@
       "myinstants",
       "reacao",
       "auditorio",
-      "humor"
+      "humor",
+      "tome",
+      "vai dar namoro"
     ],
-    "color": "#ec4899",
-    "hotkey": "9",
+    "color": "#a855f7",
+    "hotkey": "E",
     "volume": 1,
     "playbackRate": 1,
-    "isFavorite": false,
+    "isFavorite": true,
     "createdAt": 1700000008000,
-    "tab": "Memes & TV"
+    "tab": "Rodrigo Faro"
   },
   {
     "id": "discord-notification-default",
@@ -270,7 +1059,7 @@
       "meme"
     ],
     "color": "#6366f1",
-    "hotkey": "0",
+    "hotkey": "2",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -297,7 +1086,7 @@
     "isFavorite": false,
     "createdAt": 1700000010000,
     "tab": "Músicas",
-    "hotkey": "4"
+    "hotkey": "3"
   },
   {
     "id": "airhorn-default",
@@ -322,7 +1111,7 @@
     "isFavorite": true,
     "createdAt": 1700000011000,
     "tab": "Efeitos",
-    "hotkey": "1"
+    "hotkey": "3"
   },
   {
     "id": "sound_1787010740662_p3mx2",
@@ -336,7 +1125,7 @@
       "brasil"
     ],
     "color": "#FF0000",
-    "hotkey": "W",
+    "hotkey": "1",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -355,7 +1144,7 @@
       "brasil"
     ],
     "color": "#000000",
-    "hotkey": "E",
+    "hotkey": "2",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -374,7 +1163,7 @@
       "brasil"
     ],
     "color": "#FF0000",
-    "hotkey": "R",
+    "hotkey": "3",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -393,7 +1182,7 @@
       "brasil"
     ],
     "color": "#36F8FF",
-    "hotkey": "T",
+    "hotkey": "4",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -412,7 +1201,7 @@
       "brasil"
     ],
     "color": "#FFD249",
-    "hotkey": "Y",
+    "hotkey": "5",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -431,7 +1220,7 @@
       "brasil"
     ],
     "color": "#000000",
-    "hotkey": "U",
+    "hotkey": "6",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -450,7 +1239,7 @@
       "brasil"
     ],
     "color": "#1650FF",
-    "hotkey": "I",
+    "hotkey": "7",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -469,32 +1258,12 @@
       "brasil"
     ],
     "color": "#FF0000",
-    "hotkey": "O",
+    "hotkey": "8",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787010740662,
     "tab": "Geral"
-  },
-  {
-    "id": "sound_1787010740662_myrnt",
-    "title": "ILARI ILARI ILARIÊ TROLL",
-    "url": "https://www.myinstants.com/media/sounds/ilari-ilari-ilarie-troll.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/pt/instant/ilari-ilari-ilarie-troll-12455/",
-    "tags": [
-      "geral",
-      "myinstants",
-      "meme",
-      "brasil"
-    ],
-    "color": "#000000",
-    "hotkey": "P",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010740662,
-    "tab": "Memes & TV"
   },
   {
     "id": "sound_1787010740662_nxm3p",
@@ -508,31 +1277,12 @@
       "brasil"
     ],
     "color": "#FF0000",
-    "hotkey": "A",
+    "hotkey": "9",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787010740662,
     "tab": "Geral"
-  },
-  {
-    "id": "sound_1787010740662_qmk8h",
-    "title": "Bom dia a todos e todes *Meme*",
-    "url": "https://www.myinstants.com/media/sounds/bom-dia-a-todos-e-todes-meme.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/pt/instant/bom-dia-a-todos-e-todes-meme-63851/",
-    "tags": [
-      "meme",
-      "myinstants",
-      "brasil"
-    ],
-    "color": "#FF15E4",
-    "hotkey": "S",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010740662,
-    "tab": "Memes & TV"
   },
   {
     "id": "sound_1787010740662_zan2w",
@@ -551,12 +1301,12 @@
       "humor"
     ],
     "color": "#FF0000",
-    "hotkey": "D",
+    "hotkey": "R",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787010740662,
-    "tab": "Memes & TV"
+    "tab": "Rodrigo Faro"
   },
   {
     "id": "sound_1787010740662_cakyy",
@@ -570,7 +1320,7 @@
       "brasil"
     ],
     "color": "#FF0000",
-    "hotkey": "F",
+    "hotkey": "0",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -589,7 +1339,7 @@
       "brasil"
     ],
     "color": "#F3FF4F",
-    "hotkey": "G",
+    "hotkey": "Q",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -609,7 +1359,7 @@
       "brasil"
     ],
     "color": "#FF0000",
-    "hotkey": "H",
+    "hotkey": "W",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -618,7 +1368,7 @@
   },
   {
     "id": "sound_1787010740722_20hs8",
-    "title": "Dança gatinho, dança (Rodrigo Faro)",
+    "title": "DANÇA GATINHO (Rodrigo Faro)",
     "url": "https://www.myinstants.com/media/sounds/y2mate_rLgMJTu.mp3",
     "source": "myinstants",
     "sourceUrl": "https://www.myinstants.com/en/instant/danca-gatinho-danca-rodrigo-faro-41651/",
@@ -630,15 +1380,18 @@
       "faro",
       "reacao",
       "auditorio",
-      "humor"
+      "humor",
+      "dança gatinho",
+      "musica",
+      "danca"
     ],
-    "color": "#FF0000",
-    "hotkey": "J",
+    "color": "#00ff88",
+    "hotkey": "T",
     "volume": 1,
     "playbackRate": 1,
-    "isFavorite": false,
+    "isFavorite": true,
     "createdAt": 1787010740722,
-    "tab": "Memes & TV"
+    "tab": "Rodrigo Faro"
   },
   {
     "id": "sound_1787010740744_9xl2b",
@@ -657,7 +1410,7 @@
       "humor"
     ],
     "color": "#FF0000",
-    "hotkey": "K",
+    "hotkey": "4",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -681,7 +1434,7 @@
       "humor"
     ],
     "color": "#FF0000",
-    "hotkey": "L",
+    "hotkey": "5",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -705,7 +1458,7 @@
       "humor"
     ],
     "color": "#66ff66",
-    "hotkey": "Z",
+    "hotkey": "6",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -723,7 +1476,7 @@
       "myinstants"
     ],
     "color": "#FF0000",
-    "hotkey": "X",
+    "hotkey": "E",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -746,35 +1499,12 @@
       "sonoplastia"
     ],
     "color": "#FF0000",
-    "hotkey": "C",
+    "hotkey": "4",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787010740768,
     "tab": "Músicas"
-  },
-  {
-    "id": "sound_1787010740768_1f9bk",
-    "title": "UEPA RATINHO",
-    "url": "https://www.myinstants.com/media/sounds/uepa-mp3cut.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/uepa-ratinho-539/",
-    "tags": [
-      "brasil",
-      "tv",
-      "meme",
-      "myinstants",
-      "ratinho",
-      "reacao",
-      "sonoplastia"
-    ],
-    "color": "#FFEF09",
-    "hotkey": "V",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010740768,
-    "tab": "Memes & TV"
   },
   {
     "id": "sound_1787010740768_mgu4j",
@@ -792,7 +1522,7 @@
       "reacao"
     ],
     "color": "#FF0000",
-    "hotkey": "B",
+    "hotkey": "2",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -810,7 +1540,7 @@
       "myinstants"
     ],
     "color": "#FF0000",
-    "hotkey": "N",
+    "hotkey": "R",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -835,7 +1565,7 @@
       "reacao"
     ],
     "color": "#FF0000",
-    "hotkey": "M",
+    "hotkey": "5",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
@@ -863,7 +1593,7 @@
     "isFavorite": false,
     "createdAt": 1787010740789,
     "tab": "Músicas",
-    "hotkey": "8"
+    "hotkey": "6"
   },
   {
     "id": "sound_1787010740789_ldg3d",
@@ -890,8 +1620,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787010740789,
-    "tab": "Músicas",
-    "hotkey": "0"
+    "tab": "Rodrigo Faro",
+    "hotkey": "Y"
   },
   {
     "id": "sound_1787010740789_dp2fs",
@@ -914,95 +1644,7 @@
     "isFavorite": false,
     "createdAt": 1787010740789,
     "tab": "Músicas",
-    "hotkey": "Q"
-  },
-  {
-    "id": "sound_1787010740813_qy3wh",
-    "title": "acorda Casimiro",
-    "url": "https://www.myinstants.com/media/sounds/acorda-casimiro.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/acorda-casimiro-67351/",
-    "tags": [
-      "geral",
-      "myinstants",
-      "brasil",
-      "streamer",
-      "reacao",
-      "meme"
-    ],
-    "color": "#FFC47C",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010740813,
-    "tab": "Memes & TV",
-    "hotkey": "W"
-  },
-  {
-    "id": "sound_1787010740813_cqfc3",
-    "title": "Aceitas Pix?? - Casimiro",
-    "url": "https://www.myinstants.com/media/sounds/aceitas-pix-casimiro.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/aceitas-pix-casimiro-62021/",
-    "tags": [
-      "geral",
-      "myinstants",
-      "brasil",
-      "streamer",
-      "reacao",
-      "meme"
-    ],
-    "color": "#00FF00",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010740813,
-    "tab": "Memes & TV",
-    "hotkey": "E"
-  },
-  {
-    "id": "sound_1787010740813_m0cq0",
-    "title": "falando da elite - casimiro",
-    "url": "https://www.myinstants.com/media/sounds/falando-da-elite-casimiro.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/falando-da-elite-casimiro-35376/",
-    "tags": [
-      "geral",
-      "myinstants",
-      "brasil",
-      "streamer",
-      "reacao",
-      "meme"
-    ],
-    "color": "#3BFF1D",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010740813,
-    "tab": "Memes & TV",
-    "hotkey": "R"
-  },
-  {
-    "id": "sound_1787010740813_9uwg6",
-    "title": "CP Casimiro Comedor",
-    "url": "https://www.myinstants.com/media/sounds/cp-casimiro-comedor.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/cp-casimiro-comedor-69981/",
-    "tags": [
-      "geral",
-      "myinstants",
-      "brasil",
-      "streamer",
-      "reacao",
-      "meme"
-    ],
-    "color": "#671EFF",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010740813,
-    "tab": "Memes & TV",
-    "hotkey": "T"
+    "hotkey": "7"
   },
   {
     "id": "sound_1787010740833_0swvh",
@@ -1026,7 +1668,7 @@
     "isFavorite": false,
     "createdAt": 1787010740833,
     "tab": "Efeitos",
-    "hotkey": "Y"
+    "hotkey": "7"
   },
   {
     "id": "sound_1787010740833_tkgc4",
@@ -1044,7 +1686,7 @@
     "isFavorite": false,
     "createdAt": 1787010740833,
     "tab": "Geral",
-    "hotkey": "1"
+    "hotkey": "T"
   },
   {
     "id": "sound_1787010740833_59vq3",
@@ -1068,7 +1710,7 @@
     "isFavorite": false,
     "createdAt": 1787010740833,
     "tab": "Efeitos",
-    "hotkey": "U"
+    "hotkey": "8"
   },
   {
     "id": "sound_1787010740833_xn9wo",
@@ -1086,30 +1728,7 @@
     "isFavorite": false,
     "createdAt": 1787010740833,
     "tab": "Geral",
-    "hotkey": "2"
-  },
-  {
-    "id": "sound_1787010740853_j61ca",
-    "title": "Risada Carlos Alberto Nobrega",
-    "url": "https://www.myinstants.com/media/sounds/risada_carlos_alberto_mp3cut.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/risada-carlos-alberto-nobrega/",
-    "tags": [
-      "risada",
-      "myinstants",
-      "humor",
-      "meme",
-      "engracado",
-      "reacao",
-      "brasil"
-    ],
-    "color": "#FF0000",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010740853,
-    "tab": "Memes & TV",
-    "hotkey": "I"
+    "hotkey": "Y"
   },
   {
     "id": "sound_1787010740853_650nj",
@@ -1127,116 +1746,7 @@
     "isFavorite": false,
     "createdAt": 1787010740853,
     "tab": "Geral",
-    "hotkey": "3"
-  },
-  {
-    "id": "sound_1787010740853_0ghjt",
-    "title": "A risada do kiko",
-    "url": "https://www.myinstants.com/media/sounds/a-risada-do-kiko.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/a-risada-do-kiko-65965/",
-    "tags": [
-      "risada",
-      "myinstants",
-      "humor",
-      "meme",
-      "engracado",
-      "reacao"
-    ],
-    "color": "#FF0000",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010740853,
-    "tab": "Memes & TV",
-    "hotkey": "O"
-  },
-  {
-    "id": "sound_1787010740874_m0mcj",
-    "title": "Wow Anime meme",
-    "url": "https://www.myinstants.com/media/sounds/anime-wow-sound-effect-mp3cut.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/wow-anime-meme-55752/",
-    "tags": [
-      "meme",
-      "anime",
-      "myinstants",
-      "japao",
-      "reacao",
-      "fofo"
-    ],
-    "color": "#FF3C00",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010740874,
-    "tab": "Memes & TV",
-    "hotkey": "A"
-  },
-  {
-    "id": "sound_1787010740874_5qh3c",
-    "title": "Anime Wow22",
-    "url": "https://www.myinstants.com/media/sounds/anime-wow-sound-effect_Q6Q4ech.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/anime-wow22-55326/",
-    "tags": [
-      "anime",
-      "myinstants",
-      "japao",
-      "reacao",
-      "meme",
-      "fofo"
-    ],
-    "color": "#FF0000",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010740874,
-    "tab": "Memes & TV",
-    "hotkey": "F"
-  },
-  {
-    "id": "sound_1787010740874_fwjci",
-    "title": "&quot;Wow!&quot; (anime voice accent)",
-    "url": "https://www.myinstants.com/media/sounds/wow-anime-voice-accent.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/wow-anime-voice-accent-54170/",
-    "tags": [
-      "anime",
-      "myinstants",
-      "japao",
-      "reacao",
-      "meme",
-      "fofo"
-    ],
-    "color": "#D872FF",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010740874,
-    "tab": "Memes & TV",
-    "hotkey": "G"
-  },
-  {
-    "id": "sound_1787010740897_hglr1",
-    "title": "Emotional Damage Meme",
-    "url": "https://www.myinstants.com/media/sounds/emotional-damage-meme.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/emotional-damage-meme-74555/",
-    "tags": [
-      "meme",
-      "myinstants",
-      "reacao",
-      "emotionaldamage",
-      "humor"
-    ],
-    "color": "#E50000",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010740897,
-    "tab": "Memes & TV",
-    "hotkey": "H"
+    "hotkey": "U"
   },
   {
     "id": "sound_1787010740897_ooafw",
@@ -1254,50 +1764,7 @@
     "isFavorite": false,
     "createdAt": 1787010740897,
     "tab": "Geral",
-    "hotkey": "4"
-  },
-  {
-    "id": "sound_1787010740897_s5hir",
-    "title": "Emotional damage (Meme)",
-    "url": "https://www.myinstants.com/media/sounds/emotional-damage-meme_ZeX8ITi.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/emotional-damage-meme-91997/",
-    "tags": [
-      "meme",
-      "myinstants",
-      "reacao",
-      "emotionaldamage",
-      "humor"
-    ],
-    "color": "#FF0000",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010740897,
-    "tab": "Memes & TV",
-    "hotkey": "X"
-  },
-  {
-    "id": "sound_1787010740897_wx5oq",
-    "title": "Emotional Damage x Pompeii",
-    "url": "https://www.myinstants.com/media/sounds/emotional-damage-x-pompeii.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/emotional-damage-x-pompeii-9493/",
-    "tags": [
-      "geral",
-      "myinstants",
-      "meme",
-      "reacao",
-      "emotionaldamage",
-      "humor"
-    ],
-    "color": "#802A00",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010740897,
-    "tab": "Memes & TV",
-    "hotkey": "B"
+    "hotkey": "I"
   },
   {
     "id": "sound_1787010740918_km7hs",
@@ -1320,7 +1787,7 @@
     "isFavorite": false,
     "createdAt": 1787010740918,
     "tab": "Efeitos",
-    "hotkey": "N"
+    "hotkey": "9"
   },
   {
     "id": "sound_1787010740918_7y48c",
@@ -1343,7 +1810,7 @@
     "isFavorite": false,
     "createdAt": 1787010740918,
     "tab": "Efeitos",
-    "hotkey": "2"
+    "hotkey": "0"
   },
   {
     "id": "sound_1787010740918_yx0zh",
@@ -1366,7 +1833,7 @@
     "isFavorite": false,
     "createdAt": 1787010740918,
     "tab": "Efeitos",
-    "hotkey": "3"
+    "hotkey": "Q"
   },
   {
     "id": "sound_1787010740918_ohtrz",
@@ -1384,7 +1851,7 @@
     "isFavorite": false,
     "createdAt": 1787010740918,
     "tab": "Geral",
-    "hotkey": "5"
+    "hotkey": "O"
   },
   {
     "id": "sound_1787010740937_yx74x",
@@ -1406,7 +1873,7 @@
     "isFavorite": false,
     "createdAt": 1787010740937,
     "tab": "Gaming",
-    "hotkey": "2"
+    "hotkey": "3"
   },
   {
     "id": "sound_1787010740937_bj4be",
@@ -1428,7 +1895,7 @@
     "isFavorite": false,
     "createdAt": 1787010740937,
     "tab": "Gaming",
-    "hotkey": "3"
+    "hotkey": "4"
   },
   {
     "id": "sound_1787010740937_b6283",
@@ -1496,7 +1963,7 @@
     "isFavorite": false,
     "createdAt": 1787010740961,
     "tab": "Efeitos",
-    "hotkey": "4"
+    "hotkey": "W"
   },
   {
     "id": "sound_1787010740961_erexm",
@@ -1519,7 +1986,7 @@
     "isFavorite": false,
     "createdAt": 1787010740961,
     "tab": "Efeitos",
-    "hotkey": "5"
+    "hotkey": "E"
   },
   {
     "id": "sound_1787010740961_iv7o4",
@@ -1542,7 +2009,7 @@
     "isFavorite": false,
     "createdAt": 1787010740961,
     "tab": "Efeitos",
-    "hotkey": "6"
+    "hotkey": "R"
   },
   {
     "id": "sound_1787010740961_r8sqj",
@@ -1565,7 +2032,7 @@
     "isFavorite": false,
     "createdAt": 1787010740961,
     "tab": "Efeitos",
-    "hotkey": "7"
+    "hotkey": "T"
   },
   {
     "id": "sound_1787010740980_mbzy5",
@@ -1589,7 +2056,7 @@
     "isFavorite": false,
     "createdAt": 1787010740980,
     "tab": "Efeitos",
-    "hotkey": "8"
+    "hotkey": "Y"
   },
   {
     "id": "sound_1787010740980_011wy",
@@ -1640,7 +2107,7 @@
     "isFavorite": false,
     "createdAt": 1787010740980,
     "tab": "Efeitos",
-    "hotkey": "9"
+    "hotkey": "U"
   },
   {
     "id": "sound_1787010740980_nz3oq",
@@ -1664,27 +2131,7 @@
     "isFavorite": false,
     "createdAt": 1787010740980,
     "tab": "Efeitos",
-    "hotkey": "Q"
-  },
-  {
-    "id": "sound_1787010741154_sbpy1",
-    "title": "ANDROID BEEP",
-    "url": "https://soundbuttonsworld.com/uploads/cfa1f779-0954-4623-a7db-cc93a703a7f9.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/android-beep-1668025154070",
-    "tags": [
-      "memes",
-      "sfx",
-      "soundbuttonsworld",
-      "meme"
-    ],
-    "color": "green",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010741154,
-    "tab": "Memes & TV",
-    "hotkey": "4"
+    "hotkey": "I"
   },
   {
     "id": "sound_1787010741154_53hu8",
@@ -1702,26 +2149,7 @@
     "isFavorite": false,
     "createdAt": 1787010741154,
     "tab": "Geral",
-    "hotkey": "6"
-  },
-  {
-    "id": "sound_1787010741154_7lpow",
-    "title": "GULP GULP GULP GULP",
-    "url": "https://soundbuttonsworld.com/uploads/0d81a729-727a-4ed8-948f-a1e2bbd45732.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/gulp-gulp-gulp-gulp-1671088913732",
-    "tags": [
-      "memes",
-      "soundbuttonsworld",
-      "meme"
-    ],
-    "color": "green",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010741154,
-    "tab": "Memes & TV",
-    "hotkey": "8"
+    "hotkey": "P"
   },
   {
     "id": "sound_1787010741154_k69ty",
@@ -1748,7 +2176,7 @@
     "isFavorite": false,
     "createdAt": 1787010741154,
     "tab": "Gaming",
-    "hotkey": "9"
+    "hotkey": "8"
   },
   {
     "id": "sound_1787010741154_9jnah",
@@ -1770,7 +2198,7 @@
     "isFavorite": false,
     "createdAt": 1787010741154,
     "tab": "Músicas",
-    "hotkey": "1"
+    "hotkey": "8"
   },
   {
     "id": "sound_1787010741154_z9oye",
@@ -1789,27 +2217,7 @@
     "isFavorite": false,
     "createdAt": 1787010741154,
     "tab": "Efeitos",
-    "hotkey": "W"
-  },
-  {
-    "id": "sound_1787010741154_mz855",
-    "title": "BRUH",
-    "url": "https://soundbuttonsworld.com/uploads/96c4a22c-f139-4d46-83d8-2333c8710a54.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/bruh-1664311555876",
-    "tags": [
-      "memes",
-      "meme",
-      "soundbuttonsworld",
-      "brasil"
-    ],
-    "color": "red",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010741154,
-    "tab": "Memes & TV",
-    "hotkey": "0"
+    "hotkey": "O"
   },
   {
     "id": "sound_1787010741154_vc1a3",
@@ -1828,45 +2236,7 @@
     "isFavorite": false,
     "createdAt": 1787010741154,
     "tab": "Geral",
-    "hotkey": "Q"
-  },
-  {
-    "id": "sound_1787010741154_c1bm6",
-    "title": "I LIVE WITH ROCHES",
-    "url": "https://soundbuttonsworld.com/uploads/3fb16427-aa99-4692-90d9-b3e0a9998a15.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/i-live-with-roches-1675695807861",
-    "tags": [
-      "memes",
-      "soundbuttonsworld",
-      "meme"
-    ],
-    "color": "red",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010741154,
-    "tab": "Memes & TV",
-    "hotkey": "Q"
-  },
-  {
-    "id": "sound_1787010741154_ip3b1",
-    "title": "STOP THE CAP",
-    "url": "https://soundbuttonsworld.com/uploads/67e45010-f4c7-4e92-8ec2-5f5a601ec470.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/stop-the-cap-1670611694609",
-    "tags": [
-      "memes",
-      "soundbuttonsworld",
-      "meme"
-    ],
-    "color": "red",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010741154,
-    "tab": "Memes & TV",
-    "hotkey": "Y"
+    "hotkey": "A"
   },
   {
     "id": "sound_1787010741154_y7kjh",
@@ -1889,67 +2259,7 @@
     "isFavorite": false,
     "createdAt": 1787010741154,
     "tab": "Gaming",
-    "hotkey": "W"
-  },
-  {
-    "id": "sound_1787010741154_dovvw",
-    "title": "AHHHHH!",
-    "url": "https://soundbuttonsworld.com/uploads/f79c30ab-003b-48ea-af96-b131c00ecddb.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/ahhhhh-1663858639507",
-    "tags": [
-      "memes",
-      "soundbuttonsworld",
-      "meme"
-    ],
-    "color": "purple",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010741154,
-    "tab": "Memes & TV",
-    "hotkey": "K"
-  },
-  {
-    "id": "sound_1787010741154_e8c4b",
-    "title": "UWU",
-    "url": "https://soundbuttonsworld.com/uploads/7734a0d8-d26f-49b1-9b87-45e8272b1183.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/uwu-1661985336863",
-    "tags": [
-      "anime",
-      "soundbuttonsworld",
-      "japao",
-      "reacao",
-      "meme",
-      "fofo"
-    ],
-    "color": "black",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010741154,
-    "tab": "Memes & TV",
-    "hotkey": "L"
-  },
-  {
-    "id": "sound_1787010741154_9f28r",
-    "title": "SWAG LIKE OHIO",
-    "url": "https://soundbuttonsworld.com/uploads/34717e8f-8feb-4197-aa60-a6dbd4610e9f.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/swag-like-ohio-1669752288087",
-    "tags": [
-      "memes",
-      "soundbuttonsworld",
-      "meme"
-    ],
-    "color": "black",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010741154,
-    "tab": "Memes & TV",
-    "hotkey": "Z"
+    "hotkey": "9"
   },
   {
     "id": "sound_1787010741154_x4t6r",
@@ -1972,7 +2282,7 @@
     "isFavorite": false,
     "createdAt": 1787010741154,
     "tab": "Gaming",
-    "hotkey": "E"
+    "hotkey": "0"
   },
   {
     "id": "sound_1787010741154_1405r",
@@ -1990,7 +2300,7 @@
     "isFavorite": false,
     "createdAt": 1787010741154,
     "tab": "Geral",
-    "hotkey": "7"
+    "hotkey": "S"
   },
   {
     "id": "sound_1787010741154_mxmgy",
@@ -2012,89 +2322,7 @@
     "isFavorite": false,
     "createdAt": 1787010741154,
     "tab": "Músicas",
-    "hotkey": "2"
-  },
-  {
-    "id": "sound_1787010741154_lez1r",
-    "title": "GET OUT TUCO",
-    "url": "https://soundbuttonsworld.com/uploads/92116289-98e0-4dea-babc-e6f7f8bd08d9.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/get-out-tuco-1713706345464",
-    "tags": [
-      "memes",
-      "soundbuttonsworld",
-      "meme"
-    ],
-    "color": "red",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010741154,
-    "tab": "Memes & TV",
-    "hotkey": "C"
-  },
-  {
-    "id": "sound_1787010741182_punzw",
-    "title": "Starting to Mew Meme",
-    "url": "https://soundbuttonsworld.com/uploads/648e50e9-4d98-464f-a7f5-e73d29d61da1.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/mason-kelch4-1714783785261",
-    "tags": [
-      "anime",
-      "playful",
-      "meme",
-      "soundbuttonsworld",
-      "japao",
-      "reacao",
-      "fofo"
-    ],
-    "color": "blue",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010741182,
-    "tab": "Memes & TV",
-    "hotkey": "N"
-  },
-  {
-    "id": "sound_1787010741182_n8oco",
-    "title": "Aspirations of Meme Fame",
-    "url": "https://soundbuttonsworld.com/uploads/7a731a55-551e-4b3d-9002-8a3220eada9e.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/i-will-be-a-frickin-meme-1690641999772",
-    "tags": [
-      "memes",
-      "hopeful",
-      "meme",
-      "soundbuttonsworld"
-    ],
-    "color": "red",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010741182,
-    "tab": "Memes & TV",
-    "hotkey": "M"
-  },
-  {
-    "id": "sound_1787010741182_a16in",
-    "title": "I Can Has Cheezburger Meme Voiceover",
-    "url": "https://soundbuttonsworld.com/uploads/c2a5f8bc-aef5-4aac-a0ba-c4390103ce9c.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/burder-1709398450535",
-    "tags": [
-      "memes",
-      "humorous",
-      "meme",
-      "soundbuttonsworld"
-    ],
-    "color": "purple",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010741182,
-    "tab": "Memes & TV",
-    "hotkey": "SPACE"
+    "hotkey": "9"
   },
   {
     "id": "sound_1787010741211_srft4",
@@ -2114,7 +2342,7 @@
     "isFavorite": false,
     "createdAt": 1787010741211,
     "tab": "Gaming",
-    "hotkey": "R"
+    "hotkey": "Q"
   },
   {
     "id": "sound_1787010741211_1r6yo",
@@ -2133,7 +2361,7 @@
     "isFavorite": false,
     "createdAt": 1787010741211,
     "tab": "Geral",
-    "hotkey": "8"
+    "hotkey": "D"
   },
   {
     "id": "sound_1787010741211_piam6",
@@ -2153,27 +2381,7 @@
     "isFavorite": false,
     "createdAt": 1787010741211,
     "tab": "Geral",
-    "hotkey": "9"
-  },
-  {
-    "id": "sound_1787010741211_044aq",
-    "title": "Frustrated Gamer Choosing a Game",
-    "url": "https://soundbuttonsworld.com/uploads/41eaa81e-4b78-4844-b9c5-01e87fa4ffed.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/just-choose-one-1751384563543",
-    "tags": [
-      "reactions",
-      "humorous",
-      "gaming",
-      "soundbuttonsworld"
-    ],
-    "color": "black",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010741211,
-    "tab": "Memes & TV",
-    "hotkey": "U"
+    "hotkey": "F"
   },
   {
     "id": "sound_1787010741240_bdn0k",
@@ -2200,7 +2408,7 @@
     "isFavorite": false,
     "createdAt": 1787010741240,
     "tab": "Gaming",
-    "hotkey": "I"
+    "hotkey": "W"
   },
   {
     "id": "sound_1787010741240_wl1yj",
@@ -2227,7 +2435,7 @@
     "isFavorite": false,
     "createdAt": 1787010741240,
     "tab": "Gaming",
-    "hotkey": "O"
+    "hotkey": "E"
   },
   {
     "id": "sound_1787010741240_ausks",
@@ -2251,7 +2459,7 @@
     "isFavorite": false,
     "createdAt": 1787010741240,
     "tab": "Gaming",
-    "hotkey": "P"
+    "hotkey": "R"
   },
   {
     "id": "sound_1787010741240_fh7a9",
@@ -2275,7 +2483,7 @@
     "isFavorite": false,
     "createdAt": 1787010741240,
     "tab": "Gaming",
-    "hotkey": "A"
+    "hotkey": "T"
   },
   {
     "id": "sound_1787010741275_w2jgo",
@@ -2298,7 +2506,7 @@
     "isFavorite": false,
     "createdAt": 1787010741275,
     "tab": "Gaming",
-    "hotkey": "S"
+    "hotkey": "Y"
   },
   {
     "id": "sound_1787010741275_a2bga",
@@ -2321,7 +2529,7 @@
     "isFavorite": false,
     "createdAt": 1787010741275,
     "tab": "Gaming",
-    "hotkey": "D"
+    "hotkey": "U"
   },
   {
     "id": "sound_1787010741275_vddpy",
@@ -2347,36 +2555,7 @@
     "isFavorite": false,
     "createdAt": 1787010741275,
     "tab": "Gaming",
-    "hotkey": "F"
-  },
-  {
-    "id": "sound_1787010741275_ednr8",
-    "title": "Minecraft Castle Building Guide",
-    "url": "https://soundbuttonsworld.com/uploads/a18ee6bd-309e-40ca-a914-efbd385f6afc.mp3",
-    "source": "soundbuttonsworld",
-    "sourceUrl": "https://soundbuttonsworld.com/bamsai-1683650702553",
-    "tags": [
-      "effects",
-      "enthusiastic",
-      "gaming",
-      "soundbuttonsworld",
-      "brasil",
-      "tv",
-      "faro",
-      "meme",
-      "reacao",
-      "auditorio",
-      "humor",
-      "minecraft",
-      "sfx"
-    ],
-    "color": "red",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1787010741275,
-    "tab": "Gaming",
-    "hotkey": "G"
+    "hotkey": "I"
   },
   {
     "id": "sound_1787010741306_h3bhu",
@@ -2403,7 +2582,7 @@
     "isFavorite": false,
     "createdAt": 1787010741306,
     "tab": "Efeitos",
-    "hotkey": "E"
+    "hotkey": "P"
   },
   {
     "id": "sound_1787010741306_muzdv",
@@ -2430,7 +2609,7 @@
     "isFavorite": false,
     "createdAt": 1787010741306,
     "tab": "Efeitos",
-    "hotkey": "R"
+    "hotkey": "A"
   },
   {
     "id": "sound_1787010741306_luyd5",
@@ -2455,7 +2634,7 @@
     "isFavorite": false,
     "createdAt": 1787010741306,
     "tab": "Efeitos",
-    "hotkey": "T"
+    "hotkey": "S"
   },
   {
     "id": "sound_1787010741306_ryr6z",
@@ -2480,7 +2659,7 @@
     "isFavorite": false,
     "createdAt": 1787010741306,
     "tab": "Efeitos",
-    "hotkey": "I"
+    "hotkey": "D"
   },
   {
     "id": "sound_1787010741340_8ouc2",
@@ -2504,7 +2683,7 @@
     "isFavorite": false,
     "createdAt": 1787010741340,
     "tab": "Gaming",
-    "hotkey": "H"
+    "hotkey": "O"
   },
   {
     "id": "sound_1787010741340_n91sp",
@@ -2529,7 +2708,7 @@
     "isFavorite": false,
     "createdAt": 1787010741340,
     "tab": "Gaming",
-    "hotkey": "J"
+    "hotkey": "P"
   },
   {
     "id": "sound_1787010741340_6vp0b",
@@ -2554,7 +2733,7 @@
     "isFavorite": false,
     "createdAt": 1787010741340,
     "tab": "Gaming",
-    "hotkey": "K"
+    "hotkey": "A"
   },
   {
     "id": "sound_1787010741340_34sss",
@@ -2583,8 +2762,8 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787010741340,
-    "tab": "Gaming",
-    "hotkey": "L"
+    "tab": "Rodrigo Faro",
+    "hotkey": "U"
   },
   {
     "id": "sound_1787010741370_z6xxp",
@@ -2612,7 +2791,7 @@
     "isFavorite": false,
     "createdAt": 1787010741370,
     "tab": "Efeitos",
-    "hotkey": "O"
+    "hotkey": "F"
   },
   {
     "id": "sound_1787010741370_63fl3",
@@ -2636,7 +2815,7 @@
     "isFavorite": false,
     "createdAt": 1787010741370,
     "tab": "Efeitos",
-    "hotkey": "P"
+    "hotkey": "G"
   },
   {
     "id": "sound_1787010741370_kbodf",
@@ -2660,7 +2839,7 @@
     "isFavorite": false,
     "createdAt": 1787010741370,
     "tab": "Efeitos",
-    "hotkey": "A"
+    "hotkey": "H"
   },
   {
     "id": "sound_1787010741370_nf7u7",
@@ -2684,7 +2863,7 @@
     "isFavorite": false,
     "createdAt": 1787010741370,
     "tab": "Efeitos",
-    "hotkey": "S"
+    "hotkey": "J"
   },
   {
     "id": "sound_1787010741400_t8xd1",
@@ -2707,7 +2886,7 @@
     "isFavorite": false,
     "createdAt": 1787010741400,
     "tab": "Gaming",
-    "hotkey": "Z"
+    "hotkey": "S"
   },
   {
     "id": "sound_1787010741400_lq01r",
@@ -2731,7 +2910,7 @@
     "isFavorite": false,
     "createdAt": 1787010741400,
     "tab": "Gaming",
-    "hotkey": "X"
+    "hotkey": "D"
   },
   {
     "id": "sound_1787010741400_leznm",
@@ -2759,7 +2938,7 @@
     "isFavorite": false,
     "createdAt": 1787010741400,
     "tab": "Gaming",
-    "hotkey": "C"
+    "hotkey": "F"
   },
   {
     "id": "sound_1787010741400_5aqzg",
@@ -2782,7 +2961,7 @@
     "isFavorite": false,
     "createdAt": 1787010741400,
     "tab": "Gaming",
-    "hotkey": "V"
+    "hotkey": "G"
   },
   {
     "id": "sound_1787010741425_ziyp7",
@@ -2806,7 +2985,7 @@
     "isFavorite": false,
     "createdAt": 1787010741425,
     "tab": "Efeitos",
-    "hotkey": "D"
+    "hotkey": "K"
   },
   {
     "id": "sound_1787010741425_0f898",
@@ -2831,7 +3010,7 @@
     "isFavorite": false,
     "createdAt": 1787010741425,
     "tab": "Efeitos",
-    "hotkey": "F"
+    "hotkey": "L"
   },
   {
     "id": "sound_1787010741425_4umyu",
@@ -2856,7 +3035,7 @@
     "isFavorite": false,
     "createdAt": 1787010741425,
     "tab": "Efeitos",
-    "hotkey": "G"
+    "hotkey": "Z"
   },
   {
     "id": "sound_1787010741425_fm7ra",
@@ -2880,6 +3059,6 @@
     "isFavorite": false,
     "createdAt": 1787010741425,
     "tab": "Efeitos",
-    "hotkey": "H"
+    "hotkey": "X"
   }
 ]

@@ -135,16 +135,16 @@ export const AddSoundModal: React.FC<AddSoundModalProps> = ({
             availableTags={availableTags}
           />
 
-          {/* Hotkey */}
+          {/* Hotkey (Letters A-Z and Numbers 0-9 only) */}
           <div className="form-group-deck">
-            <label>Atalho de Teclado (Opcional)</label>
+            <label>Atalho de Teclado (Apenas 1 Letra ou Número)</label>
             <input
               type="text"
               className="input-deck"
-              placeholder="Ex: 1, 2, Q, F5..."
+              placeholder="Ex: 1, 2, Q, A..."
               value={hotkey}
-              onChange={(e) => setHotkey(e.target.value.toUpperCase())}
-              maxLength={6}
+              onChange={(e) => setHotkey(e.target.value.replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 1))}
+              maxLength={1}
             />
           </div>
 

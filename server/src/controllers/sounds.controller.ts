@@ -97,7 +97,9 @@ export class SoundsController {
 
       const sounds = await loadSounds();
       const targetTab = (tab || 'Geral').trim();
-      const normalizedHotkey = hotkey ? hotkey.toUpperCase().trim() : undefined;
+      const normalizedHotkey = hotkey
+        ? hotkey.replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 1) || undefined
+        : undefined;
 
       // Enforce unique hotkeys WITHIN THE SAME TAB
       if (normalizedHotkey) {
@@ -150,8 +152,10 @@ export class SoundsController {
       const updates = req.body;
       const targetTab = (updates.tab !== undefined ? updates.tab : (current.tab || 'Geral')).trim();
 
-      const normalizedHotkey = updates.hotkey !== undefined 
-        ? (updates.hotkey ? updates.hotkey.toUpperCase().trim() : undefined) 
+      const normalizedHotkey = updates.hotkey !== undefined
+        ? updates.hotkey
+          ? updates.hotkey.replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 1) || undefined
+          : undefined
         : current.hotkey;
 
       // Enforce unique hotkeys WITHIN THE SAME TAB

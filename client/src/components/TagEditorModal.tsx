@@ -81,10 +81,12 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
         return;
       }
 
-      let keyStr = e.key.toUpperCase();
-      if (keyStr === ' ') keyStr = 'SPACE';
-      setHotkey(keyStr);
-      setIsRecordingHotkey(false);
+      // STRICTLY ONLY SINGLE LETTERS AND NUMBERS (A-Z, 0-9)
+      const rawKey = e.key.toUpperCase();
+      if (/^[A-Z0-9]$/.test(rawKey)) {
+        setHotkey(rawKey);
+        setIsRecordingHotkey(false);
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);

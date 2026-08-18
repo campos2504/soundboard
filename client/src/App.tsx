@@ -30,9 +30,16 @@ export default function App() {
   // Soundboard Profiles / Pages / Tabs
   const [soundboardTabs, setSoundboardTabs] = useState<string[]>(() => {
     const saved = localStorage.getItem('soundboard_custom_tabs');
-    return saved ? JSON.parse(saved) : ['Geral', 'Memes & TV', 'Gaming', 'Efeitos'];
+    const base = ['Geral', 'Rodrigo Faro', 'Memes & TV', 'Gaming', 'Efeitos'];
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        return Array.from(new Set(['Geral', 'Rodrigo Faro', ...parsed]));
+      } catch (e) {}
+    }
+    return base;
   });
-  const [activeSoundboardTab, setActiveSoundboardTab] = useState<string>('Geral');
+  const [activeSoundboardTab, setActiveSoundboardTab] = useState<string>('Rodrigo Faro');
 
   // Filters
   const [searchQuery, setSearchQuery] = useState('');
@@ -245,24 +252,47 @@ export default function App() {
     }
   };
 
-  // Reorder Sound position
+  // Universal Alphanumeric Hotkey Grid Sequence
+  const HOTKEY_GRID_SEQUENCE = [
+    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+    'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
+    'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
+    'Z', 'X', 'C', 'V', 'B', 'N', 'M',
+  ];
+
+  // Reorder Sound position: The order of cards dictates the order of hotkeys!
   const handleMoveSound = async (soundId: string, direction: 'left' | 'right') => {
-    const currentIndex = sounds.findIndex((s) => s.id === soundId);
-    if (currentIndex === -1) return;
+    // Get sounds in the currently active tab
+    const tabSounds = sounds.filter((s) => (s.tab || 'Geral').trim() === activeSoundboardTab.trim());
+    const currentIndexInTab = tabSounds.findIndex((s) => s.id === soundId);
+    if (currentIndexInTab === -1) return;
 
-    const targetIndex = direction === 'left' ? currentIndex - 1 : currentIndex + 1;
-    if (targetIndex < 0 || targetIndex >= sounds.length) return;
+    const targetIndexInTab = direction === 'left' ? currentIndexInTab - 1 : currentIndexInTab + 1;
+    if (targetIndexInTab < 0 || targetIndexInTab >= tabSounds.length) return;
 
-    const updatedSounds = [...sounds];
-    const [moved] = updatedSounds.splice(currentIndex, 1);
-    updatedSounds.splice(targetIndex, 0, moved);
+    // Swap positions within the active tab
+    const [moved] = tabSounds.splice(currentIndexInTab, 1);
+    tabSounds.splice(targetIndexInTab, 0, moved);
+
+    // Re-assign hotkeys based on the new card order in this tab
+    tabSounds.forEach((s, idx) => {
+      s.hotkey = idx < HOTKEY_GRID_SEQUENCE.length ? HOTKEY_GRID_SEQUENCE[idx] : undefined;
+    });
+
+    // Reassemble the full sounds array preserving other tabs
+    const otherSounds = sounds.filter((s) => (s.tab || 'Geral').trim() !== activeSoundboardTab.trim());
+    const updatedSounds = [...tabSounds, ...otherSounds];
 
     setSounds(updatedSounds);
 
     try {
       await reorderSounds(updatedSounds.map((s) => s.id));
+      await Promise.all([
+        updateSound(tabSounds[targetIndexInTab].id, { hotkey: tabSounds[targetIndexInTab].hotkey }),
+        updateSound(tabSounds[currentIndexInTab].id, { hotkey: tabSounds[currentIndexInTab].hotkey }),
+      ]);
     } catch (err) {
-      console.error('Failed to save soundboard order:', err);
+      console.error('Failed to save soundboard order and hotkeys:', err);
     }
   };
 
