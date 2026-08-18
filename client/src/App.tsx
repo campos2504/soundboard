@@ -75,13 +75,19 @@ export default function App() {
   // Audio Config
   const [audioConfig, setAudioConfig] = useState<AudioRoutingConfig>(AudioEngine.getConfig());
 
-  // Subscribe to Audio Engine state changes
+  // Subscribe to Audio Engine state and config changes
   useEffect(() => {
-    const unsubscribe = AudioEngine.subscribe((mainIds, testIds) => {
+    const unsubState = AudioEngine.subscribe((mainIds, testIds) => {
       setPlayingMainIds(mainIds);
       setPlayingTestIds(testIds);
     });
-    return unsubscribe;
+    const unsubConfig = AudioEngine.subscribeConfig((newCfg) => {
+      setAudioConfig(newCfg);
+    });
+    return () => {
+      unsubState();
+      unsubConfig();
+    };
   }, []);
 
   // Load Sounds and Tags

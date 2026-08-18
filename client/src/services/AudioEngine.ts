@@ -90,12 +90,42 @@ class AudioEngineService {
     }
   }
 
+  private configListeners: Set<(config: AudioRoutingConfig) => void> = new Set();
+
+  public subscribeConfig(callback: (config: AudioRoutingConfig) => void): () => void {
+    this.configListeners.add(callback);
+    callback({ ...this.config });
+    return () => this.configListeners.delete(callback);
+  }
+
   public saveConfig(newConfig: Partial<AudioRoutingConfig>) {
     this.config = { ...this.config, ...newConfig };
     try {
       localStorage.setItem('steamdeck_audio_config', JSON.stringify(this.config));
     } catch (e) {
       console.warn('Could not save audio config', e);
+    }
+    this.updateActiveAudiosVolume();
+    this.configListeners.forEach((cb) => cb({ ...this.config }));
+  }
+
+  /**
+   * Real-time dynamic volume adjustment on all currently active/playing audio streams
+   */
+  public updateActiveAudiosVolume() {
+    for (const [_, item] of this.activeAudios) {
+      const isTest = item.isTest;
+      const baseVol = (item.element as any)._baseVol !== undefined ? (item.element as any)._baseVol : 1.0;
+      const autoScale = (item.element as any)._autoScale !== undefined ? (item.element as any)._autoScale : 1.0;
+      const masterVol = isTest
+        ? (this.config.previewVolume !== undefined ? this.config.previewVolume : 0.70)
+        : (this.config.masterVolume !== undefined ? this.config.masterVolume : 1.0);
+
+      let finalVol = baseVol * masterVol * autoScale;
+      if (isTest && this.config.earProtectionMode !== false) {
+        finalVol = Math.min(0.72, finalVol * 0.90);
+      }
+      item.element.volume = Math.max(0, Math.min(1, finalVol));
     }
   }
 
@@ -293,6 +323,9 @@ class AudioEngineService {
     // Selective auto-attenuation applied ONLY to sounds detected as burst / clipping
     const autoScale = (profile && profile.isBurst) ? profile.multiplier : 1.0;
     let finalVol = baseVol * masterVol * autoScale;
+
+    (audio as any)._baseVol = baseVol;
+    (audio as any)._autoScale = autoScale;
 
     if (profile && profile.isBurst) {
       console.log(`[AudioEngine] 🛡️ Som estourado detectado ("${sound.title || sound.id}"). Ganho compensado automaticamente de 100% para ${Math.round(profile.multiplier * 100)}%`);
