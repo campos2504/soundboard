@@ -207,8 +207,32 @@ export const HotkeysTab: React.FC<HotkeysTabProps> = ({
       });
     }
 
-    const otherSounds = sounds.filter((s) => (s.tab || 'Geral').trim() !== selectedTab.trim());
-    const fullReordered = [...reorderedTab, ...otherSounds];
+    // Reassemble full soundboard preserving tab groups in deterministic soundboardTabs order
+    const orderedTabs = Array.from(new Set(['Geral', ...soundboardTabs]));
+    const targetNorm = selectedTab.trim();
+    const fullReordered: SoundItem[] = [];
+
+    const tabGroups = new Map<string, SoundItem[]>();
+    for (const s of sounds) {
+      const t = (s.tab || 'Geral').trim();
+      if (t === targetNorm) continue;
+      if (!tabGroups.has(t)) tabGroups.set(t, []);
+      tabGroups.get(t)!.push(s);
+    }
+
+    for (const t of orderedTabs) {
+      const tNorm = t.trim();
+      if (tNorm === targetNorm) {
+        fullReordered.push(...reorderedTab);
+      } else if (tabGroups.has(tNorm)) {
+        fullReordered.push(...tabGroups.get(tNorm)!);
+        tabGroups.delete(tNorm);
+      }
+    }
+
+    for (const [_, leftoverList] of tabGroups.entries()) {
+      fullReordered.push(...leftoverList);
+    }
 
     await onReorderSounds(fullReordered.map((s) => s.id));
 

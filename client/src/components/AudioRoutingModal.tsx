@@ -176,86 +176,88 @@ export const AudioRoutingModal: React.FC<AudioRoutingModalProps> = ({
         </div>
 
         {/* Primary Output Device */}
-        <div className="form-group-deck" style={{ background: 'rgba(26, 159, 255, 0.04)', padding: '0.85rem', borderRadius: 'var(--radius-md)', border: '1px solid rgba(26, 159, 255, 0.15)' }}>
+        <div className="form-group-deck" style={{ background: 'rgba(26, 159, 255, 0.04)', padding: '0.65rem 0.85rem', borderRadius: 'var(--radius-md)', border: '1px solid rgba(26, 159, 255, 0.15)', marginBottom: '0.75rem' }}>
           <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--deck-cyan-light)', fontWeight: 700 }}>
-            <Volume2 size={16} />
-            SAÍDA PRINCIPAL 1 [A] (Transmissão / Discord / Cabo Virtual / Auto-falantes)
+            <Volume2 size={15} />
+            <span>SAÍDA PRINCIPAL 1 [A] (TRANSMISSÃO / DISCORD / CABO VIRTUAL / AUTO-FALANTES)</span>
           </label>
           <select
             className="select-deck"
             value={primaryDevice}
             onChange={(e) => handleSelectPrimary(e.target.value)}
-            style={{ marginTop: '0.3rem', marginBottom: '0.5rem' }}
           >
             {devices.map((d) => (
               <option key={d.deviceId} value={d.deviceId}>
-                {d.label}
+                {d.label || (d.deviceId === 'default' ? 'Padrão do Sistema' : `Dispositivo (${d.deviceId.slice(0, 8)}...)`)}
               </option>
             ))}
           </select>
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.4rem' }}>
             <button
-              className={`btn-steamdeck ${testingPrimaryTone ? 'btn-steamdeck-primary' : 'btn-steamdeck-secondary'}`}
+              type="button"
+              className="btn-steamdeck btn-steamdeck-secondary"
               onClick={() => handleTestTone('primary')}
-              style={{ fontSize: '0.75rem', padding: '0.35rem 0.7rem' }}
+              style={{ fontSize: '0.72rem', padding: '0.28rem 0.6rem' }}
             >
-              <Bell size={13} />
-              <span>{testingPrimaryTone ? 'Tocando Tom...' : 'Tom de Teste (Saída 1)'}</span>
+              <Bell size={12} />
+              <span>{testingPrimaryTone ? 'Tocando...' : 'Tom de Teste (Saída 1)'}</span>
             </button>
             <button
-              className={`btn-steamdeck ${testingPrimarySample ? 'btn-steamdeck-primary' : 'btn-steamdeck-secondary'}`}
+              type="button"
+              className="btn-steamdeck btn-steamdeck-secondary"
               onClick={() => handleTestSampleSound('primary')}
-              style={{ fontSize: '0.75rem', padding: '0.35rem 0.7rem' }}
+              style={{ fontSize: '0.72rem', padding: '0.28rem 0.6rem', borderColor: 'var(--deck-cyan)', color: 'var(--deck-cyan)' }}
             >
-              <Play size={13} />
+              <Play size={12} />
               <span>{testingPrimarySample ? 'Tocando Meme...' : 'Som de Teste Meme (Saída 1)'}</span>
             </button>
           </div>
         </div>
 
-        {/* SECONDARY OUTPUT DEVICE (TEST PILL) */}
-        <div className="form-group-deck" style={{ background: 'rgba(255, 119, 0, 0.04)', padding: '0.85rem', borderRadius: 'var(--radius-md)', border: '1px solid rgba(255, 119, 0, 0.2)', marginTop: '1rem' }}>
+        {/* Secondary / Preview Output Device */}
+        <div className="form-group-deck" style={{ background: 'rgba(255, 119, 0, 0.04)', padding: '0.65rem 0.85rem', borderRadius: 'var(--radius-md)', border: '1px solid rgba(255, 119, 0, 0.25)', marginBottom: '0.75rem' }}>
           <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#ffaa44', fontWeight: 700 }}>
-            <Headphones size={16} />
-            SAÍDA SECUNDÁRIA 2 [X] - PÍLULA DE TESTE (Fones de Ouvido / Monitor de Áudio)
+            <Headphones size={15} />
+            <span>SAÍDA SECUNDÁRIA 2 [X] - PÍLULA DE TESTE (FONES DE OUVIDO / MONITOR DE ÁUDIO)</span>
           </label>
           <select
             className="select-deck"
             value={secondaryDevice}
             onChange={(e) => handleSelectSecondary(e.target.value)}
-            style={{ marginTop: '0.3rem', marginBottom: '0.5rem' }}
           >
             {devices.map((d) => (
               <option key={d.deviceId} value={d.deviceId}>
-                {d.label}
+                {d.label || (d.deviceId === 'default' ? 'Padrão do Sistema (Fones)' : `Dispositivo (${d.deviceId.slice(0, 8)}...)`)}
               </option>
             ))}
           </select>
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.4rem' }}>
             <button
-              className={`btn-steamdeck ${testingSecondaryTone ? 'btn-steamdeck-amber' : 'btn-steamdeck-secondary'}`}
+              type="button"
+              className="btn-steamdeck btn-steamdeck-secondary"
               onClick={() => handleTestTone('secondary')}
-              style={{ fontSize: '0.75rem', padding: '0.35rem 0.7rem', borderColor: '#ff7700', color: '#ffaa44' }}
+              style={{ fontSize: '0.72rem', padding: '0.28rem 0.6rem' }}
             >
-              <Bell size={13} />
-              <span>{testingSecondaryTone ? 'Tocando Tom...' : 'Tom de Teste (Saída 2)'}</span>
+              <Bell size={12} />
+              <span>{testingSecondaryTone ? 'Tocando...' : 'Tom de Teste (Saída 2)'}</span>
             </button>
             <button
-              className={`btn-steamdeck ${testingSecondarySample ? 'btn-steamdeck-amber' : 'btn-steamdeck-secondary'}`}
+              type="button"
+              className="btn-steamdeck btn-steamdeck-secondary"
               onClick={() => handleTestSampleSound('secondary')}
-              style={{ fontSize: '0.75rem', padding: '0.35rem 0.7rem', borderColor: '#ff7700', color: '#ffaa44' }}
+              style={{ fontSize: '0.72rem', padding: '0.28rem 0.6rem', borderColor: '#ff7700', color: '#ffaa44' }}
             >
-              <Headphones size={13} />
+              <Headphones size={12} />
               <span>{testingSecondarySample ? 'Tocando Meme...' : 'Som de Teste Meme (Saída 2)'}</span>
             </button>
           </div>
-          <p style={{ fontSize: '0.74rem', color: 'var(--text-muted)', marginTop: '0.4rem' }}>
+          <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>
             Ao clicar no botão <strong>Testar [X]</strong> em qualquer som na Soundboard, o áudio será enviado <strong>exclusivamente para esta saída secundária</strong>!
           </p>
         </div>
 
         {/* Volumes */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', margin: '1.25rem 0' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem', margin: '0.75rem 0' }}>
           <div className="form-group-deck">
             <label>Volume Saída Principal ({Math.round(masterVolume * 100)}%)</label>
             <input
@@ -293,9 +295,9 @@ export const AudioRoutingModal: React.FC<AudioRoutingModalProps> = ({
           </div>
         </div>
 
-        {/* Mode Toggles */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem' }}>
-          <label style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}>
+        {/* Output Options */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1rem' }}>
+          <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', cursor: 'pointer' }}>
             <input
               type="checkbox"
               checked={dualOutput}
@@ -303,19 +305,19 @@ export const AudioRoutingModal: React.FC<AudioRoutingModalProps> = ({
                 setDualOutput(e.target.checked);
                 AudioEngine.saveConfig({ dualOutputEnabled: e.target.checked });
               }}
-              style={{ width: '18px', height: '18px', accentColor: 'var(--neon-pink)' }}
+              style={{ width: '16px', height: '16px', accentColor: 'var(--neon-pink)' }}
             />
             <div>
-              <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#fff' }}>
+              <span style={{ fontSize: '0.82rem', fontWeight: 600, color: '#fff' }}>
                 Habilitar Saída Dupla Simultânea
               </span>
-              <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
+              <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
                 Ao tocar um som normal, reproduz ao mesmo tempo na saída principal e secundária.
               </p>
             </div>
           </label>
 
-          <label style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}>
+          <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', cursor: 'pointer' }}>
             <input
               type="checkbox"
               checked={overlapMode === 'cut'}
@@ -324,19 +326,19 @@ export const AudioRoutingModal: React.FC<AudioRoutingModalProps> = ({
                 setOverlapMode(mode);
                 AudioEngine.saveConfig({ overlapMode: mode });
               }}
-              style={{ width: '18px', height: '18px', accentColor: 'var(--deck-cyan)' }}
+              style={{ width: '16px', height: '16px', accentColor: 'var(--deck-cyan)' }}
             />
             <div>
-              <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#fff' }}>
+              <span style={{ fontSize: '0.82rem', fontWeight: 600, color: '#fff' }}>
                 Modo Cortar Som Anterior
               </span>
-              <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
+              <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
                 Interrompe sons anteriores ao disparar um novo som.
               </p>
             </div>
           </label>
 
-          <label style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer', background: 'rgba(0, 255, 136, 0.06)', padding: '8px 10px', borderRadius: '8px', border: '1px solid rgba(0, 255, 136, 0.25)' }}>
+          <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', cursor: 'pointer', background: 'rgba(0, 255, 136, 0.06)', padding: '6px 8px', borderRadius: '6px', border: '1px solid rgba(0, 255, 136, 0.25)' }}>
             <input
               type="checkbox"
               checked={earProtection}
@@ -344,21 +346,21 @@ export const AudioRoutingModal: React.FC<AudioRoutingModalProps> = ({
                 setEarProtection(e.target.checked);
                 AudioEngine.saveConfig({ earProtectionMode: e.target.checked });
               }}
-              style={{ width: '18px', height: '18px', accentColor: 'var(--neon-green)' }}
+              style={{ width: '16px', height: '16px', accentColor: 'var(--neon-green)' }}
             />
             <div>
-              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--neon-green)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--neon-green)', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 Proteção Auricular Anti-Estouro (Limiter Dinâmico nos Fones)
               </span>
-              <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-                Comprime e limita automaticamente o ganho de memes explosivos na saída de teste para evitar saturação e proteger seus ouvidos.
+              <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
+                Comprime e limita o ganho de memes explosivos na saída de teste para evitar saturação.
               </p>
             </div>
           </label>
         </div>
 
         {/* Footer Actions */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem', paddingTop: '0.5rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
           <button className="btn-steamdeck btn-steamdeck-secondary" onClick={onClose}>
             Fechar
           </button>

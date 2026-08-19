@@ -358,6 +358,44 @@ export default function App() {
     ];
   };
 
+  // Helper to reassemble full soundboard preserving tab groups in deterministic soundboardTabs order
+  const reassembleSoundsByTabs = (
+    tabSoundsToInsert: SoundItem[],
+    targetTab: string,
+    currentSounds: SoundItem[]
+  ): SoundItem[] => {
+    const targetNorm = targetTab.trim();
+    const orderedTabs = Array.from(new Set(['Geral', ...soundboardTabs]));
+    const result: SoundItem[] = [];
+
+    // Group sounds by tab
+    const tabGroups = new Map<string, SoundItem[]>();
+    for (const s of currentSounds) {
+      const t = (s.tab || 'Geral').trim();
+      if (t === targetNorm) continue; // will be replaced by tabSoundsToInsert
+      if (!tabGroups.has(t)) tabGroups.set(t, []);
+      tabGroups.get(t)!.push(s);
+    }
+
+    // Place tabs in deterministic soundboardTabs order
+    for (const t of orderedTabs) {
+      const tNorm = t.trim();
+      if (tNorm === targetNorm) {
+        result.push(...tabSoundsToInsert);
+      } else if (tabGroups.has(tNorm)) {
+        result.push(...tabGroups.get(tNorm)!);
+        tabGroups.delete(tNorm);
+      }
+    }
+
+    // Add any leftover tabs not in soundboardTabs
+    for (const [_, leftoverList] of tabGroups.entries()) {
+      result.push(...leftoverList);
+    }
+
+    return result;
+  };
+
   const handleDrop = async (e: React.DragEvent, targetIndex: number) => {
     e.preventDefault();
     if (draggedIndex === null || draggedIndex === targetIndex) {
@@ -387,9 +425,8 @@ export default function App() {
       });
     }
 
-    // Reassemble full array
-    const otherSounds = sounds.filter((s) => (s.tab || 'Geral').trim() !== activeSoundboardTab.trim());
-    const updatedSounds = [...tabSounds, ...otherSounds];
+    // Reassemble full array preserving strict tab grouping
+    const updatedSounds = reassembleSoundsByTabs(tabSounds, activeSoundboardTab, sounds);
 
     setSounds(updatedSounds);
     setDraggedIndex(null);
@@ -431,9 +468,8 @@ export default function App() {
       });
     }
 
-    // Reassemble the full sounds array preserving other tabs
-    const otherSounds = sounds.filter((s) => (s.tab || 'Geral').trim() !== activeSoundboardTab.trim());
-    const updatedSounds = [...tabSounds, ...otherSounds];
+    // Reassemble the full sounds array preserving strict tab grouping
+    const updatedSounds = reassembleSoundsByTabs(tabSounds, activeSoundboardTab, sounds);
 
     setSounds(updatedSounds);
 
