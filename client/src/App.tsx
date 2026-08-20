@@ -12,7 +12,7 @@ import { TagEditorModal } from './components/TagEditorModal';
 import { AddSoundModal } from './components/AddSoundModal';
 import { RecordSoundModal } from './components/RecordSoundModal';
 import { ImportUrlModal } from './components/ImportUrlModal';
-import { HotkeysTab } from './components/HotkeysTab';
+import { HotkeysTab, parseHotkeySequence } from './components/HotkeysTab';
 import { GamepadOverlay } from './components/GamepadOverlay';
 import { ObsOverlayView } from './components/ObsOverlayView';
 import { ObsModal } from './components/ObsModal';
@@ -168,7 +168,8 @@ export default function App() {
       }
 
       const isShift = e.shiftKey;
-      let pressedKey = e.key.toUpperCase();
+      const pressedKey = e.key.toUpperCase();
+      const pressedCode = e.code ? e.code.toUpperCase() : '';
 
       // Normalize digit keys if Shift is pressed
       let digitKey: string | null = null;
@@ -183,8 +184,33 @@ export default function App() {
         const sTab = (s.tab || 'Geral').trim();
         if (sTab !== activeSoundboardTab.trim()) return false;
         if (!s.hotkey) return false;
-        const hk = s.hotkey.toUpperCase();
-        return hk === pressedKey || (digitKey && hk === digitKey);
+        const hk = s.hotkey.toUpperCase().trim();
+
+        // 1. Direct match on key or code (e.g. "F13", "F1", "1", "Q", "SPACE")
+        if (hk === pressedKey || hk === pressedCode) return true;
+
+        // 2. Digit key when Shift is pressed
+        if (digitKey && hk === digitKey) return true;
+
+        // 3. Numpad aliases (e.g. "NUM1", "NUMPAD1", "1")
+        if (pressedCode.startsWith('NUMPAD')) {
+          const num = pressedCode.replace('NUMPAD', '');
+          if (hk === `NUM${num}` || hk === `NUMPAD${num}` || hk === num) return true;
+        }
+
+        // 4. Standard Key alias (e.g. "KEYA" vs "A")
+        if (pressedCode.startsWith('KEY')) {
+          const letter = pressedCode.replace('KEY', '');
+          if (hk === letter) return true;
+        }
+
+        // 5. Arrow keys aliases
+        if (pressedCode === 'ARROWUP' && hk === 'UP') return true;
+        if (pressedCode === 'ARROWDOWN' && hk === 'DOWN') return true;
+        if (pressedCode === 'ARROWLEFT' && hk === 'LEFT') return true;
+        if (pressedCode === 'ARROWRIGHT' && hk === 'RIGHT') return true;
+
+        return false;
       });
 
       if (matched) {
@@ -336,6 +362,21 @@ export default function App() {
     if (autoAssign === 'false' || strategy === 'manual') {
       return null;
     }
+    if (strategy === 'streamdeck_f13_f24') {
+      return [
+        'F13', 'F14', 'F15', 'F16', 'F17', 'F18',
+        'F19', 'F20', 'F21', 'F22', 'F23', 'F24',
+      ];
+    }
+    if (strategy === 'streamdeck_f1_f24') {
+      return [
+        'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12',
+        'F13', 'F14', 'F15', 'F16', 'F17', 'F18', 'F19', 'F20', 'F21', 'F22', 'F23', 'F24',
+      ];
+    }
+    if (strategy === 'function_keys') {
+      return ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'];
+    }
     if (strategy === 'numpad_only') {
       return ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
     }
@@ -348,7 +389,7 @@ export default function App() {
     }
     if (strategy === 'custom') {
       const custom = localStorage.getItem('soundboard_custom_sequence') || '1234567890QWERTYUIOPASDFGHJKLZXCVBNM';
-      return custom.split('');
+      return parseHotkeySequence(custom);
     }
     return [
       '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',

@@ -15,7 +15,68 @@ import {
 } from 'lucide-react';
 import type { SoundItem } from '../types';
 
-type HotkeyStrategy = 'standard_qwerty' | 'numpad_only' | 'letters_only' | 'custom' | 'manual';
+export type HotkeyStrategy =
+  | 'standard_qwerty'
+  | 'streamdeck_f13_f24'
+  | 'streamdeck_f1_f24'
+  | 'function_keys'
+  | 'numpad_only'
+  | 'letters_only'
+  | 'custom'
+  | 'manual';
+
+export const parseHotkeySequence = (str: string): string[] => {
+  if (!str || !str.trim()) return [];
+  const trimmed = str.trim();
+  if (/[,;\s\n]+/.test(trimmed)) {
+    return trimmed
+      .split(/[,;\s\n]+/)
+      .map((k) => k.trim().toUpperCase())
+      .filter((k) => k.length > 0);
+  }
+  return trimmed
+    .replace(/[^A-Za-z0-9]/g, '')
+    .toUpperCase()
+    .split('');
+};
+
+export const normalizeCapturedKey = (e: KeyboardEvent): string | null => {
+  const key = e.key.toUpperCase();
+  const code = e.code ? e.code.toUpperCase() : '';
+
+  // Function keys F1 - F24 (Stream Deck & macro keys)
+  if (/^F([1-9]|1[0-9]|2[0-4])$/.test(key) || /^F([1-9]|1[0-9]|2[0-4])$/.test(code)) {
+    return key.startsWith('F') ? key : code;
+  }
+
+  // Single Alphanumeric
+  if (/^[A-Z0-9]$/.test(key)) {
+    return key;
+  }
+
+  // Numpad digits (Numpad0 - Numpad9)
+  if (code.startsWith('NUMPAD')) {
+    const num = code.replace('NUMPAD', '');
+    if (/^[0-9]$/.test(num)) return `NUM${num}`;
+    return code;
+  }
+
+  // Navigation & Special keys
+  if (['PAGEUP', 'PAGEDOWN', 'HOME', 'END', 'INSERT', 'ARROWUP', 'ARROWDOWN', 'ARROWLEFT', 'ARROWRIGHT', 'SPACE'].includes(code)) {
+    if (code === 'ARROWUP') return 'UP';
+    if (code === 'ARROWDOWN') return 'DOWN';
+    if (code === 'ARROWLEFT') return 'LEFT';
+    if (code === 'ARROWRIGHT') return 'RIGHT';
+    return code;
+  }
+
+  // Printable symbols
+  if (key.length === 1 && key !== ' ') {
+    return key;
+  }
+
+  return null;
+};
 
 const STRATEGY_PRESETS: Record<string, { label: string; description: string; sequence: string[] }> = {
   standard_qwerty: {
@@ -27,6 +88,27 @@ const STRATEGY_PRESETS: Record<string, { label: string; description: string; seq
       'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
       'Z', 'X', 'C', 'V', 'B', 'N', 'M',
     ],
+  },
+  streamdeck_f13_f24: {
+    label: 'Stream Deck (F13 a F24)',
+    description: 'Teclas virtuais estendidas F13 a F24. Padrão ideal para botões do Elgato Stream Deck sem conflitos com o sistema.',
+    sequence: [
+      'F13', 'F14', 'F15', 'F16', 'F17', 'F18',
+      'F19', 'F20', 'F21', 'F22', 'F23', 'F24',
+    ],
+  },
+  streamdeck_f1_f24: {
+    label: 'Stream Deck Estendido (F1 a F24)',
+    description: 'Sequência de 24 teclas de função (F1 até F24) para perfis com muitos botões de macro.',
+    sequence: [
+      'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12',
+      'F13', 'F14', 'F15', 'F16', 'F17', 'F18', 'F19', 'F20', 'F21', 'F22', 'F23', 'F24',
+    ],
+  },
+  function_keys: {
+    label: 'Teclas de Função (F1 a F12)',
+    description: 'Atribui teclas de função padrão F1 a F12 no topo do teclado.',
+    sequence: ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'],
   },
   numpad_only: {
     label: 'Apenas Números (1 a 0)',
@@ -43,8 +125,8 @@ const STRATEGY_PRESETS: Record<string, { label: string; description: string; seq
     ],
   },
   custom: {
-    label: 'Sequência Customizada',
-    description: 'Defina manualmente a ordem exata de teclas que deseja usar.',
+    label: 'Sequência Customizada (Stream Deck / Macro / Teclas Personalizadas)',
+    description: 'Defina qualquer lista de teclas (ex: F13, F14, NUM1, A, B, C...) separadas por vírgula ou espaço.',
     sequence: [],
   },
   manual: {
@@ -110,15 +192,14 @@ export const HotkeysTab: React.FC<HotkeysTabProps> = ({
   };
 
   const handleCustomSequenceChange = (val: string) => {
-    const sanitized = val.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
-    setCustomSequenceStr(sanitized);
-    localStorage.setItem('soundboard_custom_sequence', sanitized);
+    setCustomSequenceStr(val);
+    localStorage.setItem('soundboard_custom_sequence', val);
   };
 
   // Get active sequence array
   const getActiveSequence = (): string[] => {
     if (strategy === 'custom') {
-      return customSequenceStr.split('');
+      return parseHotkeySequence(customSequenceStr);
     }
     return STRATEGY_PRESETS[strategy]?.sequence || [];
   };
@@ -263,9 +344,9 @@ export const HotkeysTab: React.FC<HotkeysTabProps> = ({
         return;
       }
 
-      const raw = e.key.toUpperCase();
-      if (/^[A-Z0-9]$/.test(raw)) {
-        await onUpdateSound(editingHotkeyId, { hotkey: raw });
+      const normalized = normalizeCapturedKey(e);
+      if (normalized) {
+        await onUpdateSound(editingHotkeyId, { hotkey: normalized });
         setEditingHotkeyId(null);
       }
     };
@@ -300,7 +381,7 @@ export const HotkeysTab: React.FC<HotkeysTabProps> = ({
                 Central de Mapeamento & Ordem dos Atalhos
               </h2>
               <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', margin: '4px 0 0 0' }}>
-                Personalize a sequência das teclas, alterne entre modos automáticos ou manuais e configure a ordem de cada aba.
+                Personalize a sequência das teclas, use atalhos para Stream Deck (F13-F24), teclado numérico ou macros customizadas.
               </p>
             </div>
           </div>
@@ -353,7 +434,7 @@ export const HotkeysTab: React.FC<HotkeysTabProps> = ({
         </h3>
 
         {/* Strategy Selector Buttons */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0.75rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '0.75rem' }}>
           {Object.entries(STRATEGY_PRESETS).map(([key, preset]) => {
             const isSelected = strategy === key;
             return (
@@ -367,34 +448,42 @@ export const HotkeysTab: React.FC<HotkeysTabProps> = ({
                   border: isSelected ? '2px solid var(--neon-cyan)' : '1px solid rgba(255, 255, 255, 0.1)',
                   boxShadow: isSelected ? '0 0 20px rgba(0, 240, 255, 0.3)' : 'none',
                   cursor: 'pointer',
-                  transition: 'all 0.15s ease',
+                  transition: 'all 0.2s ease',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '4px',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
-                  <strong style={{ fontSize: '0.9rem', color: isSelected ? 'var(--neon-cyan)' : '#ffffff' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span style={{ fontSize: '0.9rem', fontWeight: 700, color: isSelected ? 'var(--neon-cyan)' : '#ffffff' }}>
                     {preset.label}
-                  </strong>
+                  </span>
                   {isSelected && <Check size={16} color="var(--neon-cyan)" />}
                 </div>
                 <p style={{ fontSize: '0.74rem', color: 'var(--text-muted)', margin: 0, lineHeight: 1.3 }}>
                   {preset.description}
                 </p>
+                {preset.sequence.length > 0 && (
+                  <span style={{ fontSize: '0.68rem', color: 'var(--neon-yellow)', fontFamily: 'monospace', marginTop: '4px' }}>
+                    [{preset.sequence.slice(0, 6).join(', ')}{preset.sequence.length > 6 ? '...' : ''}] ({preset.sequence.length} teclas)
+                  </span>
+                )}
               </div>
             );
           })}
         </div>
 
-        {/* Custom Sequence Input Box (Visible when 'custom' is selected) */}
+        {/* Custom Sequence Input */}
         {strategy === 'custom' && (
           <div style={{ marginTop: '1.25rem', padding: '1rem', background: 'rgba(0,0,0,0.4)', borderRadius: '8px', border: '1px solid rgba(255,230,0,0.3)' }}>
             <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, color: 'var(--neon-yellow)', marginBottom: '6px' }}>
-              Digite os caracteres na ordem desejada (ex: WASD123456QER...):
+              Digite as teclas da sequência (Letras, Números ou F1-F24 separados por vírgula ou espaço):
             </label>
             <input
               type="text"
               value={customSequenceStr}
               onChange={(e) => handleCustomSequenceChange(e.target.value)}
-              placeholder="Digite a ordem de teclas..."
+              placeholder="Ex: F13, F14, F15, F16, F17, F18 ou 1, 2, 3, Q, W, E"
               style={{
                 width: '100%',
                 padding: '0.65rem 1rem',
@@ -403,13 +492,45 @@ export const HotkeysTab: React.FC<HotkeysTabProps> = ({
                 borderRadius: '6px',
                 color: '#ffffff',
                 fontFamily: 'monospace',
-                fontSize: '1rem',
-                letterSpacing: '2px',
+                fontSize: '0.95rem',
+                letterSpacing: '1px',
                 outline: 'none',
+                boxSizing: 'border-box',
               }}
             />
-            <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '4px' }}>
-              Total de teclas configuradas: <strong>{customSequenceStr.length}</strong> (serão atribuídas na ordem da esquerda para a direita).
+            {/* Helper Quick Insert Buttons */}
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '0.6rem' }}>
+              <button
+                type="button"
+                className="tag-pill"
+                onClick={() => handleCustomSequenceChange('F13, F14, F15, F16, F17, F18, F19, F20, F21, F22, F23, F24')}
+              >
+                + Stream Deck (F13-F24)
+              </button>
+              <button
+                type="button"
+                className="tag-pill"
+                onClick={() => handleCustomSequenceChange('F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12')}
+              >
+                + Teclas F1-F12
+              </button>
+              <button
+                type="button"
+                className="tag-pill"
+                onClick={() => handleCustomSequenceChange('1, 2, 3, 4, 5, 6, 7, 8, 9, 0, Q, W, E, R, T, Y, U, I, O, P')}
+              >
+                + 1-0 & QWERTY
+              </button>
+              <button
+                type="button"
+                className="tag-pill"
+                onClick={() => handleCustomSequenceChange('NUM1, NUM2, NUM3, NUM4, NUM5, NUM6, NUM7, NUM8, NUM9, NUM0')}
+              >
+                + Numpad 0-9
+              </button>
+            </div>
+            <p style={{ fontSize: '0.74rem', color: 'var(--text-muted)', marginTop: '6px' }}>
+              Total de teclas configuradas: <strong>{getActiveSequence().length}</strong> (Ordem ativa: {getActiveSequence().slice(0, 8).join(', ')}{getActiveSequence().length > 8 ? '...' : ''}).
             </p>
           </div>
         )}

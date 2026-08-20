@@ -5,6 +5,7 @@ import { TagInputSelector } from './TagInputSelector';
 import { WaveformTrimmer } from './WaveformTrimmer';
 import { uploadAudioFile } from '../services/api';
 import { AudioEngine } from '../services/AudioEngine';
+import { normalizeCapturedKey } from './HotkeysTab';
 
 interface TagEditorModalProps {
   isOpen: boolean;
@@ -86,10 +87,9 @@ export const TagEditorModal: React.FC<TagEditorModalProps> = ({
         return;
       }
 
-      // STRICTLY ONLY SINGLE LETTERS AND NUMBERS (A-Z, 0-9)
-      const rawKey = e.key.toUpperCase();
-      if (/^[A-Z0-9]$/.test(rawKey)) {
-        setHotkey(rawKey);
+      const normalized = normalizeCapturedKey(e);
+      if (normalized) {
+        setHotkey(normalized);
         setIsRecordingHotkey(false);
       }
     };
