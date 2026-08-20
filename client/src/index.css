@@ -2088,6 +2088,275 @@ body.theme-blood, html.theme-blood {
   --deck-amber: #ff4400;
 }
 
+/* THEME 6: STUDIO DARK MINIMAL (SÓBRIO, PROFISSIONAL & MATTE) */
+body.theme-minimal, html.theme-minimal {
+  --bg-primary: #0a0c10;
+  --bg-secondary: #0f1217;
+  --bg-card: #141720;
+  --bg-card-hover: #1b202c;
+  --bg-card-active: #222838;
+  --border-color: #212631;
+  --border-focus: #00e5a3;
+  --neon-pink: #64748b;
+  --neon-pink-glow: rgba(100, 116, 139, 0.2);
+  --neon-cyan: #00e5a3;
+  --neon-cyan-glow: rgba(0, 229, 163, 0.25);
+  --neon-yellow: #e2e8f0;
+  --neon-yellow-glow: rgba(226, 232, 240, 0.2);
+  --neon-purple: #94a3b8;
+  --neon-green: #00e5a3;
+  --deck-cyan: #00e5a3;
+  --deck-amber: #f59e0b;
+}
+
+body.theme-minimal .studio-rack-frame {
+  background: #11141b;
+  border: 1px solid #1e2430;
+  border-top: 1px solid #2a3242;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+body.theme-minimal .rack-ear-strip {
+  background: #0d0f15;
+  border-bottom: 1px solid #1a1e27;
+}
+
+body.theme-minimal .analog-preset-bank-chassis {
+  background: #0e1017;
+  border: 1px solid #1c212c;
+}
+
+body.theme-minimal .vfd-preset-screen-module {
+  background: #151821;
+  border: 1px solid #232938;
+}
+
+body.theme-minimal .vfd-preset-screen-module.active {
+  background: #0a0c10;
+  border: 1px solid #00e5a3;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 229, 163, 0.2);
+}
+
+body.theme-minimal .vfd-screen-lens {
+  background: #06080b;
+  border: 1px solid #161a22;
+}
+
+body.theme-minimal .header-bar-deck,
+body.theme-minimal .tag-filter-container,
+body.theme-minimal .navigation-tabs-deck {
+  background: #0f1218;
+  border: 1px solid #1e2430;
+}
+
+/* =========================================================================
+   COMPACT K7 TRIGGER CARDS (MINIMALIST HIGH-DENSITY GRID)
+   ========================================================================= */
+.soundboard-grid.compact-view {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.55rem;
+}
+
+.k7-compact-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 8px;
+  background: linear-gradient(180deg, #1f232c 0%, #14171f 100%);
+  border: 1px solid #2f3647;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 2px solid #090a0d;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  gap: 8px;
+  transition: all 0.12s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.k7-compact-card:hover {
+  transform: translateY(-1.5px);
+  background: linear-gradient(180deg, #272c38 0%, #191c26 100%);
+  border-color: #4c5770;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.k7-compact-card:active {
+  transform: translateY(1px);
+}
+
+.k7-compact-card.compact-playing-main {
+  border-color: #00ff88;
+  box-shadow: 0 0 14px rgba(0, 255, 136, 0.35);
+  background: linear-gradient(180deg, #0e2419 0%, #081710 100%);
+}
+
+.k7-compact-card.compact-playing-test {
+  border-color: #00f0ff;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.35);
+  background: linear-gradient(180deg, #0d202d 0%, #07151e 100%);
+}
+
+.k7-compact-hotkey {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 30px;
+  padding: 0 4px;
+  background: #090a0e;
+  border: 1px solid #363c4c;
+  border-radius: 4px;
+  font-family: var(--font-pixel), 'VT323', monospace;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #00ffaa;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.8);
+}
+
+.k7-compact-color-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.k7-compact-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.k7-compact-title {
+  font-family: var(--font-retro), sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.2px;
+}
+
+.k7-compact-vumeter {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.k7-vu-bar {
+  width: 2.5px;
+  background: #00ffaa;
+  border-radius: 1px;
+}
+.k7-vu-bar.bar-1 { height: 60%; animation: vuPulse 0.4s infinite alternate ease-in-out; }
+.k7-vu-bar.bar-2 { height: 100%; animation: vuPulse 0.3s infinite alternate 0.1s ease-in-out; }
+.k7-vu-bar.bar-3 { height: 40%; animation: vuPulse 0.5s infinite alternate 0.2s ease-in-out; }
+
+.k7-compact-actions {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.k7-compact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  height: 26px;
+  border-radius: 4px;
+  font-family: var(--font-pixel), monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1px solid #3d4352;
+  background: #1a1e28;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.k7-compact-btn:hover {
+  background: #282e3c;
+  color: #ffffff;
+  border-color: #5d677d;
+}
+
+.k7-btn-compact-play:hover {
+  background: rgba(0, 255, 136, 0.2);
+  color: #00ffaa;
+  border-color: #00ffaa;
+}
+
+.k7-btn-compact-play.active {
+  background: #00ffaa;
+  color: #000000;
+  border-color: #00ffaa;
+  box-shadow: 0 0 8px rgba(0, 255, 170, 0.6);
+}
+
+.k7-btn-compact-test:hover {
+  background: rgba(0, 240, 255, 0.2);
+  color: #00f0ff;
+  border-color: #00f0ff;
+}
+
+.k7-btn-compact-test.active {
+  background: #00f0ff;
+  color: #000000;
+  border-color: #00f0ff;
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+.k7-compact-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: #64748b;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.1s ease;
+}
+
+.k7-compact-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.k7-compact-icon-btn.favorite-active {
+  color: var(--neon-yellow);
+}
+
+.k7-compact-icon-btn.delete-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+.k7-compact-drag-grip {
+  display: flex;
+  align-items: center;
+  cursor: grab;
+  padding: 2px 0;
+}
+
 /* =========================================================================
    COMPREHENSIVE BUTTON & UI CONTROLS POLISH
    ========================================================================= */

@@ -7,6 +7,7 @@ interface SoundCardProps {
   index: number;
   isPlayingMain: boolean;
   isPlayingTest: boolean;
+  isCompact?: boolean;
   isEditMode?: boolean;
   isDragging?: boolean;
   isDragOver?: boolean;
@@ -75,6 +76,7 @@ export const SoundCard: React.FC<SoundCardProps> = ({
   index,
   isPlayingMain,
   isPlayingTest,
+  isCompact = false,
   isEditMode = false,
   isDragging = false,
   isDragOver = false,
@@ -96,6 +98,162 @@ export const SoundCard: React.FC<SoundCardProps> = ({
 }) => {
   const isPlaying = isPlayingMain || isPlayingTest;
   const k7 = getK7Theme(sound, index);
+
+  // Compact Minimalist Trigger Card View
+  if (isCompact) {
+    return (
+      <div
+        draggable
+        onDragStart={(e) => onDragStart && onDragStart(e, index)}
+        onDragOver={(e) => onDragOver && onDragOver(e, index)}
+        onDragEnd={(e) => onDragEnd && onDragEnd(e)}
+        onDrop={(e) => onDrop && onDrop(e, index)}
+        className={`k7-compact-card ${isPlayingMain ? 'compact-playing-main' : isPlayingTest ? 'compact-playing-test' : ''}`}
+        onClick={() => (isPlayingMain ? onStop(sound.id) : onPlayMain(sound))}
+        style={{
+          opacity: isDragging ? 0.35 : 1,
+          transform: isDragging ? 'scale(0.97)' : isDragOver ? 'scale(1.02)' : undefined,
+          outline: isDragOver ? '2px dashed var(--neon-yellow)' : undefined,
+        }}
+        title={`Clique para tocar: ${sound.title} | Atalho: [ ${sound.hotkey || '-'} ]`}
+      >
+        {/* Left: Drag Grip on Edit Mode */}
+        {isEditMode && (
+          <div className="k7-compact-drag-grip" onMouseDown={(e) => e.stopPropagation()}>
+            <GripVertical size={13} color="currentColor" style={{ opacity: 0.6 }} />
+          </div>
+        )}
+
+        {/* Hotkey Badge (Large, Crisp, High-Contrast) */}
+        <div
+          className="k7-compact-hotkey"
+          title={sound.hotkey ? `Atalho de Teclado / Stream Deck: [ ${sound.hotkey} ]` : 'Sem tecla associada'}
+        >
+          {sound.hotkey ? sound.hotkey : '-'}
+        </div>
+
+        {/* Color Dot Accent */}
+        <span
+          className="k7-compact-color-dot"
+          style={{ background: sound.color || 'var(--deck-cyan)' }}
+        />
+
+        {/* Title & Live Play Indicator */}
+        <div className="k7-compact-info">
+          <span className="k7-compact-title" title={sound.title}>
+            {sound.title}
+          </span>
+          {isPlaying && (
+            <div className="k7-compact-vumeter">
+              <span className="k7-vu-bar bar-1" />
+              <span className="k7-vu-bar bar-2" />
+              <span className="k7-vu-bar bar-3" />
+            </div>
+          )}
+        </div>
+
+        {/* Action Controls (Stop/Play, Test Cue, Edit, Favorite) */}
+        <div className="k7-compact-actions" onClick={(e) => e.stopPropagation()}>
+          {/* Main Play / Stop Button */}
+          <button
+            type="button"
+            className={`k7-compact-btn k7-btn-compact-play ${isPlayingMain ? 'active' : ''}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              isPlayingMain ? onStop(sound.id) : onPlayMain(sound);
+            }}
+            title={isPlayingMain ? 'Parar Reprodução' : `Tocar na Saída 1 (${primaryDeviceLabel})`}
+          >
+            {isPlayingMain ? <Square size={11} fill="currentColor" /> : <Play size={11} fill="currentColor" />}
+          </button>
+
+          {/* Cue / Test Button (Fones) */}
+          <button
+            type="button"
+            className={`k7-compact-btn k7-btn-compact-test ${isPlayingTest ? 'active' : ''}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              isPlayingTest ? onStop(sound.id) : onPlayTest(sound);
+            }}
+            title={`Ouvir nos fones (Saída 2: ${secondaryDeviceLabel})`}
+          >
+            <Headphones size={11} />
+          </button>
+
+          {/* Favorite */}
+          <button
+            type="button"
+            className={`k7-compact-icon-btn ${sound.isFavorite ? 'favorite-active' : ''}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleFavorite(sound);
+            }}
+            title={sound.isFavorite ? 'Remover dos favoritos' : 'Favoritar'}
+          >
+            <Star size={12} fill={sound.isFavorite ? 'var(--neon-yellow)' : 'none'} color={sound.isFavorite ? 'var(--neon-yellow)' : 'currentColor'} />
+          </button>
+
+          {/* Edit */}
+          <button
+            type="button"
+            className="k7-compact-icon-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              onEditTags(sound);
+            }}
+            title="Editar som"
+          >
+            <Edit3 size={12} />
+          </button>
+
+          {/* Move arrows if Edit Mode */}
+          {isEditMode && onMoveLeft && (
+            <button
+              type="button"
+              className="k7-compact-icon-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                onMoveLeft();
+              }}
+              title="Mover para esquerda"
+            >
+              <ChevronLeft size={12} />
+            </button>
+          )}
+          {isEditMode && onMoveRight && (
+            <button
+              type="button"
+              className="k7-compact-icon-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                onMoveRight();
+              }}
+              title="Mover para direita"
+            >
+              <ChevronRight size={12} />
+            </button>
+          )}
+
+          {/* Delete if Edit Mode */}
+          {isEditMode && (
+            <button
+              type="button"
+              className="k7-compact-icon-btn delete-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (confirm(`Deseja excluir a fita "${sound.title}"?`)) {
+                  onDelete(sound.id);
+                }
+              }}
+              title="Excluir"
+            >
+              <Trash2 size={12} />
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

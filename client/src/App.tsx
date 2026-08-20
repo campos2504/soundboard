@@ -55,11 +55,22 @@ export default function App() {
   });
   const [activeSoundboardTab, setActiveSoundboardTab] = useState<string>('Rodrigo Faro');
 
-  // Filters
+  // Filters & Density View
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedSource, setSelectedSource] = useState<string>('');
   const [onlyFavorites, setOnlyFavorites] = useState(false);
+  const [isCompactView, setIsCompactView] = useState<boolean>(() => {
+    return localStorage.getItem('soundboard_compact_view') === 'true';
+  });
+
+  const handleToggleCompactView = () => {
+    setIsCompactView((prev) => {
+      const next = !prev;
+      localStorage.setItem('soundboard_compact_view', String(next));
+      return next;
+    });
+  };
 
   // Playing States from AudioEngine
   const [playingMainIds, setPlayingMainIds] = useState<Set<string>>(new Set());
@@ -703,6 +714,8 @@ export default function App() {
             onSelectSource={setSelectedSource}
             isEditMode={isEditMode}
             onToggleEditMode={() => setIsEditMode((prev) => !prev)}
+            isCompactView={isCompactView}
+            onToggleCompactView={handleToggleCompactView}
             onOpenAddModal={() => setIsAddModalOpen(true)}
             onOpenRecordModal={() => setIsRecordModalOpen(true)}
             onOpenImportUrlModal={() => setIsImportUrlModalOpen(true)}
@@ -714,7 +727,7 @@ export default function App() {
               <div className="spinner-deck" />
             </div>
           ) : filteredSounds.length > 0 ? (
-            <div className="soundboard-grid">
+            <div className={`soundboard-grid ${isCompactView ? 'compact-view' : ''}`}>
               {filteredSounds.map((sound, idx) => (
                 <SoundCard
                   key={sound.id}
@@ -722,6 +735,7 @@ export default function App() {
                   index={idx}
                   isPlayingMain={playingMainIds.has(sound.id)}
                   isPlayingTest={playingTestIds.has(sound.id)}
+                  isCompact={isCompactView}
                   isEditMode={isEditMode}
                   isDragging={draggedIndex === idx}
                   isDragOver={dragOverIndex === idx}

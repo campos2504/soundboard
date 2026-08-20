@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Plus, Mic, Link as LinkIcon, Star, X, Tag as TagIcon, Edit3, CheckSquare, ChevronDown, ChevronUp } from 'lucide-react';
+import { Search, Plus, Mic, Link as LinkIcon, Star, X, Tag as TagIcon, Edit3, CheckSquare, ChevronDown, ChevronUp, LayoutGrid, Layers } from 'lucide-react';
 import type { TagInfo } from '../types';
 
 interface TagFilterBarProps {
@@ -15,6 +15,8 @@ interface TagFilterBarProps {
   onSelectSource: (source: string) => void;
   isEditMode: boolean;
   onToggleEditMode: () => void;
+  isCompactView?: boolean;
+  onToggleCompactView?: () => void;
   onOpenAddModal: () => void;
   onOpenRecordModal: () => void;
   onOpenImportUrlModal: () => void;
@@ -33,6 +35,8 @@ export const TagFilterBar: React.FC<TagFilterBarProps> = ({
   onSelectSource,
   isEditMode,
   onToggleEditMode,
+  isCompactView = false,
+  onToggleCompactView,
   onOpenAddModal,
   onOpenRecordModal,
   onOpenImportUrlModal,
@@ -89,6 +93,19 @@ export const TagFilterBar: React.FC<TagFilterBarProps> = ({
         </div>
 
         <div className="action-buttons-group">
+          {/* Compact View Toggle Button */}
+          {onToggleCompactView && (
+            <button
+              className={`btn-steamdeck ${isCompactView ? 'btn-steamdeck-primary' : 'btn-steamdeck-secondary'}`}
+              style={isCompactView ? { borderColor: 'var(--neon-green)', boxShadow: '0 0 12px var(--neon-cyan-glow)' } : {}}
+              onClick={onToggleCompactView}
+              title={isCompactView ? 'Voltar para visualização completa de Fitas K7' : 'Ativar visualização compacta minimalista (Atalho + Título)'}
+            >
+              {isCompactView ? <LayoutGrid size={14} /> : <Layers size={14} />}
+              <span>{isCompactView ? 'Modo Compacto' : 'K7s Grandes'}</span>
+            </button>
+          )}
+
           {/* Favorites Filter */}
           <button
             className={`btn-steamdeck ${onlyFavorites ? 'btn-steamdeck-amber' : 'btn-steamdeck-secondary'}`}

@@ -1,4 +1,4 @@
-export type GlobalTheme = 'theme-arcade' | 'theme-vaporwave' | 'theme-matrix' | 'theme-titanium' | 'theme-blood';
+export type GlobalTheme = 'theme-arcade' | 'theme-minimal' | 'theme-vaporwave' | 'theme-matrix' | 'theme-titanium' | 'theme-blood';
 
 export interface ThemeOption {
   id: GlobalTheme;
@@ -10,11 +10,25 @@ export interface ThemeOption {
 
 export const THEME_OPTIONS: ThemeOption[] = [
   {
+    id: 'theme-minimal',
+    name: 'Studio Dark Minimal (Sóbrio & Pro)',
+    badge: 'Minimal Pro',
+    primaryColor: '#00e5a3',
+    secondaryColor: '#64748b',
+  },
+  {
     id: 'theme-arcade',
     name: 'Arcade 90s Neon',
     badge: 'Arcade',
     primaryColor: '#00f0ff',
     secondaryColor: '#ff007f',
+  },
+  {
+    id: 'theme-titanium',
+    name: 'Stealth Titanium Gold',
+    badge: 'Titanium',
+    primaryColor: '#fbbf24',
+    secondaryColor: '#f97316',
   },
   {
     id: 'theme-vaporwave',
@@ -29,13 +43,6 @@ export const THEME_OPTIONS: ThemeOption[] = [
     badge: 'Matrix',
     primaryColor: '#00ff66',
     secondaryColor: '#a3e635',
-  },
-  {
-    id: 'theme-titanium',
-    name: 'Stealth Titanium Gold',
-    badge: 'Titanium',
-    primaryColor: '#fbbf24',
-    secondaryColor: '#f97316',
   },
   {
     id: 'theme-blood',
