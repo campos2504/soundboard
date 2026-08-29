@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Square, Headphones, Star, Edit3, Trash2, ChevronLeft, ChevronRight, GripVertical } from 'lucide-react';
+import { Play, Square, Headphones, Star, Edit3, Trash2, ChevronLeft, ChevronRight, GripVertical, Share2 } from 'lucide-react';
 import type { SoundItem } from '../types';
 
 interface SoundCardProps {
@@ -20,6 +20,7 @@ interface SoundCardProps {
   onToggleFavorite: (sound: SoundItem) => void;
   onDelete: (soundId: string) => void;
   onSelectTag: (tag: string) => void;
+  onShare?: (sound: SoundItem) => void;
   onMoveLeft?: () => void;
   onMoveRight?: () => void;
   onDragStart?: (e: React.DragEvent, index: number) => void;
@@ -89,6 +90,7 @@ export const SoundCard: React.FC<SoundCardProps> = ({
   onToggleFavorite,
   onDelete,
   onSelectTag,
+  onShare,
   onMoveLeft,
   onMoveRight,
   onDragStart,
@@ -192,6 +194,21 @@ export const SoundCard: React.FC<SoundCardProps> = ({
           >
             <Star size={12} fill={sound.isFavorite ? 'var(--neon-yellow)' : 'none'} color={sound.isFavorite ? 'var(--neon-yellow)' : 'currentColor'} />
           </button>
+
+          {/* Share on WhatsApp / K7 Card */}
+          {onShare && (
+            <button
+              type="button"
+              className="k7-compact-icon-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                onShare(sound);
+              }}
+              title="Compartilhar Card K7 no WhatsApp"
+            >
+              <Share2 size={12} color="var(--neon-cyan)" />
+            </button>
+          )}
 
           {/* Edit */}
           <button
@@ -321,6 +338,22 @@ export const SoundCard: React.FC<SoundCardProps> = ({
             >
               <Star size={14} fill={sound.isFavorite ? 'var(--neon-yellow)' : 'none'} color={sound.isFavorite ? 'var(--neon-yellow)' : 'currentColor'} />
             </button>
+
+            {onShare && (
+              <button
+                type="button"
+                className="k7-icon-btn k7-btn-share"
+                onMouseDown={(e) => e.stopPropagation()}
+                onTouchStart={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onShare(sound);
+                }}
+                title="Compartilhar Card K7 no WhatsApp"
+              >
+                <Share2 size={14} color="var(--neon-cyan)" />
+              </button>
+            )}
 
             <button
               type="button"

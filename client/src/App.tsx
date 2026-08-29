@@ -18,15 +18,47 @@ import { ObsOverlayView } from './components/ObsOverlayView';
 import { ObsModal } from './components/ObsModal';
 import { ThemeSelectorModal } from './components/ThemeSelectorModal';
 import { ThemeService, type GlobalTheme } from './services/ThemeService';
+import { ShareSoundModal } from './components/ShareSoundModal';
+import { CassettePlayerCard } from './components/CassettePlayerCard';
 
 import type { SoundItem, TagInfo, AudioRoutingConfig } from './types';
 import { fetchSounds, fetchTags, createSound, updateSound, deleteSound, reorderSounds } from './services/api';
 import { AudioEngine } from './services/AudioEngine';
 import { ProceduralAudio } from './services/ProceduralAudio';
-import { Radio } from 'lucide-react';
+import { Radio, Sparkles, X } from 'lucide-react';
 
 export default function App() {
   const isOverlayMode = typeof window !== 'undefined' && window.location.search.includes('overlay=true');
+
+  // Shared Sound from URL (?play=... or ?sound=...)
+  const [sharedSound, setSharedSound] = useState<Partial<SoundItem> | null>(() => {
+    if (typeof window === 'undefined') return null;
+    const search = new URLSearchParams(window.location.search);
+    const play = search.get('play');
+    const title = search.get('title');
+    const soundId = search.get('sound') || search.get('id');
+
+    if (play || title) {
+      return {
+        id: soundId || 'shared_sound',
+        title: title || 'Som Compartilhado',
+        url: play || '',
+        color: search.get('color') || '#1a9fff',
+        tags: search.get('tags') ? search.get('tags')!.split(',') : ['whatsapp', 'meme'],
+        source: 'custom',
+      };
+    }
+    return null;
+  });
+
+  const [sharingSound, setSharingSound] = useState<SoundItem | null>(null);
+
+  const handleDismissSharedSound = () => {
+    setSharedSound(null);
+    if (typeof window !== 'undefined') {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  };
 
   const [sounds, setSounds] = useState<SoundItem[]>([]);
   const [tags, setTags] = useState<TagInfo[]>([]);
@@ -162,6 +194,20 @@ export default function App() {
       };
     }
   }, [loadData]);
+
+  // Resolve shared sound by ID if URL contains ?sound= or ?id=
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const search = new URLSearchParams(window.location.search);
+    const soundId = search.get('sound') || search.get('id');
+    const play = search.get('play');
+    if (soundId && !play && sounds.length > 0) {
+      const found = sounds.find((s) => s.id === soundId);
+      if (found) {
+        setSharedSound(found);
+      }
+    }
+  }, [sounds]);
 
   // Global Keyboard Shortcuts (Number -> Saída 1 | Shift + Number -> Saída de Teste 2 | < and > -> Muda Aba)
   useEffect(() => {
@@ -712,6 +758,32 @@ export default function App() {
       {/* TAB: SOUNDBOARD LIBRARY */}
       {activeTab === 'library' && (
         <main>
+          {/* Spotlight Hero: Shared Sound K7 Card */}
+          {sharedSound && (
+            <div className="shared-sound-spotlight-wrapper">
+              <div className="spotlight-header-bar">
+                <div className="spotlight-badge">
+                  <Sparkles size={14} color="var(--neon-yellow)" />
+                  <span>FITA K7 EM DESTAQUE</span>
+                </div>
+                <button
+                  className="spotlight-dismiss-btn"
+                  onClick={handleDismissSharedSound}
+                  title="Ocultar Card K7 e navegar em toda a Soundboard"
+                >
+                  <span>Fechar Card</span>
+                  <X size={14} />
+                </button>
+              </div>
+              <CassettePlayerCard
+                sound={sharedSound}
+                onClose={handleDismissSharedSound}
+                onExploreFullBoard={handleDismissSharedSound}
+                isStandaloneView={true}
+              />
+            </div>
+          )}
+
           {/* Soundboard Profile / Page Switcher Bar */}
           <SoundboardTabsBar
             tabs={soundboardTabs}
@@ -774,6 +846,7 @@ export default function App() {
                   onToggleFavorite={handleToggleFavorite}
                   onDelete={handleDeleteSound}
                   onSelectTag={handleToggleTag}
+                  onShare={(s) => setSharingSound(s)}
                   onMoveLeft={idx > 0 ? () => handleMoveSound(sound.id, 'left') : undefined}
                   onMoveRight={idx < filteredSounds.length - 1 ? () => handleMoveSound(sound.id, 'right') : undefined}
                   onDragStart={handleDragStart}
@@ -881,6 +954,15 @@ export default function App() {
         currentTheme={currentTheme}
         onSelectTheme={setCurrentTheme}
       />
+
+      {/* K7 Sound Share Modal */}
+      {sharingSound && (
+        <ShareSoundModal
+          sound={sharingSound}
+          isOpen={Boolean(sharingSound)}
+          onClose={() => setSharingSound(null)}
+        />
+      )}
 
       {/* Bottom SteamOS Dock with button hints & visualizer */}
       <GamepadOverlay />
