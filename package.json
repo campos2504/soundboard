@@ -1,12 +1,14 @@
 {
   "name": "steamdeck-soundboard",
   "version": "1.0.0",
-  "description": "Super Soundboard Steam Deck Edition with MyInstants, SoundButtonsWorld, Multi-Output Audio & Tags",
+  "description": "Super Soundboard Steam Deck Edition with MyInstants, SoundButtonsWorld, Multi-Output Audio & Tags (Chrome App / Extension Manifest V3)",
   "scripts": {
     "dev": "concurrently -n \"SERVER,CLIENT\" -c \"cyan,magenta\" \"npm run dev:server\" \"npm run dev:client\"",
     "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm run dev",
     "build": "cd server && npm run build && cd ../client && npm run build",
+    "build:extension": "cd client && npm run build",
+    "pack:extension": "npm run build:extension && cd client/dist && zip -r ../../arcade-soundboard-chrome-extension.zip ./* -x \"*.DS_Store*\"",
     "start": "cd server && npm start"
   },
   "devDependencies": {

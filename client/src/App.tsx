@@ -135,6 +135,32 @@ export default function App() {
 
   useEffect(() => {
     loadData();
+
+    // Chrome Extension message listener for stop commands and context menu imports
+    if (typeof chrome !== 'undefined' && chrome.runtime?.onMessage) {
+      const msgListener = (message: any) => {
+        if (message?.type === 'STOP_ALL_AUDIO') {
+          AudioEngine.stopAll();
+        } else if (message?.type === 'IMPORT_SOUND_URL' && message.url) {
+          setIsImportUrlModalOpen(true);
+        }
+      };
+      chrome.runtime.onMessage.addListener(msgListener);
+
+      // Check for pending sound import from context menu
+      if (chrome.storage?.local) {
+        chrome.storage.local.get('pending_sound_import').then((res: { [key: string]: any }) => {
+          if (res?.pending_sound_import) {
+            chrome.storage.local.remove('pending_sound_import');
+            setIsImportUrlModalOpen(true);
+          }
+        }).catch(() => {});
+      }
+
+      return () => {
+        chrome.runtime.onMessage.removeListener(msgListener);
+      };
+    }
   }, [loadData]);
 
   // Global Keyboard Shortcuts (Number -> Saída 1 | Shift + Number -> Saída de Teste 2 | < and > -> Muda Aba)
