@@ -118,11 +118,41 @@ export const CassettePlayerCard: React.FC<CassettePlayerCardProps> = ({
     setTimeout(() => setCopied(false), 2500);
   };
 
+  const [isSharingFile, setIsSharingFile] = useState(false);
+
   const handleWhatsAppShare = () => {
     const url = getShareUrl();
     const message = `🔊 *${title}*\n📼 Ouça esse som no Card K7 Anos 90:\n${url}`;
     const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
     window.open(waUrl, '_blank');
+  };
+
+  const handleShareAudioDirectly = async () => {
+    if (!soundUrl) return;
+    try {
+      setIsSharingFile(true);
+      const res = await fetch(soundUrl);
+      const blob = await res.blob();
+      const fileName = `${title.replace(/[^a-zA-Z0-9_-]/g, '_')}.mp3`;
+      const file = new File([blob], fileName, { type: 'audio/mpeg' });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: title,
+          text: `🔊 *${title}*`
+        });
+      } else {
+        // Direct WhatsApp Web helper
+        handleDownloadMp3();
+        alert('Áudio baixado! No WhatsApp Web / Desktop, basta arrastar o arquivo .mp3 baixado para a conversa para que ele toque diretamente no chat.');
+      }
+    } catch (err) {
+      console.warn('Share file error:', err);
+      handleWhatsAppShare();
+    } finally {
+      setIsSharingFile(false);
+    }
   };
 
   const handleDownloadMp3 = () => {
@@ -316,21 +346,22 @@ export const CassettePlayerCard: React.FC<CassettePlayerCardProps> = ({
 
       {/* Sharing Actions Area */}
       <div className="cassette-share-actions">
-        {/* WhatsApp Direct Share Button */}
+        {/* WhatsApp In-Chat Audio Share Button */}
         <button
           className="share-action-btn whatsapp-btn"
-          onClick={handleWhatsAppShare}
-          title="Enviar no WhatsApp com card e pré-visualização"
+          onClick={handleShareAudioDirectly}
+          disabled={isSharingFile}
+          title="Enviar áudio direto para tocar com o play do WhatsApp dentro da conversa"
         >
           <MessageCircle size={18} />
-          <span>Enviar no WhatsApp</span>
+          <span>{isSharingFile ? 'Preparando...' : 'Tocar no Chat do WhatsApp'}</span>
         </button>
 
         {/* Copy Card Link Button */}
         <button
           className="share-action-btn copy-btn"
           onClick={handleCopyLink}
-          title="Copiar Link direto deste Card K7"
+          title="Copiar Link direto deste Card K7 para enviar em redes ou grupos"
         >
           {copied ? <Check size={18} color="#00ff88" /> : <Copy size={18} />}
           <span>{copied ? 'Link Copiado!' : 'Copiar Link K7'}</span>
