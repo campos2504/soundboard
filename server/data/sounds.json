@@ -28,11 +28,12 @@
     ],
     "color": "#FF0000",
     "hotkey": "B",
-    "tab": "Geral",
+    "tab": "Tech",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1788037270447
+    "createdAt": 1788037270447,
+    "startTime": 0
   },
   {
     "id": "sound_1788037139568_9418c",
@@ -47,11 +48,12 @@
     ],
     "color": "#26FF31",
     "hotkey": "V",
-    "tab": "Geral",
+    "tab": "La Ele",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1788037139569
+    "createdAt": 1788037139569,
+    "startTime": 0
   },
   {
     "id": "sound_1788037054487_c365y",
@@ -64,11 +66,12 @@
     ],
     "color": "#7112FF",
     "hotkey": "C",
-    "tab": "Geral",
+    "tab": "Tech",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1788037054487
+    "createdAt": 1788037054487,
+    "startTime": 0
   },
   {
     "id": "sound_1788036979375_r9u7b",
@@ -81,11 +84,12 @@
     ],
     "color": "#FFA600",
     "hotkey": "X",
-    "tab": "Geral",
+    "tab": "Tech",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1788036979375
+    "createdAt": 1788036979375,
+    "startTime": 0
   },
   {
     "id": "sound_1788036942639_2iq2x",
@@ -98,11 +102,12 @@
     ],
     "color": "#FF0000",
     "hotkey": "Z",
-    "tab": "Geral",
+    "tab": "Tech",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1788036942639
+    "createdAt": 1788036942639,
+    "startTime": 0
   },
   {
     "id": "sound_1788036776575_60lyx",
@@ -115,11 +120,12 @@
     ],
     "color": "#FF8F12",
     "hotkey": "L",
-    "tab": "Geral",
+    "tab": "Tech",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1788036776575
+    "createdAt": 1788036776575,
+    "startTime": 0
   },
   {
     "id": "sound_1788036705755_wy6jx",
@@ -132,11 +138,12 @@
     ],
     "color": "#FF0000",
     "hotkey": "K",
-    "tab": "Geral",
+    "tab": "Memes & TV",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1788036705755
+    "createdAt": 1788036705755,
+    "startTime": 0
   },
   {
     "id": "sound_1788036553762_ypn0z",
@@ -149,11 +156,12 @@
     ],
     "color": "#FF0000",
     "hotkey": "J",
-    "tab": "Geral",
+    "tab": "Tech",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1788036553762
+    "createdAt": 1788036553762,
+    "startTime": 0
   },
   {
     "id": "sound_1788036514409_bkpio",
@@ -166,11 +174,12 @@
     ],
     "color": "#FF8800",
     "hotkey": "H",
-    "tab": "Geral",
+    "tab": "Tech",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1788036514410
+    "createdAt": 1788036514410,
+    "startTime": 0
   },
   {
     "id": "sound_1788036426393_9occ2",

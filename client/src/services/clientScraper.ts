@@ -1,4 +1,5 @@
-import type { ExternalSoundResult } from '../types';
+import type { ExternalSoundResult, SoundItem } from '../types';
+import defaultSounds from '../data/defaultSounds.json';
 
 function extractTagsFromName(name: string, category?: string): string[] {
   const tags = new Set<string>();
@@ -74,13 +75,52 @@ export function parseMyInstantsHtml(html: string): ExternalSoundResult[] {
   return results;
 }
 
+/**
+ * Fallback search over built-in catalog for web/GitHub Pages when CORS restricts external scraping
+ */
+function searchLocalCatalog(query: string, source: 'myinstants' | 'soundbuttonsworld'): ExternalSoundResult[] {
+  const list = defaultSounds as unknown as SoundItem[];
+  const q = query.trim().toLowerCase();
+
+  const filtered = list.filter(item => {
+    if (source && item.source !== source && source === 'myinstants' && item.source === 'soundbuttonsworld') {
+      // allow flexible match if query matches
+      return item.title.toLowerCase().includes(q) || item.tags.some(t => t.toLowerCase().includes(q));
+    }
+    if (!q) return true;
+    return item.title.toLowerCase().includes(q) || item.tags.some(t => t.toLowerCase().includes(q));
+  });
+
+  return filtered.map(item => ({
+    id: item.id,
+    name: item.title,
+    url: item.url,
+    source: item.source === 'soundbuttonsworld' ? 'soundbuttonsworld' : 'myinstants',
+    pageUrl: item.sourceUrl,
+    color: item.color,
+    suggestedTags: item.tags || ['meme']
+  }));
+}
+
 export class DirectScraperService {
   static async searchMyInstants(query: string, page: number = 1): Promise<ExternalSoundResult[]> {
     const url = `https://www.myinstants.com/en/search/?name=${encodeURIComponent(query)}&page=${page}`;
-    const res = await fetch(url);
-    if (!res.ok) return [];
-    const html = await res.text();
-    return parseMyInstantsHtml(html);
+    
+    // 1. Direct fetch (works in Chrome extension or with CORS extension)
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2500);
+      const res = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
+      if (res.ok) {
+        const html = await res.text();
+        const results = parseMyInstantsHtml(html);
+        if (results.length > 0) return results;
+      }
+    } catch {}
+
+    // 2. Fallback to rich catalog search on GitHub Pages / Web
+    return searchLocalCatalog(query, 'myinstants');
   }
 
   static async getTrendingMyInstants(region: 'brazil' | 'us' | 'global' = 'brazil'): Promise<ExternalSoundResult[]> {
@@ -89,72 +129,112 @@ export class DirectScraperService {
     if (region === 'global') url = 'https://www.myinstants.com/en/trending/brazil/';
 
     try {
-      const res = await fetch(url);
-      if (!res.ok) return [];
-      const html = await res.text();
-      return parseMyInstantsHtml(html);
-    } catch {
-      return [];
-    }
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2500);
+      const res = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
+      if (res.ok) {
+        const html = await res.text();
+        const results = parseMyInstantsHtml(html);
+        if (results.length > 0) return results;
+      }
+    } catch {}
+
+    // Fallback: Trending memes from catalog
+    const list = defaultSounds as unknown as SoundItem[];
+    const trending = list.filter(item => 
+      item.source === 'myinstants' ||
+      item.tags.includes('tv') ||
+      item.tags.includes('meme') ||
+      item.tags.includes('brasil')
+    ).slice(0, 30);
+
+    return trending.map(item => ({
+      id: item.id,
+      name: item.title,
+      url: item.url,
+      source: 'myinstants',
+      pageUrl: item.sourceUrl,
+      color: item.color,
+      suggestedTags: item.tags
+    }));
   }
 
   static async searchSoundButtonsWorld(query: string): Promise<ExternalSoundResult[]> {
     try {
       const url = `https://soundbuttonsworld.com/api/search?q=${encodeURIComponent(query)}`;
-      const res = await fetch(url);
-      if (!res.ok) return [];
-      const json = await res.json();
-      const results: ExternalSoundResult[] = [];
-      if (json && Array.isArray(json.results)) {
-        for (const item of json.results) {
-          const fileName = item.fileName || item.filePath;
-          if (!fileName) continue;
-          const soundUrl = `https://soundbuttonsworld.com/uploads/${fileName}`;
-          const name = item.title || item.name || 'Sound Button';
-          results.push({
-            id: 'sbw_' + (item.id || item.url || fileName.replace('.mp3', '')),
-            name: name.trim(),
-            url: soundUrl,
-            source: 'soundbuttonsworld',
-            pageUrl: item.url ? `https://soundbuttonsworld.com/${item.url}` : undefined,
-            category: item.category,
-            color: item.color,
-            suggestedTags: extractTagsFromName(name, item.category)
-          });
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2500);
+      const res = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
+      if (res.ok) {
+        const json = await res.json();
+        const results: ExternalSoundResult[] = [];
+        if (json && Array.isArray(json.results)) {
+          for (const item of json.results) {
+            const fileName = item.fileName || item.filePath;
+            if (!fileName) continue;
+            const soundUrl = `https://soundbuttonsworld.com/uploads/${fileName}`;
+            const name = item.title || item.name || 'Sound Button';
+            results.push({
+              id: 'sbw_' + (item.id || item.url || fileName.replace('.mp3', '')),
+              name: name.trim(),
+              url: soundUrl,
+              source: 'soundbuttonsworld',
+              pageUrl: item.url ? `https://soundbuttonsworld.com/${item.url}` : undefined,
+              category: item.category,
+              color: item.color,
+              suggestedTags: extractTagsFromName(name, item.category)
+            });
+          }
+          if (results.length > 0) return results;
         }
       }
-      return results;
-    } catch {
-      return [];
-    }
+    } catch {}
+
+    return searchLocalCatalog(query, 'soundbuttonsworld');
   }
 
   static async getTrendingSoundButtonsWorld(page: number = 1, pageSize: number = 30): Promise<ExternalSoundResult[]> {
     try {
       const url = `https://soundbuttonsworld.com/api/memes/getall?page=${page}&pageSize=${pageSize}`;
-      const res = await fetch(url);
-      if (!res.ok) return [];
-      const json = await res.json();
-      const results: ExternalSoundResult[] = [];
-      const list = json.data || (Array.isArray(json) ? json : []);
-      for (const item of list) {
-        if (!item.fileName) continue;
-        const soundUrl = `https://soundbuttonsworld.com/uploads/${item.fileName}`;
-        const name = item.name || 'Sound';
-        results.push({
-          id: 'sbw_' + (item.id || item.url || item.fileName.replace('.mp3', '')),
-          name: name.trim(),
-          url: soundUrl,
-          source: 'soundbuttonsworld',
-          pageUrl: item.url ? `https://soundbuttonsworld.com/${item.url}` : undefined,
-          category: item.categoryName || item.category,
-          color: item.color,
-          suggestedTags: extractTagsFromName(name, item.categoryName || item.category)
-        });
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2500);
+      const res = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
+      if (res.ok) {
+        const json = await res.json();
+        const results: ExternalSoundResult[] = [];
+        const list = json.data || (Array.isArray(json) ? json : []);
+        for (const item of list) {
+          if (!item.fileName) continue;
+          const soundUrl = `https://soundbuttonsworld.com/uploads/${item.fileName}`;
+          const name = item.name || 'Sound';
+          results.push({
+            id: 'sbw_' + (item.id || item.url || item.fileName.replace('.mp3', '')),
+            name: name.trim(),
+            url: soundUrl,
+            source: 'soundbuttonsworld',
+            pageUrl: item.url ? `https://soundbuttonsworld.com/${item.url}` : undefined,
+            category: item.categoryName || item.category,
+            color: item.color,
+            suggestedTags: extractTagsFromName(name, item.categoryName || item.category)
+          });
+        }
+        if (results.length > 0) return results;
       }
-      return results;
-    } catch {
-      return [];
-    }
+    } catch {}
+
+    const list = defaultSounds as unknown as SoundItem[];
+    const sbwSounds = list.filter(item => item.source === 'soundbuttonsworld' || item.tags.includes('gaming') || item.tags.includes('sfx')).slice(0, pageSize);
+    return sbwSounds.map(item => ({
+      id: item.id,
+      name: item.title,
+      url: item.url,
+      source: 'soundbuttonsworld',
+      pageUrl: item.sourceUrl,
+      color: item.color,
+      suggestedTags: item.tags
+    }));
   }
 }

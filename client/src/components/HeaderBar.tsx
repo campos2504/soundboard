@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Headphones, Square, SlidersHorizontal, Tv, Palette, Download, ExternalLink } from 'lucide-react';
+import { Volume2, VolumeX, Headphones, Square, SlidersHorizontal, Tv, Palette, Download, ExternalLink, RefreshCw } from 'lucide-react';
 import { AudioEngine } from '../services/AudioEngine';
 import type { AudioRoutingConfig } from '../types';
 
@@ -7,6 +7,7 @@ interface HeaderBarProps {
   onOpenAudioRouting: () => void;
   onOpenObsOverlay?: () => void;
   onOpenThemeSelector?: () => void;
+  onSyncLibrary?: () => void;
   config: AudioRoutingConfig;
   onConfigChange: (newConfig: Partial<AudioRoutingConfig>) => void;
 }
@@ -15,6 +16,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
   onOpenAudioRouting,
   onOpenObsOverlay,
   onOpenThemeSelector,
+  onSyncLibrary,
   config,
   onConfigChange,
 }) => {
@@ -172,6 +174,19 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
           >
             <Palette size={14} color="var(--neon-yellow)" />
             <span>Temas</span>
+          </button>
+        )}
+
+        {/* Sync / Reset Library Defaults */}
+        {onSyncLibrary && (
+          <button
+            className="audio-status-btn"
+            onClick={onSyncLibrary}
+            title="Sincronizar Sons e Atualizar Biblioteca com o Banco de Dados mais recente"
+            style={{ borderColor: 'rgba(0, 255, 170, 0.4)' }}
+          >
+            <RefreshCw size={13} color="#00ffaa" />
+            <span>Sincronizar</span>
           </button>
         )}
 

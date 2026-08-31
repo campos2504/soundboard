@@ -1,7 +1,10 @@
 import type { SoundItem, TagInfo } from '../types';
 import defaultSounds from '../data/defaultSounds.json';
 
-const STORAGE_KEY = 'arcade_soundboard_sounds_v1';
+const STORAGE_KEY = 'arcade_soundboard_sounds_v2';
+const LEGACY_STORAGE_KEY = 'arcade_soundboard_sounds_v1';
+const DB_VERSION_KEY = 'arcade_soundboard_db_version';
+const CURRENT_DB_VERSION = '2026-08-31-v3';
 
 // IndexedDB helper for large files and audio blobs
 const DB_NAME = 'ArcadeSoundboardDB';
@@ -36,7 +39,6 @@ export async function storeAudioBlob(id: string, blob: Blob): Promise<string> {
       req.onerror = () => reject(req.error);
     });
   } catch {
-    // Fallback to base64 data URL
     return new Promise((resolve) => {
       const reader = new FileReader();
       reader.onloadend = () => resolve(reader.result as string);
@@ -70,51 +72,102 @@ export async function getAudioBlobUrl(blobIdOrUrl: string): Promise<string> {
   }
 }
 
+/**
+ * Merges latest default sounds with any custom user-added sounds
+ */
+function mergeWithDefaults(existingSounds: SoundItem[]): SoundItem[] {
+  const defaults = defaultSounds as unknown as SoundItem[];
+  const existingMap = new Map(existingSounds.map(s => [s.id, s]));
+  const defaultUrls = new Set(defaults.map(s => s.url));
+
+  // Find user-created custom sounds (not in defaults)
+  const customUserSounds = existingSounds.filter(s =>
+    s.source === 'custom' ||
+    s.source === 'local' ||
+    (!defaultUrls.has(s.url) && !defaults.some(d => d.id === s.id))
+  );
+
+  // Preserve user custom modifications (favorites, hotkeys, volume) on default sounds
+  const mergedDefaults = defaults.map(defSound => {
+    const existing = existingMap.get(defSound.id);
+    if (existing) {
+      return {
+        ...defSound,
+        hotkey: existing.hotkey || defSound.hotkey,
+        isFavorite: existing.isFavorite ?? defSound.isFavorite,
+        volume: existing.volume ?? defSound.volume,
+        playbackRate: existing.playbackRate ?? defSound.playbackRate,
+        tab: existing.tab || defSound.tab,
+      };
+    }
+    return defSound;
+  });
+
+  return [...customUserSounds, ...mergedDefaults];
+}
+
 export class StorageService {
   private static isExtension(): boolean {
     return typeof chrome !== 'undefined' && !!chrome?.storage?.local;
   }
 
   static async getSounds(): Promise<SoundItem[]> {
+    const initialDefaults = defaultSounds as unknown as SoundItem[];
+
+    // 1. Chrome Extension Storage
     if (this.isExtension()) {
       try {
-        const data = await chrome.storage.local.get(STORAGE_KEY);
-        if (data && Array.isArray(data[STORAGE_KEY]) && data[STORAGE_KEY].length > 0) {
-          return data[STORAGE_KEY];
+        const stored = await chrome.storage.local.get([STORAGE_KEY, DB_VERSION_KEY, LEGACY_STORAGE_KEY]);
+        const version = stored[DB_VERSION_KEY];
+        const existing = stored[STORAGE_KEY] || stored[LEGACY_STORAGE_KEY];
+
+        if (version === CURRENT_DB_VERSION && Array.isArray(existing) && existing.length > 0) {
+          return existing;
         }
-        // Seed default sounds if empty
-        const initial = defaultSounds as unknown as SoundItem[];
-        await chrome.storage.local.set({ [STORAGE_KEY]: initial });
-        return initial;
+
+        // Version updated or first run: merge latest defaults
+        const merged = Array.isArray(existing) && existing.length > 0 ? mergeWithDefaults(existing) : initialDefaults;
+        await chrome.storage.local.set({
+          [STORAGE_KEY]: merged,
+          [DB_VERSION_KEY]: CURRENT_DB_VERSION,
+        });
+        return merged;
       } catch (err) {
         console.warn('Chrome storage error, falling back to localStorage:', err);
       }
     }
 
+    // 2. Browser LocalStorage (GitHub Pages / Web)
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
-        }
+      const version = localStorage.getItem(DB_VERSION_KEY);
+      const rawStored = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
+      const existing = rawStored ? JSON.parse(rawStored) : null;
+
+      if (version === CURRENT_DB_VERSION && Array.isArray(existing) && existing.length > 0) {
+        return existing;
       }
+
+      // Version bump or initial load: apply latest database
+      const merged = Array.isArray(existing) && existing.length > 0 ? mergeWithDefaults(existing) : initialDefaults;
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+        localStorage.setItem(DB_VERSION_KEY, CURRENT_DB_VERSION);
+      } catch {}
+      return merged;
     } catch (e) {
       console.warn('localStorage read error:', e);
     }
 
-    // Seed defaults
-    const initial = defaultSounds as unknown as SoundItem[];
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
-    } catch {}
-    return initial;
+    return initialDefaults;
   }
 
   static async saveSounds(sounds: SoundItem[]): Promise<void> {
     if (this.isExtension()) {
       try {
-        await chrome.storage.local.set({ [STORAGE_KEY]: sounds });
+        await chrome.storage.local.set({
+          [STORAGE_KEY]: sounds,
+          [DB_VERSION_KEY]: CURRENT_DB_VERSION
+        });
       } catch (e) {
         console.error('Error saving to chrome.storage.local:', e);
       }
@@ -122,6 +175,7 @@ export class StorageService {
 
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(sounds));
+      localStorage.setItem(DB_VERSION_KEY, CURRENT_DB_VERSION);
     } catch (e) {
       console.error('Error saving to localStorage:', e);
     }
@@ -205,7 +259,6 @@ export class StorageService {
       }
     }
 
-    // Append any remaining sounds
     for (const sound of soundMap.values()) {
       reordered.push(sound);
     }

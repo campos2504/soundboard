@@ -20,7 +20,7 @@ import { ThemeSelectorModal } from './components/ThemeSelectorModal';
 import { ThemeService, type GlobalTheme } from './services/ThemeService';
 import { ShareSoundModal } from './components/ShareSoundModal';
 import { CassettePlayerCard } from './components/CassettePlayerCard';
-
+import { StorageService } from './services/StorageService';
 import type { SoundItem, TagInfo, AudioRoutingConfig } from './types';
 import { fetchSounds, fetchTags, createSound, updateSound, deleteSound, reorderSounds } from './services/api';
 import { AudioEngine } from './services/AudioEngine';
@@ -737,6 +737,21 @@ export default function App() {
     return <ObsOverlayView sounds={sounds} />;
   }
 
+  const handleSyncLibrary = async () => {
+    try {
+      setLoading(true);
+      const defaults = await StorageService.resetToDefaultSounds();
+      setSounds(defaults);
+      const tagsList = await StorageService.getTags();
+      setTags(tagsList);
+      alert('✅ Biblioteca sincronizada com sucesso com todos os sons mais recentes!');
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="app-container">
       {/* Top SteamOS Header Bar */}
@@ -744,6 +759,7 @@ export default function App() {
         onOpenAudioRouting={() => setIsAudioRoutingOpen(true)}
         onOpenObsOverlay={() => setIsObsModalOpen(true)}
         onOpenThemeSelector={() => setIsThemeModalOpen(true)}
+        onSyncLibrary={handleSyncLibrary}
         config={audioConfig}
         onConfigChange={(newCfg) => setAudioConfig((prev) => ({ ...prev, ...newCfg }))}
       />
