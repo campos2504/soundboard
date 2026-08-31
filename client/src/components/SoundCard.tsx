@@ -140,16 +140,30 @@ export const SoundCard: React.FC<SoundCardProps> = ({
           style={{ background: sound.color || 'var(--deck-cyan)' }}
         />
 
-        {/* Title & Live Play Indicator */}
+        {/* Title, Meta & Live Play Indicator */}
         <div className="k7-compact-info">
-          <span className="k7-compact-title" title={sound.title}>
-            {sound.title}
-          </span>
-          {isPlaying && (
-            <div className="k7-compact-vumeter">
-              <span className="k7-vu-bar bar-1" />
-              <span className="k7-vu-bar bar-2" />
-              <span className="k7-vu-bar bar-3" />
+          <div className="k7-compact-title-row">
+            <span className="k7-compact-title" title={sound.title}>
+              {sound.title}
+            </span>
+            {isPlaying && (
+              <div className="k7-compact-vumeter">
+                <span className="k7-vu-bar bar-1" />
+                <span className="k7-vu-bar bar-2" />
+                <span className="k7-vu-bar bar-3" />
+              </div>
+            )}
+          </div>
+          {sound.tags && sound.tags.length > 0 && (
+            <div className="k7-compact-meta-row">
+              <span className="k7-compact-tag-badge">
+                {sound.tags.slice(0, 2).map(t => `#${t}`).join(' ')}
+              </span>
+              {sound.source && (
+                <span className="k7-compact-source-badge">
+                  {sound.source === 'myinstants' ? 'MyInstants' : sound.source === 'soundbuttonsworld' ? 'Buttons' : sound.source}
+                </span>
+              )}
             </div>
           )}
         </div>
