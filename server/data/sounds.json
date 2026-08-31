@@ -1,187 +1,5 @@
 [
   {
-    "id": "sound_1788037456787_xj7ll",
-    "title": "Parece Veridico",
-    "url": "https://www.myinstants.com/media/sounds/parece_veridico.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/parece-veridico/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#FF0000",
-    "hotkey": "U",
-    "tab": "Tech",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1788037456787,
-    "startTime": 0
-  },
-  {
-    "id": "sound_1788037270447_z2dre",
-    "title": "olha quanto animal",
-    "url": "https://www.myinstants.com/media/sounds/olha-quanto-animal.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/olha-quanto-animal-47765/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#FF0000",
-    "hotkey": "B",
-    "tab": "Tech",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1788037270447,
-    "startTime": 0
-  },
-  {
-    "id": "sound_1788037139568_9418c",
-    "title": "Ai Qui Diliça",
-    "url": "https://www.myinstants.com/media/sounds/ai-qui-dilica.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/ai-qui-dilica-29981/",
-    "tags": [
-      "brasil",
-      "tv",
-      "meme"
-    ],
-    "color": "#26FF31",
-    "hotkey": "V",
-    "tab": "La Ele",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1788037139569,
-    "startTime": 0
-  },
-  {
-    "id": "sound_1788037054487_c365y",
-    "title": "Rei Julien - Ah Seu Cachorrao danado, Saliente",
-    "url": "https://www.myinstants.com/media/sounds/rei-julien-ah-seu-cachorrao-danado-saliente.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/rei-julien-ah-seu-cachorrao-danado-saliente-95459/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#7112FF",
-    "hotkey": "C",
-    "tab": "Tech",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1788037054487,
-    "startTime": 0
-  },
-  {
-    "id": "sound_1788036979375_r9u7b",
-    "title": "Acesso Liberado - Emoji o filme",
-    "url": "https://www.myinstants.com/media/sounds/acesso-liberado-emoji-o-filme.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/acesso-liberado-emoji-o-filme-636/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#FFA600",
-    "hotkey": "X",
-    "tab": "Tech",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1788036979375,
-    "startTime": 0
-  },
-  {
-    "id": "sound_1788036942639_2iq2x",
-    "title": "AVADAA KEDAVRAA",
-    "url": "https://www.myinstants.com/media/sounds/avadaa-kedavraa.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/avadaa-kedavraa-52082/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#FF0000",
-    "hotkey": "Z",
-    "tab": "Tech",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1788036942639,
-    "startTime": 0
-  },
-  {
-    "id": "sound_1788036776575_60lyx",
-    "title": "Acesso Negado - Emoji o filme",
-    "url": "https://www.myinstants.com/media/sounds/acesso-negado-emoji-o-filme.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/acesso-negado-emoji-o-filme-75462/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#FF8F12",
-    "hotkey": "L",
-    "tab": "Tech",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1788036776575,
-    "startTime": 0
-  },
-  {
-    "id": "sound_1788036705755_wy6jx",
-    "title": "Que Satisfação Aspira Tropa de Elite 2",
-    "url": "https://www.myinstants.com/media/sounds/que-satisfacao-aspira-tropa-de-elite-2.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/que-satisfacao-aspira-tropa-de-elite-2-12759/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#FF0000",
-    "hotkey": "K",
-    "tab": "Memes & TV",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1788036705755,
-    "startTime": 0
-  },
-  {
-    "id": "sound_1788036553762_ypn0z",
-    "title": "Talvez não funcione com burros",
-    "url": "https://www.myinstants.com/media/sounds/talvez-nao-funcione-com-burros.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/talvez-nao-funcione-com-burros-12446/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#FF0000",
-    "hotkey": "J",
-    "tab": "Tech",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1788036553762,
-    "startTime": 0
-  },
-  {
-    "id": "sound_1788036514409_bkpio",
-    "title": "Obrigado amigo - Pica Pau",
-    "url": "https://www.myinstants.com/media/sounds/obrigado-amigo-voce-e-um-amigo.mp3",
-    "source": "myinstants",
-    "sourceUrl": "https://www.myinstants.com/en/instant/obrigado-amigo-pica-pau-25059/",
-    "tags": [
-      "geral"
-    ],
-    "color": "#FF8800",
-    "hotkey": "H",
-    "tab": "Tech",
-    "volume": 1,
-    "playbackRate": 1,
-    "isFavorite": false,
-    "createdAt": 1788036514410,
-    "startTime": 0
-  },
-  {
     "id": "sound_1788036426393_9occ2",
     "title": "A pia ta cheia de prato esperando pra lavar",
     "url": "https://www.myinstants.com/media/sounds/a-pia-ta-cheia-de-prato-esperando-pra-lavar.mp3",
@@ -1101,6 +919,24 @@
     "createdAt": 1787024840853,
     "tab": "Rodrigo Faro",
     "hotkey": "O"
+  },
+  {
+    "id": "sound_1788036705755_wy6jx",
+    "title": "Que Satisfação Aspira Tropa de Elite 2",
+    "url": "https://www.myinstants.com/media/sounds/que-satisfacao-aspira-tropa-de-elite-2.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/que-satisfacao-aspira-tropa-de-elite-2-12759/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#FF0000",
+    "hotkey": "K",
+    "tab": "Memes & TV",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1788036705755,
+    "startTime": 0
   },
   {
     "id": "sound_1787024840745_5bzu1",
@@ -2083,6 +1919,26 @@
     "hotkey": "A"
   },
   {
+    "id": "sound_1788037139568_9418c",
+    "title": "Ai Qui Diliça",
+    "url": "https://www.myinstants.com/media/sounds/ai-qui-dilica.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/ai-qui-dilica-29981/",
+    "tags": [
+      "brasil",
+      "tv",
+      "meme"
+    ],
+    "color": "#26FF31",
+    "hotkey": "V",
+    "tab": "La Ele",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1788037139569,
+    "startTime": 0
+  },
+  {
     "id": "sound_1787024841876_qcgdj",
     "title": "GULP GULP GULP GULP",
     "url": "https://soundbuttonsworld.com/uploads/0d81a729-727a-4ed8-948f-a1e2bbd45732.mp3",
@@ -2397,6 +2253,149 @@
     "hotkey": "4"
   },
   {
+    "id": "sound_1788037270447_z2dre",
+    "title": "olha quanto animal",
+    "url": "https://www.myinstants.com/media/sounds/olha-quanto-animal.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/olha-quanto-animal-47765/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#FF0000",
+    "hotkey": "B",
+    "tab": "Tech",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1788037270447,
+    "startTime": 0
+  },
+  {
+    "id": "sound_1788037456787_xj7ll",
+    "title": "Parece Veridico",
+    "url": "https://www.myinstants.com/media/sounds/parece_veridico.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/parece-veridico/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#FF0000",
+    "tab": "Tech",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1788037456787,
+    "startTime": 0
+  },
+  {
+    "id": "sound_1788037054487_c365y",
+    "title": "Rei Julien - Ah Seu Cachorrao danado, Saliente",
+    "url": "https://www.myinstants.com/media/sounds/rei-julien-ah-seu-cachorrao-danado-saliente.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/rei-julien-ah-seu-cachorrao-danado-saliente-95459/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#7112FF",
+    "hotkey": "3",
+    "tab": "Tech",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1788037054487,
+    "startTime": 0
+  },
+  {
+    "id": "sound_1788036979375_r9u7b",
+    "title": "Acesso Liberado - Emoji o filme",
+    "url": "https://www.myinstants.com/media/sounds/acesso-liberado-emoji-o-filme.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/acesso-liberado-emoji-o-filme-636/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#FFA600",
+    "hotkey": "X",
+    "tab": "Tech",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1788036979375,
+    "startTime": 0
+  },
+  {
+    "id": "sound_1788036942639_2iq2x",
+    "title": "AVADAA KEDAVRAA",
+    "url": "https://www.myinstants.com/media/sounds/avadaa-kedavraa.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/avadaa-kedavraa-52082/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#FF0000",
+    "hotkey": "Z",
+    "tab": "Tech",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1788036942639,
+    "startTime": 0
+  },
+  {
+    "id": "sound_1788036776575_60lyx",
+    "title": "Acesso Negado - Emoji o filme",
+    "url": "https://www.myinstants.com/media/sounds/acesso-negado-emoji-o-filme.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/acesso-negado-emoji-o-filme-75462/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#FF8F12",
+    "hotkey": "6",
+    "tab": "Tech",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1788036776575,
+    "startTime": 0
+  },
+  {
+    "id": "sound_1788036553762_ypn0z",
+    "title": "Talvez não funcione com burros",
+    "url": "https://www.myinstants.com/media/sounds/talvez-nao-funcione-com-burros.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/talvez-nao-funcione-com-burros-12446/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#FF0000",
+    "hotkey": "J",
+    "tab": "Tech",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1788036553762,
+    "startTime": 0
+  },
+  {
+    "id": "sound_1788036514409_bkpio",
+    "title": "Obrigado amigo - Pica Pau",
+    "url": "https://www.myinstants.com/media/sounds/obrigado-amigo-voce-e-um-amigo.mp3",
+    "source": "myinstants",
+    "sourceUrl": "https://www.myinstants.com/en/instant/obrigado-amigo-pica-pau-25059/",
+    "tags": [
+      "geral"
+    ],
+    "color": "#FF8800",
+    "hotkey": "H",
+    "tab": "Tech",
+    "volume": 1,
+    "playbackRate": 1,
+    "isFavorite": false,
+    "createdAt": 1788036514410,
+    "startTime": 0
+  },
+  {
     "id": "sound_1787090528217_yg135",
     "title": "miau dilera2",
     "url": "https://www.myinstants.com/media/sounds/miaaaaau.mp3",
@@ -2406,7 +2405,7 @@
       "geral"
     ],
     "color": "#FF1FEE",
-    "hotkey": "1",
+    "hotkey": "9",
     "tab": "Tech",
     "volume": 1,
     "playbackRate": 1,
@@ -2444,8 +2443,7 @@
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1787063584194,
-    "hotkey": "3"
+    "createdAt": 1787063584194
   },
   {
     "id": "sound_1787061552385_3q7oe",
@@ -2462,7 +2460,7 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787061552385,
-    "hotkey": "4"
+    "hotkey": "W"
   },
   {
     "id": "sound_1787061477413_a6whs",
@@ -2479,7 +2477,7 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787061477413,
-    "hotkey": "5"
+    "hotkey": "E"
   },
   {
     "id": "sound_1787090442246_m2xaw",
@@ -2491,7 +2489,6 @@
       "geral"
     ],
     "color": "#FF0000",
-    "hotkey": "6",
     "tab": "Tech",
     "volume": 1,
     "playbackRate": 1,
@@ -2549,7 +2546,7 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787060430633,
-    "hotkey": "9"
+    "hotkey": "U"
   },
   {
     "id": "sound_1787061437903_8hbew",
@@ -2585,7 +2582,7 @@
     "playbackRate": 1,
     "isFavorite": false,
     "createdAt": 1787063808662,
-    "hotkey": "Q"
+    "hotkey": "O"
   },
   {
     "id": "sound_1787089532431_vowm5",
