@@ -444,11 +444,12 @@
     ],
     "color": "#FF0000",
     "hotkey": "I",
-    "tab": "Geral",
+    "tab": "Tech",
     "volume": 1,
     "playbackRate": 1,
     "isFavorite": false,
-    "createdAt": 1788035680967
+    "createdAt": 1788035680967,
+    "startTime": 0
   },
   {
     "id": "sound_1787024840853_3lzve",
